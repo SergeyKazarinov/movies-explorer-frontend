@@ -1,0 +1,10 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+
+body {
+  background-color: #fff;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+  color: #000;
+}

@@ -1,0 +1,20 @@
+.navTab {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.navTab__item {
+  box-sizing: border-box;
+  max-width: 96px;
+  width: 100%;
+  height: 36px;
+  background-color: #e8e8e8;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
