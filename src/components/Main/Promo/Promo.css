@@ -17,3 +17,45 @@
   letter-spacing: -0.04em;
   text-align: center;
 }
+
+@media screen and (max-width: 790px) {
+  .promo {
+    margin: 20px 20px 0 20px;
+  }
+
+  .promo__title {
+    max-width: 680px;
+    padding-top: 350px;
+    padding-bottom: 314px;
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .promo {
+    margin: 14px 14px 0 14px;
+  }
+
+  .promo__title {
+    max-width: 420px;
+    padding-top: 220px;
+    padding-bottom: 212px;
+    font-size: 29px;
+    line-height: 37px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .promo {
+    margin: 14px 14px 0 14px;
+  }
+
+  .promo__title {
+    max-width: 292px;
+    padding-top: 220px;
+    padding-bottom: 212px;
+    font-size: 29px;
+    line-height: 37px;
+  }
+}
