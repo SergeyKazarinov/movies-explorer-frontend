@@ -1,3 +1,4 @@
+import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import './Main.css';
 import Promo from './Promo/Promo';
@@ -9,6 +10,7 @@ const Main = () => {
       <Promo />
       <AboutProject />
       <Techs />
+      <AboutMe />
     </main>
   );
 }
