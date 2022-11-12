@@ -1,3 +1,4 @@
+import Footer from '../Footer/Footer';
 import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import './Main.css';
@@ -13,6 +14,7 @@ const Main = () => {
       <Techs />
       <AboutMe />
       <Portfolio />
+      <Footer />
     </main>
   );
 }
