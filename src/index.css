@@ -8,3 +8,8 @@ body {
   box-sizing: border-box;
   color: #000;
 }
+
+.list {
+  padding: 0;
+  list-style-type: none;
+}
