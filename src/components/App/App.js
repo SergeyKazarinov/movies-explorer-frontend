@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/signup">
+          <Register />
         </Route>
       </Switch>
     </div>
