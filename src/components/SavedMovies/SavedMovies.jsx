@@ -1,18 +1,18 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import "./Movies.css";
-import SearchForm from "./SearchForm/SearchForm";
+import "./SavedMovies.css";
 
-const Movies = () => {
+const SavedMovies = () => {
   return(
-    <section className="movies">
+    <>
       <Header />
       <SearchForm />
-      <MoviesCardList type="movies"/>
+      <MoviesCardList type="savedMovies"/>
       <Footer />
-    </section>
+    </>
   )
 };
 
-export default Movies;
+export default SavedMovies;

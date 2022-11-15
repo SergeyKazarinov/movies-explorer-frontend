@@ -41,3 +41,12 @@
   width: 100%;
   max-width: 364px;
 }
+
+@media screen and (max-width: 790px) {
+  .movieCardList {
+    padding: 80px 30px 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+  }
+}
