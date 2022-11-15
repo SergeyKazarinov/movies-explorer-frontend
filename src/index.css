@@ -1,6 +1,10 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #fff;
   font-family: "Inter", "Arial", sans-serif;
