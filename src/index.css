@@ -23,6 +23,12 @@ body {
 .link {
   color: #000;
   text-decoration: none;
+  transition: 0.3s;
+}
+
+.link:hover {
+  opacity: 0.7;
+  transition: 0.3s;
 }
 
 .button {
@@ -30,4 +36,10 @@ body {
   padding: 0;
   border: none;
   background-color: #00000000;
+  transition: 0.3s;
+}
+
+.button:hover {
+  opacity: 0.8;
+  transition: 0.3s;
 }

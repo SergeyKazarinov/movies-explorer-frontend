@@ -16,7 +16,9 @@ const MoviesCard = ({type}) => {
           <h3 className="moviesCard__title">33 слова о дизайне</h3>
           <p className="moviesCard__duration">1ч 47м</p>
         </div>
-        <img className="movieCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
+        <button type="button" className="button moviesCard__button">
+          <img className="movieCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
+        </button>
       </div>
       <img className="movieCard__poster" src={movie} alt="Постер фильма" />
     </div>
