@@ -19,7 +19,7 @@ const AboutMe = () => {
               начал заниматься фриланс&#8209;заказами и ушёл с постоянной работы.
             </p>
           </div>
-          <a className="aboutMe__link" href="https://github.com/SergeyKazarinov" target="_blank">Github</a>
+          <a className="link aboutMe__link" href="https://github.com/SergeyKazarinov" target="_blank">Github</a>
         </li>
         <li className="aboutMe__item">
           <div className="aboutMe__image"></div>
