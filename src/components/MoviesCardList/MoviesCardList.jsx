@@ -1,4 +1,5 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
 
 const MoviesCardList = ({type}) => {
@@ -14,6 +15,7 @@ const MoviesCardList = ({type}) => {
         <li><MoviesCard type={type}/></li>
       </ul>
       {type==="movies" && <button type="button" className="button movieCardList__button">Ещё</button>}
+      <Preloader />
     </section>
   )
 };
