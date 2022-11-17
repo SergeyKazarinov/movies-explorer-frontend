@@ -5,7 +5,7 @@ import BurgerMenu from "./BurgerMenu/BurgerMenu";
 
 const Header = ({loggedIn}) => {
   return(
-    <section className="header">
+    <header className="header">
       <Link to="/" className="link header__link_type_logo>">
         <img src={logo} className="header__logo" alt='логотип' />
       </Link>
@@ -25,8 +25,7 @@ const Header = ({loggedIn}) => {
           <Link to="/signin" className="link header__link header__link_type_signin">Войти</Link>
         </div>
       }
-
-    </section>
+    </header>
   )
 }
 

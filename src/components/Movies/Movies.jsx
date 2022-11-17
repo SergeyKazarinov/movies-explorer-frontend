@@ -6,12 +6,16 @@ import SearchForm from "./SearchForm/SearchForm";
 
 const Movies = () => {
   return(
-    <section className="movies">
+    <>
       <Header loggedIn={true} />
-      <SearchForm />
-      <MoviesCardList type="movies"/>
+      <main>
+        <section className="movies">
+          <SearchForm />
+          <MoviesCardList type="movies"/>
+        </section>
+      </main>
       <Footer />
-    </section>
+    </>
   )
 };
 

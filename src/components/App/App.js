@@ -10,7 +10,6 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 const App = () => {
   return (
-    <div className='app'>
       <Switch>
         <Route exact path="/">
           <Main />
@@ -34,7 +33,6 @@ const App = () => {
           <PageNotFound />
         </Route>
       </Switch>
-    </div>
   );
 }
 

@@ -3,7 +3,7 @@ import "./Footer.css";
 const Footer = () => {
   const date = new Date().getFullYear();
   return(
-    <section className="footer">
+    <footer className="footer">
       <h3 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       <div className="footer__line"></div>
       <div className="footer__flex">
@@ -13,7 +13,7 @@ const Footer = () => {
           <a className="link footer__link" href="https://github.com/yandex-praktikum" target="_blank">Github</a>
         </div>
       </div>
-    </section>
+    </footer>
   )
 }
 

@@ -11,6 +11,11 @@ body {
   font-weight: 400;
   box-sizing: border-box;
   color: #000;
+
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .list {
