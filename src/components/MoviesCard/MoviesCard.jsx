@@ -1,7 +1,7 @@
 import "./MoviesCard.css";
-import save_disabled from "../../images/save_disabled.png";
-import save_active from "../../images/save_active.png";
-import close from "../../images/close.png";
+import save_disabled from "../../images/save_disabled.svg";
+import save_active from "../../images/save_active.svg";
+import close from "../../images/close.svg";
 import movie from "../../images/movie_1.png";
 
 const MoviesCard = ({type}) => {

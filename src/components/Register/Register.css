@@ -40,6 +40,12 @@
   border-radius: 3px;
 }
 
+.form__button_inactive {
+  cursor: auto;
+  background-color: #f8f8f8;
+  color: #000;
+}
+
 .register__question {
   margin: 0;
   margin-top: 16px;

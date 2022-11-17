@@ -1,6 +1,6 @@
 import "./SearchForm.css";
-import search from "../../../images/search.png";
-import enter from "../../../images/enter.png";
+import search from "../../../images/search.svg";
+import enter from "../../../images/enter.svg";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
 const SearchForm = () => {

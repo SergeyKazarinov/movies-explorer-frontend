@@ -5,6 +5,7 @@
   padding-bottom: 5px;
   width: 100%;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .form__legend {
@@ -34,6 +35,21 @@
   border-bottom: 1px solid #2be080;
 }
 
-.form__input_type_password {
+.form__input_type_error {
   color: #ee3465;
+}
+
+.form__input-error {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  opacity: 0;
+}
+
+.form__input-error_active {
+  opacity: 1;
 }

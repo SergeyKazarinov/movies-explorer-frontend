@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import "./BurgerMenu.css";
-import line from "../../../images/line.png"
+import line from "../../../images/line.svg"
 import closeButton from "../../../images/close-button.svg"
 import { NavLink } from "react-router-dom";
 import useOpenBurger from "../../../hooks/useOpenBurger";
