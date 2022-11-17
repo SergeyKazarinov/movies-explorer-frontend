@@ -8,7 +8,7 @@ const SearchForm = () => {
     <div className="searchForm">
       <form className="searchForm__form" name="searchForm">
         <fieldset className="searchForm__set">
-          <label for="search" className="searchForm__label">
+          <label htmlFor="search" className="searchForm__label">
             <img className="searchForm__img" src={search} alt="поиск" />
             <input type="text" className="searchForm__input" placeholder="Фильм" id="search" />
           </label>

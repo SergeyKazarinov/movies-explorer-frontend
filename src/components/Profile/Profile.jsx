@@ -6,7 +6,7 @@ const Profile = () => {
   const email = "pochta@yandex.ru"
   return(
     <>
-      <Header />
+      <Header loggedIn={true}/>
       <section className="profile">
         <h2 className="profile__title">Привет, {name}!</h2>
         <div className="profile__container">

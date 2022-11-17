@@ -10,7 +10,7 @@ import Techs from './Techs/Techs';
 const Main = () => {
   return(
     <main className="main__page">
-      <Header />
+      <Header loggedIn={true}/>
       <Promo />
       <AboutProject />
       <Techs />

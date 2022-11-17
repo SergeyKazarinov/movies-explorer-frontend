@@ -7,7 +7,7 @@ import SearchForm from "./SearchForm/SearchForm";
 const Movies = () => {
   return(
     <section className="movies">
-      <Header />
+      <Header loggedIn={true} />
       <SearchForm />
       <MoviesCardList type="movies"/>
       <Footer />
