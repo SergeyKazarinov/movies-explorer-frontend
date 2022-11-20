@@ -7,15 +7,22 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import useGetMovies from '../../hooks/useGetMovies';
+import PopupWithError from '../PopupWithError/PopupWithError';
+import useOpenPopup from '../../hooks/useOpenPopup';
 
 const App = () => {
+const {handleSearchMovies, movies, isLoader} = useGetMovies();
+const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
+
   return (
+    <>
       <Switch>
         <Route exact path="/">
           <Main />
         </Route>
         <Route path="/movies">
-          <Movies />
+          <Movies onSearch={handleSearchMovies} movies={movies} isLoader={isLoader} onError={handleOpenPopup}/>
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />
@@ -33,6 +40,9 @@ const App = () => {
           <PageNotFound />
         </Route>
       </Switch>
+
+      <PopupWithError isOpen={isOpen} onClose={handleClosePopup} errorMessage={errorMessage} onCLoseOverlay={handleCLoseOverlayClick}/>
+    </>
   );
 }
 
