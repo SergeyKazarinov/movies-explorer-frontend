@@ -9,6 +9,7 @@ const useGetMovies = () => {
 
   const handleSearchMovies = async (e, movieName) => {
     try {
+      setMovies([])
       setMovieErrorMessage('')
       setIsLoader(true);
       e.preventDefault();

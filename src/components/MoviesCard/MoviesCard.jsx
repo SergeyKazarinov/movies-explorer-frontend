@@ -3,11 +3,13 @@ import save_disabled from "../../images/save_disabled.svg";
 import save_active from "../../images/save_active.svg";
 import close from "../../images/close.svg";
 import movie from "../../images/movie_1.png";
+import { useLocation } from "react-router";
 
-const MoviesCard = ({type, nameRu, image, duration}) => {
+const MoviesCard = ({nameRu, image, duration}) => {
+  const url = useLocation();
   const isSaved = true;
   const moviesCardSaved = isSaved ? save_active : save_disabled;
-  const moviesCardClose = type==="movies" ? moviesCardSaved : close;
+  const moviesCardClose = url.pathname==="/movies" ? moviesCardSaved : close;
   const hour = (duration / 60).toFixed(0);
   const minute = duration % 60;
 

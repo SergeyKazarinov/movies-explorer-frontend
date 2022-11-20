@@ -11,7 +11,7 @@ const Movies = ({onSearch, movies, isLoader, onError, movieErrorMessage}) => {
       <main>
         <section className="movies">
           <SearchForm type="movies" onSearch={onSearch} onError={onError}/>
-          <MoviesCardList type="movies" movies={movies} isLoader={isLoader} movieErrorMessage={movieErrorMessage}/>
+          <MoviesCardList movies={movies} isLoader={isLoader} movieErrorMessage={movieErrorMessage}/>
         </section>
       </main>
       <Footer />

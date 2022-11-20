@@ -10,7 +10,7 @@ const SavedMovies = () => {
       <Header loggedIn={true}/>
       <main>
         <SearchForm />
-        <MoviesCardList type="savedMovies"/>
+        <MoviesCardList />
       </main>
       <Footer />
     </>

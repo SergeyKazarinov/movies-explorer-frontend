@@ -1,14 +1,39 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
 
-const MoviesCardList = ({type, movies, isLoader, movieErrorMessage}) => {
+const MoviesCardList = ({movies, isLoader, movieErrorMessage}) => {
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [moviesDisplay, setMovieDisplay] = useState([]);
+  const url = useLocation();
+
+  useEffect(() => {
+    if (url.pathname === "/movies") {
+      if (window.screen.width > 790) {
+        setMovieDisplay(movies.slice(0, 12));
+        movies.length > 12 && setIsButtonActive(true);
+      }  else if (window.screen.width <= 790 && window.screen.width > 450) {
+        setMovieDisplay(movies.slice(0, 8));
+        movies.length > 8 && setIsButtonActive(true);
+      } else if (window.screen.width < 450) {
+        setMovieDisplay(movies.slice(0, 5));
+        movies.length > 5 && setIsButtonActive(true);
+      }
+    }
+  }, [movies])
+
+
+  window.addEventListener("resize", () => {
+    //console.log(window.screen.width)
+  });
+
   let movieElement;
-  if (type === "movies") {
-    movieElement = movies.map(movie => (
+  if (url.pathname==="/movies") {
+    movieElement = moviesDisplay.map(movie => (
       <li key={movie.id}><MoviesCard 
         key={movie.id}
-        type={type}
         nameRu={movie.nameRU}
         image={movie.image.url}
         duration={movie.duration}
@@ -24,7 +49,7 @@ const MoviesCardList = ({type, movies, isLoader, movieErrorMessage}) => {
         {movieElement}
       </ul>
       {isLoader && <Preloader />}
-      {type==="movies" && <button type="button" className="button movieCardList__button">Ещё</button>}
+      {(url.pathname==="/movies" && isButtonActive ) && <button type="button" className="button movieCardList__button">Ещё</button>}
     </section>
   )
 };
