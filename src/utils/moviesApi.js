@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
 const checkAnswer = (res) => {
   if(res.ok) {
@@ -11,20 +11,21 @@ const checkAnswer = (res) => {
   })
 }
 
-export const register = async ({name, email, password}) => {
-  try{
-    const res = await fetch(`${BASE_URL}/signusp`, {
-      method: 'POST',
+export const getMovies = async () => {
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'GET',
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password })
+      }
     });
+
     const data = await checkAnswer(res);
     return data;
   } catch (error) {
     return Promise.reject(error);
   }
+
+
 
 }

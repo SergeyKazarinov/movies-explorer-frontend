@@ -24,8 +24,26 @@
 }
 
 .register__form {
+  position: relative;
   margin-top: 40px;
   width: 100%;
+}
+
+.register__errorMessage {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  position: absolute;
+  bottom: 65px;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.register__errorMessage_active {
+  opacity: 1;
 }
 
 .form__button {

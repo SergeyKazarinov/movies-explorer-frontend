@@ -4,15 +4,24 @@ import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
-const Register = () => {
+const Register = ({onSubmit, errorMessageApi}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit({
+      name: values.name,
+      email: values.email,
+      password: values.password
+    })
+  }
   return(
     <main>
       <section className="register">
         <img className="register__logo" src={logo} alt="Логотип" />
         <h2 className="register__title">Добро пожаловать!</h2>
-        <form className="register__form form" noValidate>
+        <form className="register__form form" onSubmit={handleSubmit} noValidate>
           <Fieldset
             inputType="text"
             inputClassType="name"
@@ -46,6 +55,7 @@ const Register = () => {
             errors={errors}
             isValid={isValid}
           />
+          <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
           <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid}>Зарегистрироваться</button> 
         </form>
         <p className="register__question">Уже зарегистрированы? <Link to="/signin" className="link register__link">Войти</Link></p>

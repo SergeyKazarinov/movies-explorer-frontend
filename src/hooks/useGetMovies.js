@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NOT_MOVIES_SEARCH_MESSAGE, SERVER_ERROR_MESSAGE } from "../utils/constants";
-import { getMovies } from "../utils/mainApi";
+import { getMovies } from "../utils/moviesApi";
 
 const useGetMovies = () => {
   const [filterMovies, setFilterMovies] = useState([]);

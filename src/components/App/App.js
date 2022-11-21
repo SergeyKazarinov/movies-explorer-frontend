@@ -12,12 +12,28 @@ import PopupWithError from '../PopupWithError/PopupWithError';
 import useOpenPopup from '../../hooks/useOpenPopup';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useState } from 'react';
+import { register } from '../../utils/mainApi';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({name: 'Максим', email: '123@mail.ru'})
+  const [isErrorApi, setIsErrorApi] = useState(false);
+  const [errorMessageApi, setErrorMessageApi] = useState('');
   const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
 
+  const handleRegister = async ({name, email, password}) => {
+    try {
+      setIsErrorApi(false);
+      setErrorMessageApi('');
+      const res = await register({name, email, password});
+      setCurrentUser({ name, email })
+      console.log(res);
+    } catch (error) {
+      setIsErrorApi(true);
+      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi('При регистрации пользователя произошла ошибка.')
+    }
+
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
@@ -25,7 +41,13 @@ const App = () => {
           <Main />
         </Route>
         <Route path="/movies">
-          <Movies onSearch={handleSearchMovies} filterMovies={filterMovies} isLoader={isLoader} onError={handleOpenPopup} movieErrorMessage={movieErrorMessage}/>
+          <Movies
+            onSearch={handleSearchMovies}
+            filterMovies={filterMovies}
+            isLoader={isLoader}
+            onError={handleOpenPopup}
+            movieErrorMessage={movieErrorMessage}
+          />
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />
@@ -34,7 +56,7 @@ const App = () => {
           <Profile />
         </Route>
         <Route path="/signup">
-          <Register />
+          <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi} isErrorApi={isErrorApi}/>
         </Route>
         <Route path="/signin">
           <Login />
