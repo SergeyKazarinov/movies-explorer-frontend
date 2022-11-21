@@ -10,13 +10,16 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import useGetMovies from '../../hooks/useGetMovies';
 import PopupWithError from '../PopupWithError/PopupWithError';
 import useOpenPopup from '../../hooks/useOpenPopup';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { useState } from 'react';
 
 const App = () => {
-const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
-const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
+  const [currentUser, setCurrentUser] = useState({name: 'Максим', email: '123@mail.ru'})
+  const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
+  const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route exact path="/">
           <Main />
@@ -42,7 +45,7 @@ const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, error
       </Switch>
 
       <PopupWithError isOpen={isOpen} onClose={handleClosePopup} errorMessage={errorMessage} onCLoseOverlay={handleCLoseOverlayClick}/>
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 
