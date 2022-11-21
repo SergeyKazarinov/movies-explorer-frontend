@@ -3,13 +3,12 @@ import { NOT_MOVIES_SEARCH_MESSAGE, SERVER_ERROR_MESSAGE } from "../utils/consta
 import { getMovies } from "../utils/mainApi";
 
 const useGetMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const [filterMovies, setFilterMovies] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [movieErrorMessage, setMovieErrorMessage] = useState('');
 
   const handleSearchMovies = async (e, movieName) => {
     try {
-      setMovies([])
       setMovieErrorMessage('')
       setIsLoader(true);
       e.preventDefault();
@@ -18,14 +17,14 @@ const useGetMovies = () => {
       const list = moviesApi.filter(movie => movie.nameRU.toLowerCase().includes(movieName.toLowerCase())
                                           || movie.nameEN.toLowerCase().includes(movieName.toLowerCase()))
       list.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
-      setMovies(list);
+      setFilterMovies(list);
     } catch (err) {
       setMovieErrorMessage(SERVER_ERROR_MESSAGE);
     } finally {
       setIsLoader(false);
     }
   }
-  return {handleSearchMovies, movies, isLoader, movieErrorMessage};
+  return {handleSearchMovies, filterMovies, isLoader, movieErrorMessage};
 }
 
 export default useGetMovies;

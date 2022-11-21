@@ -12,7 +12,7 @@ import PopupWithError from '../PopupWithError/PopupWithError';
 import useOpenPopup from '../../hooks/useOpenPopup';
 
 const App = () => {
-const {handleSearchMovies, movies, isLoader, movieErrorMessage} = useGetMovies();
+const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
 const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
 
   return (
@@ -22,7 +22,7 @@ const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, error
           <Main />
         </Route>
         <Route path="/movies">
-          <Movies onSearch={handleSearchMovies} movies={movies} isLoader={isLoader} onError={handleOpenPopup} movieErrorMessage={movieErrorMessage}/>
+          <Movies onSearch={handleSearchMovies} filterMovies={filterMovies} isLoader={isLoader} onError={handleOpenPopup} movieErrorMessage={movieErrorMessage}/>
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />
