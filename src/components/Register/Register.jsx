@@ -7,8 +7,6 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 const Register = () => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
-  console.log(values)
-
   return(
     <main>
       <section className="register">
