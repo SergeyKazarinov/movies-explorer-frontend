@@ -73,6 +73,11 @@ const App = ({history}) => {
     }
   }
 
+  const handleSignOut = () => {
+    localStorage.removeItem('jwt')
+    setLoggedIn(false);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <LoggedInContext.Provider value={loggedIn}>
@@ -96,6 +101,7 @@ const App = ({history}) => {
           <ProtectedRoute
             path="/profile"
             component={Profile}
+            onSignOut={handleSignOut}
           />
           <Route path="/signup">
             <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi}/>

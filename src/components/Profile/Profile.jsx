@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext";
 import Header from "../Header/Header";
 import "./Profile.css";
 
-const Profile = () => {
+const Profile = ({onSignOut}) => {
   const currentUser = useContext(CurrentUserContext);
 
   return(
@@ -24,7 +24,7 @@ const Profile = () => {
             </div>
           </div>
           <button type="button" className="button profile__edit">Редактировать</button>
-          <button type="button" className="button profile__exit">Выйти из аккаунта</button>
+          <button type="button" className="button profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
         </section>
       </main>
     </>
