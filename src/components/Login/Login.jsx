@@ -4,7 +4,7 @@ import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
-const Login = ({onSubmit}) => {
+const Login = ({onSubmit, errorMessageApi}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (e) => {
@@ -44,6 +44,7 @@ const Login = ({onSubmit}) => {
             errors={errors}
             isValid={isValid}
           />
+          <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
           <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid}>Войти</button> 
         </form>
         <p className="login__question">Ещё не зарегистрированы? <Link to="/signup" className="link login__link">Регистрация</Link></p>

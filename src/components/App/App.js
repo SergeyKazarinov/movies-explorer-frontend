@@ -29,21 +29,30 @@ const App = ({history}) => {
       setCurrentUser({ name, email });
       handleLogin({email, password})
     } catch (error) {
-      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi('При регистрации пользователя произошла ошибка.')
+      if (error.statusCode === 400) {
+        setErrorMessageApi('При регистрации пользователя произошла ошибка.')
+      } else if (error.statusCode === 409) {
+        setErrorMessageApi(error.message)
+      } else {
+        setErrorMessageApi(error.message)
+      }
     }
   }
 
   const handleLogin = async ({email, password}) => {
     try {
+      setErrorMessageApi('');
       const res = await login({email, password});
       localStorage.setItem('jwt', res.token);
       setLoggedIn(true);
       history.push('/movies');
     } catch (error) {
       setLoggedIn(false);
-      console.log(error);
+      setErrorMessageApi(error.message);
+      console.log(error)
     }
   }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <LoggedInContext.Provider value={loggedIn}>
@@ -70,7 +79,7 @@ const App = ({history}) => {
             <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi}/>
           </Route>
           <Route path="/signin">
-            <Login onSubmit={handleLogin}/>
+            <Login onSubmit={handleLogin} errorMessageApi={errorMessageApi}/>
           </Route>
           <Route path="*">
             <PageNotFound />
