@@ -4,10 +4,10 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 import SearchForm from "./SearchForm/SearchForm";
 
-const Movies = ({onSearch, filterMovies, isLoader, onError, movieErrorMessage}) => {
+const Movies = ({loggedIn, onSearch, filterMovies, isLoader, onError, movieErrorMessage}) => {
   return(
     <>
-      <Header loggedIn={true} />
+      <Header loggedIn={loggedIn} />
       <main>
         <section className="movies">
           <SearchForm type="movies" onSearch={onSearch} onError={onError}/>

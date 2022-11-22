@@ -6,10 +6,10 @@ import Portfolio from './Portfolio/Portfolio';
 import Promo from './Promo/Promo';
 import Techs from './Techs/Techs';
 
-const Main = () => {
+const Main = ({loggedIn}) => {
   return(
     <>
-      <Header loggedIn={false}/>
+      <Header loggedIn={loggedIn}/>
       <main>
         <Promo />
         <AboutProject />
