@@ -16,6 +16,8 @@ const Register = ({onSubmit, errorMessageApi}) => {
       password: values.password
     })
   }
+
+  
   return(
     <main>
       <section className="register">

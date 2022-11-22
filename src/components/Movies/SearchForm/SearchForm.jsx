@@ -15,7 +15,6 @@ const SearchForm = ({type, onSearch, onError}) => {
     } else {
       onError("Нужно ввести ключевое слово")
     }
-
   }
 
   return(

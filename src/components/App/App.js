@@ -1,6 +1,6 @@
 import './App.css';
 import Main from '../Main/Main';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -12,27 +12,34 @@ import PopupWithError from '../PopupWithError/PopupWithError';
 import useOpenPopup from '../../hooks/useOpenPopup';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useState } from 'react';
-import { register } from '../../utils/mainApi';
+import { login, register } from '../../utils/mainApi';
 
-const App = () => {
+const App = ({history}) => {
   const [currentUser, setCurrentUser] = useState({name: 'Максим', email: '123@mail.ru'})
-  const [isErrorApi, setIsErrorApi] = useState(false);
   const [errorMessageApi, setErrorMessageApi] = useState('');
   const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
 
   const handleRegister = async ({name, email, password}) => {
     try {
-      setIsErrorApi(false);
       setErrorMessageApi('');
       const res = await register({name, email, password});
       setCurrentUser({ name, email })
-      console.log(res);
+
     } catch (error) {
-      setIsErrorApi(true);
       error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi('При регистрации пользователя произошла ошибка.')
     }
+  }
 
+  const handleLogin = async ({email, password}) => {
+    try {
+      const res = await login({email, password});
+      console.log(res.token);
+      localStorage.setItem('jwt', res.token);
+      history.push('/movies');
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -56,10 +63,10 @@ const App = () => {
           <Profile />
         </Route>
         <Route path="/signup">
-          <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi} isErrorApi={isErrorApi}/>
+          <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi}/>
         </Route>
         <Route path="/signin">
-          <Login />
+          <Login onSubmit={handleLogin}/>
         </Route>
         <Route path="*">
           <PageNotFound />
@@ -71,4 +78,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default withRouter(App);

@@ -4,15 +4,24 @@ import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
-const Login = () => {
+const Login = ({onSubmit}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit({
+      email: values.email,
+      password: values.password
+    })
+  }
 
   return(
     <main>
       <section className="login">
         <img className="login__logo" src={logo} alt="Логотип" />
         <h2 className="login__title">Рады видеть!</h2>
-        <form className="login__form form" noValidate>
+        <form className="login__form form" onSubmit={handleSubmit} noValidate>
         <Fieldset
             inputType="email"
             inputClassType="email"
