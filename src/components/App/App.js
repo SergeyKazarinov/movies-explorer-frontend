@@ -11,8 +11,8 @@ import useGetMovies from '../../hooks/useGetMovies';
 import PopupWithError from '../PopupWithError/PopupWithError';
 import useOpenPopup from '../../hooks/useOpenPopup';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useState } from 'react';
-import { login, register } from '../../utils/mainApi';
+import { useEffect, useState } from 'react';
+import { getUser, login, register } from '../../utils/mainApi';
 import { LoggedInContext } from '../../context/LoggedInContext';
 
 const App = ({history}) => {
@@ -21,6 +21,10 @@ const App = ({history}) => {
   const [errorMessageApi, setErrorMessageApi] = useState('');
   const {handleSearchMovies, filterMovies, isLoader, movieErrorMessage} = useGetMovies();
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
+
+  useEffect(() => {
+    handleGetUser();
+  }, [])
 
   const handleRegister = async ({name, email, password}) => {
     try {
@@ -51,6 +55,23 @@ const App = ({history}) => {
       setErrorMessageApi(error.message);
       console.log(error)
     }
+  }
+
+
+  const handleGetUser = async () => {
+    try {
+      const user = await getUser();
+      if(user.name) {
+        setCurrentUser({name: user.name, email: user.email});
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+        localStorage.removeItem('jwt');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   return (
