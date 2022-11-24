@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
 
-const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage}) => {
+const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie}) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
   const [windowSize, setWindowsSite] = useState(window.screen.width)
@@ -16,35 +16,30 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage}) => {
 
   useEffect(() => {
     window.addEventListener("resize", handleChangeWindow);
-
     return () => {
       window.removeEventListener("resize", handleChangeWindow);
     }
-  })
+  }, [])
   
   useEffect(() => {
-    if (url.pathname === "/movies") {
-      if (windowSize > 790) {
-        setCount(12)
-      }  else if (windowSize <= 790 && windowSize > 450) {
-        setCount(8)
-      } else if (windowSize <= 450) {
-        setCount(5);
-      }
-    };
+    if (windowSize > 790) {
+      setCount(12)
+    }  else if (windowSize <= 790 && windowSize > 450) {
+      setCount(8)
+    } else if (windowSize <= 450) {
+      setCount(5);
+    }
   }, [windowSize])
 
   useEffect(() => {
-    if (url.pathname === "/movies") {
-      if (windowSize > 790) {
-        setMoviesDisplay(filterMovies.slice(0, count));
-      }  else if (windowSize <= 790 && windowSize > 450) {
-        setMoviesDisplay(filterMovies.slice(0, count));
-      } else if (windowSize <= 450) {
-        setMoviesDisplay(filterMovies.slice(0, count));
-      }
+    if (windowSize > 790) {
+      setMoviesDisplay(filterMovies.slice(0, count));
+    }  else if (windowSize <= 790 && windowSize > 450) {
+      setMoviesDisplay(filterMovies.slice(0, count));
+    } else if (windowSize <= 450) {
+      setMoviesDisplay(filterMovies.slice(0, count));
     }
-  }, [filterMovies])
+  }, [filterMovies, count])
 
   const handleMovieDisplay = () => {
     if (windowSize > 790) {
@@ -57,18 +52,15 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage}) => {
   }
 
   let movieElement;
-  if (url.pathname==="/movies") {
     movieElement = moviesDisplay.map(movie => (
-      <li key={movie.id}><MoviesCard 
-        key={movie.id}
-        nameRu={movie.nameRU}
-        image={movie.image.url}
-        duration={movie.duration}
+      <li key={movie.id || movie._id}><MoviesCard 
+        key={movie.id || movie._id}
         movie={movie}
-        trailer={movie.trailerLink}
+        savedMovies={savedMovies}
+        onCreateMovie={onCreateMovie}
+        onDeleteMovie={onDeleteMovie}
       /></li>
       ))
-  }
 
   return(
     <section className="movieCardList">
@@ -90,4 +82,4 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage}) => {
   )
 };
 
-export default MoviesCardList;
+export default memo(MoviesCardList);
