@@ -1,4 +1,4 @@
-.popupWithError {
+.popupWithInfo {
   display: flex;
   position: fixed;
   top: 0;
@@ -13,13 +13,13 @@
   transition: visibility 0.5s, opacity 0.5s;
 }
 
-.popupWithError_opened {
+.popupWithInfo_opened {
   visibility: visible;
   opacity: 1;
   transition: visibility 0.5s, opacity 0.5s;
 }
 
-.popupWithError__container {
+.popupWithInfo__container {
   max-width: 430px;
   width: 100%;
   background-color: #fff;
@@ -31,7 +31,7 @@
   border-radius: 10px;
 }
 
-.popupWithError__title {
+.popupWithInfo__title {
   margin: 0;
   color: #ee3465;
   font-weight: 500;
@@ -39,7 +39,7 @@
   line-height: 29px;
 }
 
-.popupWithError__subtitle {
+.popupWithInfo__subtitle {
   margin: 0;
   margin-top: 20px;
   font-weight: 400;
@@ -48,7 +48,7 @@
   text-align: center;
 }
 
-.popupWithError__button {
+.popupWithInfo__button {
   margin-top: 20px;
   width: 100%;
   padding: 10px 0 10px;
@@ -61,7 +61,7 @@
 }
 
 @media screen and (max-width: 450px) {
-  .popupWithError__container {
+  .popupWithInfo__container {
     max-width: 282px;
     padding: 25px 22px;
   }

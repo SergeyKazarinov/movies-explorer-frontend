@@ -13,7 +13,7 @@ const SearchForm = ({type, onSearch, onError}) => {
     if (!!nameMovie) {
       onSearch(nameMovie);
     } else {
-      onError("Нужно ввести ключевое слово")
+      onError("Нужно ввести ключевое слово", true)
     }
   }
 

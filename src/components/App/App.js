@@ -7,11 +7,11 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import PopupWithError from '../PopupWithError/PopupWithError';
+import PopupWithInfo from '../PopupWithInfo/PopupWithInfo';
 import useOpenPopup from '../../hooks/useOpenPopup';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useEffect, useState } from 'react';
-import { createMovies, deleteMovie, getSavedMovies, getUser, login, register } from '../../utils/mainApi';
+import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
 import { LoggedInContext } from '../../context/LoggedInContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getMovies } from '../../utils/moviesApi';
@@ -27,7 +27,7 @@ const App = ({history}) => {
   const [isLoaderPage, setIsLoaderPage] = useState(true);
   const [isLoader, setIsLoader] = useState(false);
   const [movieErrorMessage, setMovieErrorMessage] = useState('');
-  const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, errorMessage} = useOpenPopup();
+  const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, infoMessage, isError} = useOpenPopup();
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -60,6 +60,10 @@ const App = ({history}) => {
       } else {
         setErrorMessageApi(error.message)
       }
+    } finally {
+      setTimeout(() => {
+        setErrorMessageApi('');
+      }, 3000)
     }
   }
 
@@ -96,6 +100,21 @@ const App = ({history}) => {
       sessionStorage.removeItem('moviesName');
       setIsLoaderPage(false);
       console.log(error);
+    }
+  }
+
+  const handleUpdateUser = async ({name, email}) => {
+    try {
+      setErrorMessageApi('');
+      const user = await updateUser({name, email});
+      setCurrentUser({_id: user._id, name: user.name, email: user.email});
+      handleOpenPopup("Данные успешно обновлены", false)
+    } catch (error) {
+      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi("При обновлении профиля произошла ошибка.");
+    } finally {
+      setTimeout(() => {
+        setErrorMessageApi('');
+      }, 3000)
     }
   }
 
@@ -172,6 +191,8 @@ const App = ({history}) => {
             path="/profile"
             component={Profile}
             onSignOut={handleSignOut}
+            onUpdateUser={handleUpdateUser}
+            errorMessageApi={errorMessageApi}
           />
           <Route path="/signup">
             <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi}/>
@@ -184,7 +205,7 @@ const App = ({history}) => {
           </Route>
         </Switch>
 
-        <PopupWithError isOpen={isOpen} onClose={handleClosePopup} errorMessage={errorMessage} onCLoseOverlay={handleCLoseOverlayClick}/>
+        <PopupWithInfo isOpen={isOpen} onClose={handleClosePopup} infoMessage={infoMessage} onCLoseOverlay={handleCLoseOverlayClick} isError={isError}/>
       </LoggedInContext.Provider>
     </CurrentUserContext.Provider>)
     );

@@ -1,11 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import Header from "../Header/Header";
 import "./Profile.css";
 
-const Profile = ({onSignOut}) => {
+const Profile = ({onSignOut, onUpdateUser, errorMessageApi}) => {
   const currentUser = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const isButtonActive = (isValid && (currentUser.name !== values.name || currentUser.email !== values.email));
 
+  useEffect(() => {
+    resetForm(currentUser);
+  }, [resetForm, currentUser])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onUpdateUser({
+      name: values.name,
+      email: values.email
+    });
+  }
   return(
     <>
       <Header loggedIn={true}/>
@@ -13,17 +27,46 @@ const Profile = ({onSignOut}) => {
         <section className="profile">
           <h2 className="profile__title">Привет, {currentUser.name}!</h2>
           <div className="profile__container">
-            <div className="profile__flex">
-              <p className="profile__text">Имя</p>
-              <p className="profile__data">{currentUser.name}</p>
-            </div>
-            <div className="profile__line"></div>
-            <div className="profile__flex">
-              <p className="profile__text">E-mail</p>
-              <p className="profile__data">{currentUser.email}</p>
-            </div>
+            <form className="form profile__form" name="profileEdit" onSubmit={handleSubmit} noValidate>
+              <fieldset className="profile__flex">
+                <label htmlFor="name" className="profile__text">Имя</label>
+                <input 
+                  className="profile__input"
+                  type="text" id="name"
+                  name="name"
+                  value={values.name || currentUser.name}
+                  minLength="4"
+                  maxLength="40"
+                  onChange={handleChange}
+                  required
+                />
+                <span className={`form__inputError ${!!errors.name && 'form__inputError_active'}`}>{errors.name}</span>
+              </fieldset>
+              <div className="profile__line"></div>
+              <fieldset className="profile__flex">
+                <label htmlFor="email" className="profile__text">E-mail</label>
+                <input
+                  className="profile__input"
+                  type="email" id="email"
+                  name="email"
+                  value={values.email || currentUser.email}
+                  minLength="4"
+                  maxLength="40"
+                  onChange={handleChange}
+                  required 
+                />
+                <span className={`form__input-error ${!!errors.email && 'form__input-error_active'}`}>{errors.email}</span>
+              </fieldset>
+              <span className={`profile__errorMessage ${!!errorMessageApi && "profile__errorMessage_active"}`}>{errorMessageApi}</span>
+              <button 
+              className={`button profile__edit ${isButtonActive && "profile__edit_active"}`}
+              disabled={!isButtonActive}
+              >
+                Редактировать
+              </button>
+            </form>
           </div>
-          <button type="button" className="button profile__edit">Редактировать</button>
+
           <button type="button" className="button profile__exit" onClick={onSignOut}>Выйти из аккаунта</button>
         </section>
       </main>
