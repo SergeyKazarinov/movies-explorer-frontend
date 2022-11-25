@@ -7,9 +7,9 @@ import SearchForm from "./SearchForm/SearchForm";
 
 const Movies = ({loggedIn, onSearch, filterMovies, savedMovies, isLoader, onError, movieErrorMessage, onCreateMovie, onDeleteMovie}) => {
   useEffect(() => {
-    onSearch(sessionStorage.getItem('moviesName'))
+    onSearch(localStorage.getItem('moviesName'))
   }, [])
-
+  console.log(filterMovies)
   return(
     <>
       <Header loggedIn={loggedIn} />

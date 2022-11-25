@@ -10,29 +10,34 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import PopupWithInfo from '../PopupWithInfo/PopupWithInfo';
 import useOpenPopup from '../../hooks/useOpenPopup';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
 import { LoggedInContext } from '../../context/LoggedInContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getMovies } from '../../utils/moviesApi';
 import { NOT_MOVIES_SEARCH_MESSAGE, SERVER_ERROR_MESSAGE } from '../../utils/constants';
 import Preloader from '../Preloader/Preloader';
+import useFilterMovies from '../../hooks/useFilterMovies';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
+  const [filterSavedMovies, setFilterSavedMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false)
   const [errorMessageApi, setErrorMessageApi] = useState('');
-  const [currentUser, setCurrentUser] = useState({_id: '', name: '', email: ''})
+  const [currentUser, setCurrentUser] = useState({_id: '', name: '', email: ''});
+  const [moviesFromServer, setMoviesFromServer] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isLoaderPage, setIsLoaderPage] = useState(true);
   const [isLoader, setIsLoader] = useState(false);
   const [movieErrorMessage, setMovieErrorMessage] = useState('');
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, infoMessage, isError} = useOpenPopup();
+  const {handleSearch} = useFilterMovies();
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-      handleGetUser(token)
+      handleGetMovies();
+      handleGetUser(token);
     } else {
       setIsLoaderPage(false);
     }
@@ -46,6 +51,10 @@ const App = ({history}) => {
       setSavedMovies([]);
     }
   }, [loggedIn])
+
+  useEffect(() => {
+    handleSearchMovies(localStorage.getItem('moviesName'));
+  }, [])
 
   const handleRegister = async ({name, email, password}) => {
     try {
@@ -94,10 +103,10 @@ const App = ({history}) => {
         setIsLoaderPage(false);
       } else {
         localStorage.removeItem('jwt');
-        sessionStorage.removeItem('moviesName');
+        localStorage.removeItem('moviesName');
       }
     } catch (error) {
-      sessionStorage.removeItem('moviesName');
+      localStorage.removeItem('moviesName');
       setIsLoaderPage(false);
       console.log(error);
     }
@@ -120,30 +129,44 @@ const App = ({history}) => {
 
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
-    sessionStorage.removeItem('moviesName');
+    localStorage.removeItem('moviesName');
     setLoggedIn(false);
     setFilterMovies([]);
     setSavedMovies([]);
     setCurrentUser({_id: '', name: '', email: ''});
   }
 
-  const handleSearchMovies = async (movieName) => {
+  const handleGetMovies = async () => {
     try {
-      setMovieErrorMessage('')
-      setIsLoader(true);
       const moviesApi = await getMovies();
-
-      const list = moviesApi.filter(movie => movie.nameRU.toLowerCase().includes(movieName.toLowerCase())
-                                          || movie.nameEN.toLowerCase().includes(movieName.toLowerCase()))
-      list.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
-      setFilterMovies(list);
-
+      setMoviesFromServer(moviesApi);
     } catch (err) {
       setMovieErrorMessage(SERVER_ERROR_MESSAGE);
     } finally {
       setIsLoader(false);
     }
   }
+
+  // const handleFilterMovies = (movies, movieName) => {
+  //     const list = movies.filter(movie => movie.nameRU.toLowerCase().includes(movieName.toLowerCase())
+  //                                         || movie.nameEN.toLowerCase().includes(movieName.toLowerCase()))
+
+  //     return list;
+  // }
+
+  const handleSearchMovies = (movieName) => {
+      setMovieErrorMessage('')
+      setIsLoader(true);
+      handleGetMovies();
+      const list = handleSearch(moviesFromServer, movieName);
+      list.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
+      setFilterMovies(list);
+  }
+
+  // const handleSearchSavedMovies = (movieName) => {
+  //   const list = handleFilterMovies(savedMovies, movieName);
+  //   setFilterSavedMovies(list);
+  // }
 
   const handleGetSavedMovies = async () => {
     const data = await getSavedMovies()
@@ -186,6 +209,7 @@ const App = ({history}) => {
             component={SavedMovies}
             savedMovies={savedMovies}
             onDeleteMovie={handleDeleteMovie}
+            filterSavedMovies={filterSavedMovies}
           />
           <ProtectedRoute
             path="/profile"

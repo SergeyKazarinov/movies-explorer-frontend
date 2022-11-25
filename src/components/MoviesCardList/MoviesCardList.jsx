@@ -4,7 +4,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
 
-const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie}) => {
+const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie, filterSavedMovies = null }) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
   const [windowSize, setWindowsSite] = useState(window.screen.width)
@@ -32,12 +32,16 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
   }, [windowSize])
 
   useEffect(() => {
-    if (windowSize > 790) {
-      setMoviesDisplay(filterMovies.slice(0, count));
-    }  else if (windowSize <= 790 && windowSize > 450) {
-      setMoviesDisplay(filterMovies.slice(0, count));
-    } else if (windowSize <= 450) {
-      setMoviesDisplay(filterMovies.slice(0, count));
+    if (url.pathname === '/movies') {
+      if (windowSize > 790) {
+        setMoviesDisplay(filterMovies.slice(0, count));
+      }  else if (windowSize <= 790 && windowSize > 450) {
+        setMoviesDisplay(filterMovies.slice(0, count));
+      } else if (windowSize <= 450) {
+        setMoviesDisplay(filterMovies.slice(0, count));
+      }
+    } else {
+      setMoviesDisplay(filterMovies)
     }
   }, [filterMovies, count])
 

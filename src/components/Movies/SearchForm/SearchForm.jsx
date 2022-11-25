@@ -4,14 +4,18 @@ import enter from "../../../images/enter.svg";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import { useEffect, useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
+import { useLocation } from "react-router-dom";
 
 const SearchForm = ({type, onSearch, onError}) => {
   const {handleChange, handleSearch, nameMovie} = useSearchMovies(type)
+  const url = useLocation();
 
   const handleSearchMovies = (e)  => {
-    handleSearch(e);
+    e.preventDefault();
+    url.pathname === '/movies' && handleSearch();
     if (!!nameMovie) {
       onSearch(nameMovie);
+
     } else {
       onError("Нужно ввести ключевое слово", true)
     }
