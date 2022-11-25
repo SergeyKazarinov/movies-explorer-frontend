@@ -1,21 +1,16 @@
-import { useEffect } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 import SearchForm from "./SearchForm/SearchForm";
 
-const Movies = ({loggedIn, onSearch, filterMovies, savedMovies, isLoader, onError, movieErrorMessage, onCreateMovie, onDeleteMovie}) => {
-  useEffect(() => {
-    onSearch(localStorage.getItem('moviesName'))
-  }, [])
-  console.log(filterMovies)
+const Movies = ({loggedIn, onSearch, filterMovies, savedMovies, isLoader, onError, movieErrorMessage, onCreateMovie, onDeleteMovie, isShort}) => {
   return(
     <>
       <Header loggedIn={loggedIn} />
       <main>
         <section className="movies">
-          <SearchForm type="movies" onSearch={onSearch} onError={onError}/>
+          <SearchForm type="movies" onSearch={onSearch} onError={onError} isShort={isShort}/>
           <MoviesCardList
             savedMovies={savedMovies}
             filterMovies={filterMovies}

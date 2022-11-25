@@ -2,23 +2,33 @@ import "./SearchForm.css";
 import search from "../../../images/search.svg";
 import enter from "../../../images/enter.svg";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
 import { useLocation } from "react-router-dom";
 
-const SearchForm = ({type, onSearch, onError}) => {
-  const {handleChange, handleSearch, nameMovie} = useSearchMovies(type)
+const SearchForm = ({type, onSearch, onError, isShort, onResetForm}) => {
+  const [checked, setChecked] = useState(false);
+  const {handleChange, handleSetItem, nameMovie} = useSearchMovies(type)
   const url = useLocation();
 
   const handleSearchMovies = (e)  => {
     e.preventDefault();
-    url.pathname === '/movies' && handleSearch();
-    if (!!nameMovie) {
-      onSearch(nameMovie);
+    if (url.pathname === '/movies') {
+      handleSetItem(); 
+      sessionStorage.setItem('checkbox', checked)
+    };
 
+    if (!!nameMovie) {
+      onSearch(nameMovie, checked);
     } else {
-      onError("Нужно ввести ключевое слово", true)
+      url.pathname === '/movies'
+      ? onError("Нужно ввести ключевое слово", true)
+      : onResetForm(checked);
     }
+  }
+
+  const handleChangeChecked = (checked) => {
+    setChecked(checked);
   }
 
   return(
@@ -46,7 +56,7 @@ const SearchForm = ({type, onSearch, onError}) => {
           <div className="searchForm__line"></div>
         </div>
       </form>
-      <FilterCheckbox />
+      <FilterCheckbox onChangeChecked={handleChangeChecked} isShort={isShort}/>
     </div>
   )
 }
