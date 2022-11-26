@@ -9,11 +9,11 @@ const useOpenPopup = () => {
     setIsError(boolean)
     setIsOpen(true);
     setInfoMessage(message);
-    document.addEventListener("keydown", handleKeyClose);
+    window.addEventListener("keydown", handleKeyClose);
   }
 
   const handleClosePopup = () => {
-    document.removeEventListener("keydown", handleKeyClose);
+    window.removeEventListener("keydown", handleKeyClose);
     setIsOpen(false);
     setTimeout(() => {
       setInfoMessage('');
@@ -27,7 +27,7 @@ const useOpenPopup = () => {
   }
 
   function handleKeyClose(e) {
-    (e.key === "Escape" || e.key === "Enter") && handleClosePopup();
+    (e.key === "Escape") && handleClosePopup();
   }
 
   return {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, infoMessage, isError};

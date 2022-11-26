@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
@@ -6,9 +6,13 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useContext, useEffect } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
-const Register = ({onSubmit, errorMessageApi}) => {
+const Register = ({history, onSubmit, errorMessageApi}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const loggedIn = useContext(LoggedInContext);
+
+  useEffect(() => {
+    loggedIn && history.push('/');
+  }, [])
 
   useEffect(() => {
     resetForm()
@@ -72,4 +76,4 @@ const Register = ({onSubmit, errorMessageApi}) => {
   )
 }
 
-export default Register;
+export default withRouter(Register);

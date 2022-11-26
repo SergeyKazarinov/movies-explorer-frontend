@@ -6,7 +6,7 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
-const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie, filterSavedMovies}) => {
+const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie}) => {
   const [movie, setMovies] = useState([])
   const {handleSearch, handleCheckbox} = useFilterMovies();
   useEffect(() => {
@@ -29,7 +29,7 @@ const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie, filterSavedMovies}) 
       <Header loggedIn={loggedIn}/>
       <main>
         <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} />
-        <MoviesCardList filterMovies={movie} onDeleteMovie={onDeleteMovie} filterSavedMovies={filterSavedMovies} />
+        <MoviesCardList filterMovies={movie} onDeleteMovie={onDeleteMovie} />
       </main>
       <Footer />
     </>

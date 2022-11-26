@@ -1,6 +1,8 @@
 import './App.css';
-import Main from '../Main/Main';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+// components
+import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -8,20 +10,20 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import PopupWithInfo from '../PopupWithInfo/PopupWithInfo';
-import useOpenPopup from '../../hooks/useOpenPopup';
-import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
-import { LoggedInContext } from '../../context/LoggedInContext';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { getMovies } from '../../utils/moviesApi';
-import { NOT_MOVIES_SEARCH_MESSAGE, SERVER_ERROR_MESSAGE } from '../../utils/constants';
 import Preloader from '../Preloader/Preloader';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+// contexts and utils
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { LoggedInContext } from '../../context/LoggedInContext';
+import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
+import { NOT_MOVIES_SEARCH_MESSAGE, REGISTER_ERROR_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE, USER_UPDATE_MESSAGE } from '../../utils/constants';
+import { getMovies } from '../../utils/moviesApi';
+// hooks
+import useOpenPopup from '../../hooks/useOpenPopup';
 import useFilterMovies from '../../hooks/useFilterMovies';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [filterSavedMovies, setFilterSavedMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false)
   const [errorMessageApi, setErrorMessageApi] = useState('');
   const [currentUser, setCurrentUser] = useState({_id: '', name: '', email: ''});
@@ -72,7 +74,7 @@ const App = ({history}) => {
       handleLogin({email, password})
     } catch (error) {
       if (error.statusCode === 400) {
-        setErrorMessageApi('При регистрации пользователя произошла ошибка.')
+        setErrorMessageApi(REGISTER_ERROR_MESSAGE)
       } else if (error.statusCode === 409) {
         setErrorMessageApi(error.message)
       } else {
@@ -99,6 +101,10 @@ const App = ({history}) => {
       setLoggedIn(false);
       setErrorMessageApi(error.message);
       console.log(error)
+    } finally {
+      setTimeout(() => {
+        setErrorMessageApi('');
+      }, 3000)
     }
   }
 
@@ -113,6 +119,7 @@ const App = ({history}) => {
       } else {
         localStorage.removeItem('jwt');
         sessionStorage.removeItem('moviesName');
+        sessionStorage.removeItem('checkbox')
       }
     } catch (error) {
       sessionStorage.removeItem('moviesName');
@@ -126,9 +133,9 @@ const App = ({history}) => {
       setErrorMessageApi('');
       const user = await updateUser({name, email});
       setCurrentUser({_id: user._id, name: user.name, email: user.email});
-      handleOpenPopup("Данные успешно обновлены", false)
+      handleOpenPopup(USER_UPDATE_MESSAGE, false)
     } catch (error) {
-      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi("При обновлении профиля произошла ошибка.");
+      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi(USER_UPDATE_ERROR_MESSAGE);
     } finally {
       setTimeout(() => {
         setErrorMessageApi('');
@@ -152,19 +159,12 @@ const App = ({history}) => {
         const moviesApi = await getMovies();
         setMoviesFromServer(moviesApi);
       }
-    } catch (err) {
-      setMovieErrorMessage(SERVER_ERROR_MESSAGE);
+    } catch (error) {
+      setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE);
     } finally {
       setIsLoader(false);
     }
   }
-
-  // const handleFilterMovies = (movies, movieName) => {
-  //     const list = movies.filter(movie => movie.nameRU.toLowerCase().includes(movieName.toLowerCase())
-  //                                         || movie.nameEN.toLowerCase().includes(movieName.toLowerCase()))
-
-  //     return list;
-  // }
 
   const handleSearchMovies = (movieName, checked) => {
     setIsShort(checked);
@@ -177,26 +177,40 @@ const App = ({history}) => {
     setFilterMovies(shortList);
   }
 
-  // const handleSearchSavedMovies = (movieName) => {
-  //   const list = handleFilterMovies(savedMovies, movieName);
-  //   setFilterSavedMovies(list);
-  // }
-
   const handleGetSavedMovies = async () => {
-    const data = await getSavedMovies()
-    setSavedMovies(data);
+    try {
+      const data = await getSavedMovies()
+      setSavedMovies(data);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleCreateMovie = async (movie) => {
-    const data = await createMovies(movie);
-    handleGetSavedMovies();
+    try {
+      const data = await createMovies(movie);
+      handleGetSavedMovies();
+    } catch(error) {
+      setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE)
+    }
   }
 
   const handleDeleteMovie = async (movie) => {
-    const data = await deleteMovie(movie);
-    setSavedMovies((movies) => {
-      return movies.filter(item => item !== movie);
-    })
+    try {
+      const data = await deleteMovie(movie);
+      setSavedMovies((movies) => {
+        return movies.filter(item => item._id !== data._id);
+      })
+    } catch(err) {
+      setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE)
+    }
+  }
+
+  const handleChangeChecked = (checked) => {
+    if (filterMovies.length > 0) {
+    handleSearchMovies(sessionStorage.getItem('moviesName'), checked);
+    sessionStorage.setItem('checkbox', checked)
+    }
   }
 
   return (isLoaderPage ? <Preloader /> :
@@ -218,13 +232,13 @@ const App = ({history}) => {
             onCreateMovie={handleCreateMovie}
             onDeleteMovie={handleDeleteMovie}
             isShort={isShort}
+            onChange={handleChangeChecked}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             savedMovies={savedMovies}
             onDeleteMovie={handleDeleteMovie}
-            filterSavedMovies={filterSavedMovies}
           />
           <ProtectedRoute
             path="/profile"

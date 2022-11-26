@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
 import { useLocation } from "react-router-dom";
 
-const SearchForm = ({type, onSearch, onError, isShort, onResetForm}) => {
+const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange}) => {
   const [checked, setChecked] = useState(false);
   const {handleChange, handleSetItem, nameMovie} = useSearchMovies(type)
   const url = useLocation();
@@ -29,6 +29,7 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm}) => {
 
   const handleChangeChecked = (checked) => {
     setChecked(checked);
+    onChange(checked)
   }
 
   return(

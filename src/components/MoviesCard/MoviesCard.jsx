@@ -27,7 +27,7 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
     if (url.pathname === "/saved-movies") {
       onDeleteMovie(movie);
     } else {
-      const findMovie = savedMovies.find((item) => item.id === movie.movieId)
+      const findMovie = savedMovies.find((item) => item.movieId === movie.id)
       isSaved ? onDeleteMovie(findMovie) : onCreateMovie(movie);
       setIsSaved(state => !state);
     }
@@ -46,7 +46,7 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
           <img className="movieCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
         </button>
       </div>
-      <a className="link" href={movie.trailerLink} target="_blank">
+      <a className="link movieCard__link" href={movie.trailerLink} target="_blank">
         <img className="movieCard__poster" src={poster} alt="Постер фильма" />
       </a>
     </div>
