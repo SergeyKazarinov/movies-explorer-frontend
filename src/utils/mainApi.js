@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://api.movies.kazarinov.nomoredomains.icu';
 const imageUrl = 'https://api.nomoreparties.co';
 
 const checkAnswer = (res) => {
