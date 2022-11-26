@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import AboutMe from './AboutMe/AboutMe';
@@ -22,4 +23,4 @@ const Main = ({loggedIn}) => {
   );
 }
 
-export default Main;
+export default memo(Main);

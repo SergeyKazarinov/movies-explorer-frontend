@@ -2,7 +2,7 @@ import "./Header.css";
 import {Link, NavLink} from "react-router-dom";
 import logo from "../../images/logo.svg";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
 const Header = () => {
@@ -33,4 +33,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default memo(Header);

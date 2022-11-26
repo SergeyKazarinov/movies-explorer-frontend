@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { memo, useCallback, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import Header from "../Header/Header";
@@ -13,13 +13,14 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi}) => {
     resetForm(currentUser);
   }, [resetForm, currentUser])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     onUpdateUser({
       name: values.name,
       email: values.email
     });
-  }
+  }, [values]);
+  
   return(
     <>
       <Header loggedIn={true}/>
@@ -74,4 +75,4 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi}) => {
   )
 }
 
-export default Profile;
+export default memo(Profile);

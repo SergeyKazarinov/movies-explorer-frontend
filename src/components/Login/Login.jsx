@@ -3,7 +3,7 @@ import "./Login.css";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
 const Login = ({history, onSubmit, errorMessageApi}) => {
@@ -12,19 +12,20 @@ const Login = ({history, onSubmit, errorMessageApi}) => {
 
   useEffect(() => {
     loggedIn && history.push('/');
-  }, [])
+  }, []);
+
   useEffect(() => {
     resetForm();
   }, [loggedIn, resetForm])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
     onSubmit({
       email: values.email,
       password: values.password
     })
-  }
+  }, [values]);
 
   return(
     <main>

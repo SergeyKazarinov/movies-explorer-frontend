@@ -1,6 +1,6 @@
 import './App.css';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 // components
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -54,7 +54,6 @@ const App = ({history}) => {
       const list = handleSearch(moviesFromServer, moviesName);
       const shortList = handleCheckbox(list, isShort);
       setFilterMovies(shortList);
-      shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     }
   }, [moviesFromServer])
 
@@ -141,7 +140,7 @@ const App = ({history}) => {
         setErrorMessageApi('');
       }, 3000)
     }
-  }
+  };
 
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
@@ -150,10 +149,11 @@ const App = ({history}) => {
     setFilterMovies([]);
     setSavedMovies([]);
     setCurrentUser({_id: '', name: '', email: ''});
-  }
+  };
 
   const handleGetMovies = async () => {
     try {
+      setIsLoader(true)
       setMovieErrorMessage('')
       if (moviesFromServer.length === 0) {
         const moviesApi = await getMovies();
@@ -164,7 +164,7 @@ const App = ({history}) => {
     } finally {
       setIsLoader(false);
     }
-  }
+  };
 
   const handleSearchMovies = (movieName, checked) => {
     setIsShort(checked);
@@ -175,13 +175,14 @@ const App = ({history}) => {
     const shortList = handleCheckbox(list, checked);
     shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     setFilterMovies(shortList);
-  }
+  };
 
   const handleGetSavedMovies = async () => {
     try {
       const data = await getSavedMovies()
       setSavedMovies(data);
     } catch (error) {
+      setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE);
       console.log(error)
     }
   }
@@ -211,7 +212,7 @@ const App = ({history}) => {
     handleSearchMovies(sessionStorage.getItem('moviesName'), checked);
     sessionStorage.setItem('checkbox', checked)
     }
-  }
+  };
 
   return (isLoaderPage ? <Preloader /> :
     (<CurrentUserContext.Provider value={currentUser}>

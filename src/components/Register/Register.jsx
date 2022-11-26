@@ -1,9 +1,9 @@
+import { useCallback, useContext, useEffect } from "react";
 import {Link, withRouter} from "react-router-dom";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { useContext, useEffect } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
 const Register = ({history, onSubmit, errorMessageApi}) => {
@@ -18,7 +18,7 @@ const Register = ({history, onSubmit, errorMessageApi}) => {
     resetForm()
   }, [loggedIn, resetForm]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
     onSubmit({
@@ -26,7 +26,7 @@ const Register = ({history, onSubmit, errorMessageApi}) => {
       email: values.email,
       password: values.password
     })
-  }
+  }, [values]);
   
   return(
     <main>

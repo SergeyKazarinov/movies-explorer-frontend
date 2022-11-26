@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Stack from "../../Stack/Stack";
 import Title from "../../Title/Title";
 import "./Techs.css";
@@ -23,4 +24,4 @@ const Techs = () => {
   )
 };
 
-export default Techs;
+export default memo(Techs);

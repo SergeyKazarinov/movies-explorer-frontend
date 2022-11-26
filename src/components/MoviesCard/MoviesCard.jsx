@@ -33,8 +33,6 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
     }
   }
 
-
-
   return(
     <div className="moviesCard">
       <div className="movieCard__flex">
