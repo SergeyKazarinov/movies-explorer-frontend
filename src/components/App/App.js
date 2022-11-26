@@ -1,17 +1,10 @@
 import './App.css';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // components
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Profile from '../Profile/Profile';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
-import PageNotFound from '../PageNotFound/PageNotFound';
-import PopupWithInfo from '../PopupWithInfo/PopupWithInfo';
 import Preloader from '../Preloader/Preloader';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import useFilterMovies from '../../hooks/useFilterMovies';
+import MainPage from '../MainPage/MainPage';
 // contexts and utils
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { LoggedInContext } from '../../context/LoggedInContext';
@@ -20,7 +13,6 @@ import { NOT_MOVIES_SEARCH_MESSAGE, REGISTER_ERROR_MESSAGE, MOVIES_SERVER_ERROR_
 import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
-import useFilterMovies from '../../hooks/useFilterMovies';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
@@ -217,49 +209,28 @@ const App = ({history}) => {
   return (isLoaderPage ? <Preloader /> :
     (<CurrentUserContext.Provider value={currentUser}>
       <LoggedInContext.Provider value={loggedIn}>
-        <Switch>
-          <Route exact path="/">
-            <Main/>
-          </Route>
-          <ProtectedRoute
-            path="/movies"
-            component={Movies}
-            onSearch={handleSearchMovies}
-            filterMovies={filterMovies}
-            savedMovies={savedMovies}
-            isLoader={isLoader}
-            onError={handleOpenPopup}
-            movieErrorMessage={movieErrorMessage}
-            onCreateMovie={handleCreateMovie}
-            onDeleteMovie={handleDeleteMovie}
-            isShort={isShort}
-            onChange={handleChangeChecked}
-          />
-          <ProtectedRoute
-            path="/saved-movies"
-            component={SavedMovies}
-            savedMovies={savedMovies}
-            onDeleteMovie={handleDeleteMovie}
-          />
-          <ProtectedRoute
-            path="/profile"
-            component={Profile}
-            onSignOut={handleSignOut}
-            onUpdateUser={handleUpdateUser}
-            errorMessageApi={errorMessageApi}
-          />
-          <Route path="/signup">
-            <Register onSubmit={handleRegister} errorMessageApi={errorMessageApi}/>
-          </Route>
-          <Route path="/signin">
-            <Login onSubmit={handleLogin} errorMessageApi={errorMessageApi}/>
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-
-        <PopupWithInfo isOpen={isOpen} onClose={handleClosePopup} infoMessage={infoMessage} onCLoseOverlay={handleCLoseOverlayClick} isError={isError}/>
+        <MainPage
+          onSearch={handleSearchMovies}
+          filterMovies={filterMovies}
+          savedMovies={savedMovies}
+          isLoader={isLoader}
+          onError={handleOpenPopup}
+          movieErrorMessage={movieErrorMessage}
+          onCreateMovie={handleCreateMovie}
+          onDeleteMovie={handleDeleteMovie}
+          isShort={isShort}
+          onChange={handleChangeChecked}
+          onSignOut={handleSignOut}
+          onUpdateUser={handleUpdateUser}
+          errorMessageApi={errorMessageApi}
+          onSubmitRegister={handleRegister}
+          onSubmitLogin={handleLogin}
+          isOpen={isOpen}
+          onClose={handleClosePopup}
+          infoMessage={infoMessage}
+          onCLoseOverlay={handleCLoseOverlayClick}
+          isError={isError}
+        />
       </LoggedInContext.Provider>
     </CurrentUserContext.Provider>)
     );
