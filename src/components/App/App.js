@@ -1,5 +1,5 @@
 import { withRouter } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 // components
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
@@ -45,7 +45,6 @@ const App = ({history}) => {
       const list = handleSearch(moviesFromServer, moviesName);
       const shortList = handleCheckbox(list, isShort);
       setFilterMovies(shortList);
-      shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     }
   }, [moviesFromServer])
 
@@ -148,7 +147,7 @@ const App = ({history}) => {
 
   const handleGetMovies = async () => {
     try {
-      setIsLoader(true)
+      setIsLoader(true);
       setMovieErrorMessage('')
       if (moviesFromServer.length === 0) {
         const moviesApi = await getMovies();
@@ -161,15 +160,15 @@ const App = ({history}) => {
     }
   };
 
-  const handleSearchMovies = (movieName, checked) => {
+  const handleSearchMovies = async (movieName, checked) => {
     setIsShort(checked);
-    setIsLoader(true);
+    await setIsLoader(true);
     handleGetMovies();
     const list = handleSearch(moviesFromServer, movieName);
     const shortList = handleCheckbox(list, checked);
-    shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     setFilterMovies(shortList);
-    setIsLoader(false)
+    await setIsLoader(false);
+    (shortList.length === 0 && !isLoader) ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
   };
 
   const handleGetSavedMovies = async () => {
