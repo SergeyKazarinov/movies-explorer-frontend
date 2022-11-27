@@ -1,9 +1,7 @@
-import './App.css';
 import { withRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // components
 import Preloader from '../Preloader/Preloader';
-import useFilterMovies from '../../hooks/useFilterMovies';
 import MainPage from '../MainPage/MainPage';
 // contexts and utils
 import { CurrentUserContext } from '../../context/CurrentUserContext';
@@ -13,6 +11,7 @@ import { NOT_MOVIES_SEARCH_MESSAGE, REGISTER_ERROR_MESSAGE, MOVIES_SERVER_ERROR_
 import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
+import useFilterMovies from '../../hooks/useFilterMovies';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
@@ -46,6 +45,7 @@ const App = ({history}) => {
       const list = handleSearch(moviesFromServer, moviesName);
       const shortList = handleCheckbox(list, isShort);
       setFilterMovies(shortList);
+      shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     }
   }, [moviesFromServer])
 
@@ -60,7 +60,7 @@ const App = ({history}) => {
 
   const handleRegister = async ({name, email, password}) => {
     try {
-      setErrorMessageApi('');
+      setIsLoader(true);
       const res = await register({name, email, password});
       handleLogin({email, password})
     } catch (error) {
@@ -72,6 +72,7 @@ const App = ({history}) => {
         setErrorMessageApi(error.message)
       }
     } finally {
+      setIsLoader(false);
       setTimeout(() => {
         setErrorMessageApi('');
       }, 3000)
@@ -80,7 +81,7 @@ const App = ({history}) => {
 
   const handleLogin = async ({email, password}) => {
     try {
-      setErrorMessageApi('');
+      setIsLoader(true);
       const res = await login({email, password});
       localStorage.setItem('jwt', res.token);
       const user = await getUser(res.token);
@@ -93,6 +94,7 @@ const App = ({history}) => {
       setErrorMessageApi(error.message);
       console.log(error)
     } finally {
+      setIsLoader(false);
       setTimeout(() => {
         setErrorMessageApi('');
       }, 3000)
@@ -121,13 +123,14 @@ const App = ({history}) => {
 
   const handleUpdateUser = async ({name, email}) => {
     try {
-      setErrorMessageApi('');
+      setIsLoader(true);
       const user = await updateUser({name, email});
       setCurrentUser({_id: user._id, name: user.name, email: user.email});
       handleOpenPopup(USER_UPDATE_MESSAGE, false)
     } catch (error) {
       error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi(USER_UPDATE_ERROR_MESSAGE);
     } finally {
+      setIsLoader(false);
       setTimeout(() => {
         setErrorMessageApi('');
       }, 3000)
@@ -160,13 +163,13 @@ const App = ({history}) => {
 
   const handleSearchMovies = (movieName, checked) => {
     setIsShort(checked);
-    setMovieErrorMessage('')
     setIsLoader(true);
     handleGetMovies();
     const list = handleSearch(moviesFromServer, movieName);
     const shortList = handleCheckbox(list, checked);
     shortList.length === 0 ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
     setFilterMovies(shortList);
+    setIsLoader(false)
   };
 
   const handleGetSavedMovies = async () => {

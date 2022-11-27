@@ -6,7 +6,7 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
-const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie}) => {
+const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie, isLoader}) => {
   const [longMovie, setLongMovie] = useState([]);
   const [movie, setMovies] = useState([])
   const {handleSearch, handleCheckbox} = useFilterMovies();
@@ -37,7 +37,7 @@ const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie}) => {
     <>
       <Header loggedIn={loggedIn}/>
       <main>
-        <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox}/>
+        <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox} isLoader={isLoader}/>
         <MoviesCardList filterMovies={movie} onDeleteMovie={onDeleteMovie} />
       </main>
       <Footer />

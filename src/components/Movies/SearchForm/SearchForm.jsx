@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
 import { useLocation } from "react-router-dom";
 
-const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange}) => {
+const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, isLoader}) => {
   const [checked, setChecked] = useState(false);
   const {handleChange, handleSetItem, nameMovie} = useSearchMovies(type)
   const url = useLocation();
@@ -50,7 +50,7 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange}) =
             />
           </label>
         </fieldset>
-        <button className="button button_type_search">
+        <button className="button button_type_search" disabled={isLoader}>
           <img className="button__image" src={enter} alt="Начать поиск" />
         </button>
         <div className="searchForm__flex">

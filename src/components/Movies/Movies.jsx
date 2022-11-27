@@ -10,7 +10,7 @@ const Movies = ({loggedIn, onSearch, filterMovies, savedMovies, isLoader, onErro
       <Header loggedIn={loggedIn} />
       <main>
         <section className="movies">
-          <SearchForm type="movies" onSearch={onSearch} onError={onError} isShort={isShort} onChange={onChange}/>
+          <SearchForm type="movies" onSearch={onSearch} onError={onError} isShort={isShort} onChange={onChange} isLoader={isLoader}/>
           <MoviesCardList
             savedMovies={savedMovies}
             filterMovies={filterMovies}

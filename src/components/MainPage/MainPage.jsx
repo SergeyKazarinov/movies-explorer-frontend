@@ -56,19 +56,21 @@ const MainPage = ({
           component={SavedMovies}
           savedMovies={savedMovies}
           onDeleteMovie={onDeleteMovie}
+          isLoader={isLoader}
         />
         <ProtectedRoute
           path="/profile"
           component={Profile}
+          isLoader={isLoader}
           onSignOut={onSignOut}
           onUpdateUser={onUpdateUser}
           errorMessageApi={errorMessageApi}
         />
         <Route path="/signup">
-          <Register onSubmit={onSubmitRegister} errorMessageApi={errorMessageApi}/>
+          <Register onSubmit={onSubmitRegister} errorMessageApi={errorMessageApi} isLoader={isLoader} />
         </Route>
         <Route path="/signin">
-          <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi}/>
+          <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi} isLoader={isLoader} />
         </Route>
         <Route path="*">
           <PageNotFound />

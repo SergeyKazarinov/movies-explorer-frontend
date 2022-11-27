@@ -6,7 +6,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useCallback, useContext, useEffect } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
-const Login = ({history, onSubmit, errorMessageApi}) => {
+const Login = ({history, onSubmit, errorMessageApi, isLoader}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const loggedIn = useContext(LoggedInContext);
 
@@ -56,7 +56,9 @@ const Login = ({history, onSubmit, errorMessageApi}) => {
             isValid={isValid}
           />
           <span className={`login__errorMessage ${!!errorMessageApi && "login__errorMessage_active"}`}>{errorMessageApi}</span>
-          <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid}>Войти</button> 
+          <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid && isValid}>
+              {isLoader ? "Выполняется вход..." : "Войти"}
+            </button> 
         </form>
         <p className="login__question">Ещё не зарегистрированы? <Link to="/signup" className="link login__link">Регистрация</Link></p>
       </section>

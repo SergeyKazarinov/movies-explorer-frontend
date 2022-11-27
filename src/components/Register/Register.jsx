@@ -6,7 +6,7 @@ import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { LoggedInContext } from "../../context/LoggedInContext";
 
-const Register = ({history, onSubmit, errorMessageApi}) => {
+const Register = ({history, onSubmit, errorMessageApi, isLoader}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const loggedIn = useContext(LoggedInContext);
 
@@ -68,7 +68,9 @@ const Register = ({history, onSubmit, errorMessageApi}) => {
             isValid={isValid}
           />
           <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
-          <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid}>Зарегистрироваться</button> 
+          <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid && isLoader}>
+            {isLoader ? "Регистрация" : "Зарегистрироваться"}
+          </button> 
         </form>
         <p className="register__question">Уже зарегистрированы? <Link to="/signin" className="link register__link">Войти</Link></p>
       </section>
