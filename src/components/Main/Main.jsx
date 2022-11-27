@@ -1,24 +1,18 @@
 import { memo } from 'react';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
 import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import Portfolio from './Portfolio/Portfolio';
 import Promo from './Promo/Promo';
 import Techs from './Techs/Techs';
 
-const Main = ({loggedIn}) => {
+const Main = () => {
   return(
     <>
-      <Header loggedIn={loggedIn}/>
-      <main>
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
-        <Portfolio />
-      </main>
-      <Footer />
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
     </>
   );
 }

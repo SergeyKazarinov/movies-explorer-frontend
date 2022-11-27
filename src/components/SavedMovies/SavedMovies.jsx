@@ -1,12 +1,10 @@
 import { memo, useEffect, useState } from "react";
 import useFilterMovies from "../../hooks/useFilterMovies";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
-const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie, isLoader}) => {
+const SavedMovies = ({savedMovies, onDeleteMovie, isLoader}) => {
   const [longMovie, setLongMovie] = useState([]);
   const [movie, setMovies] = useState([])
   const {handleSearch, handleCheckbox} = useFilterMovies();
@@ -35,12 +33,8 @@ const SavedMovies = ({loggedIn, savedMovies, onDeleteMovie, isLoader}) => {
 
   return(
     <>
-      <Header loggedIn={loggedIn}/>
-      <main>
-        <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox} isLoader={isLoader}/>
-        <MoviesCardList filterMovies={movie} onDeleteMovie={onDeleteMovie} />
-      </main>
-      <Footer />
+      <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox} isLoader={isLoader}/>
+      <MoviesCardList filterMovies={movie} onDeleteMovie={onDeleteMovie} />
     </>
   )
 };
