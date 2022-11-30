@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+import { BASE_URL_FOR_MOVIES } from "./constants";
 
 const checkAnswer = (res) => {
   if(res.ok) {
@@ -13,7 +13,7 @@ const checkAnswer = (res) => {
 
 export const getMovies = async () => {
   try {
-    const res = await fetch(BASE_URL, {
+    const res = await fetch(BASE_URL_FOR_MOVIES, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

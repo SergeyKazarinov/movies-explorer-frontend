@@ -1,7 +1,4 @@
-import { JWT } from "./constants";
-
-const BASE_URL = 'https://api.movies.kazarinov.nomoredomains.icu';
-const imageUrl = 'https://api.nomoreparties.co';
+import { BASE_URL_FOR_MAIN_API, BASE_URL_FOR_MOVIE_IMAGES, JWT } from "./constants";
 
 const checkAnswer = (res) => {
   if(res.ok) {
@@ -16,7 +13,7 @@ const checkAnswer = (res) => {
 
 export const register = async ({name, email, password}) => {
   try{
-    const res = await fetch(`${BASE_URL}/signup`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -34,7 +31,7 @@ export const register = async ({name, email, password}) => {
 
 export const login = async ({ email, password }) => {
   try {
-    const res = await fetch(`${BASE_URL}/signin`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/signin`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -52,7 +49,7 @@ export const login = async ({ email, password }) => {
 
 export const getUser = async (token) => {
   try {
-    const res = await fetch(`${BASE_URL}/users/me`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/users/me`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -69,7 +66,7 @@ export const getUser = async (token) => {
 
 export const updateUser = async ({name, email}) => {
   try {
-    const res = await fetch(`${BASE_URL}/users/me`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/users/me`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -88,7 +85,7 @@ export const updateUser = async ({name, email}) => {
 
 export const getSavedMovies = async () => {
   try {
-    const res = await fetch(`${BASE_URL}/movies`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/movies`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -105,7 +102,7 @@ export const getSavedMovies = async () => {
 
 export const createMovies = async (movie) => {
   try {
-    const res = await fetch(`${BASE_URL}/movies`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/movies`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -118,9 +115,9 @@ export const createMovies = async (movie) => {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: imageUrl + movie.image.url,
+        image: BASE_URL_FOR_MOVIE_IMAGES + movie.image.url,
         trailerLink: movie.trailerLink,
-        thumbnail: imageUrl + movie.image.formats.thumbnail.url,
+        thumbnail: BASE_URL_FOR_MOVIE_IMAGES + movie.image.formats.thumbnail.url,
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
@@ -137,7 +134,7 @@ export const createMovies = async (movie) => {
 
 export const deleteMovie = async (movie) => {
   try {
-    const res = await fetch(`${BASE_URL}/movies/${movie._id}`, {
+    const res = await fetch(`${BASE_URL_FOR_MAIN_API}/movies/${movie._id}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
