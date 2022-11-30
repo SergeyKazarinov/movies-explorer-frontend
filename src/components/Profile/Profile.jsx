@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import "./Profile.css";
 
-const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader}) => {
+const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonInactive}) => {
   const currentUser = useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const isButtonActive = (isValid && (currentUser.name !== values.name || currentUser.email !== values.email));
@@ -59,7 +59,7 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader}) => {
           className={`button profile__edit ${isButtonActive && "profile__edit_active"}`}
           disabled={!isButtonActive}
           >
-            {isLoader ? "Сохранение..." : "Редактировать"}
+            {isButtonInactive ? "Сохранение..." : "Редактировать"}
           </button>
         </form>
       </div>

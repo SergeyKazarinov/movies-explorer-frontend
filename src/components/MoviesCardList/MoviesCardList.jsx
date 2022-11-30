@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import { LARGE_COUNT, LARGE_WINDOW_SIZE, MIDDLE_COUNT, MIDDLE_WiNDOW_SIZE, MORE_BUTTON_LARGE, MORE_BUTTON_MIDDLE, SMALL_COUNT } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
@@ -22,22 +23,22 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
   }, [])
   
   useEffect(() => {
-    if (windowSize > 790) {
-      setCount(12)
-    }  else if (windowSize <= 790 && windowSize > 450) {
-      setCount(8)
-    } else if (windowSize <= 450) {
-      setCount(5);
+    if (windowSize > LARGE_WINDOW_SIZE) {
+      setCount(LARGE_COUNT)
+    }  else if (windowSize <= LARGE_WINDOW_SIZE && windowSize > MIDDLE_WiNDOW_SIZE) {
+      setCount(MIDDLE_COUNT)
+    } else if (windowSize <= MIDDLE_WiNDOW_SIZE) {
+      setCount(SMALL_COUNT);
     }
   }, [windowSize])
 
   useEffect(() => {
     if (url.pathname === '/movies') {
-      if (windowSize > 790) {
+      if (windowSize > LARGE_WINDOW_SIZE) {
         setMoviesDisplay(filterMovies.slice(0, count));
-      }  else if (windowSize <= 790 && windowSize > 450) {
+      }  else if (windowSize <= LARGE_WINDOW_SIZE && windowSize > MIDDLE_WiNDOW_SIZE) {
         setMoviesDisplay(filterMovies.slice(0, count));
-      } else if (windowSize <= 450) {
+      } else if (windowSize <= MIDDLE_WiNDOW_SIZE) {
         setMoviesDisplay(filterMovies.slice(0, count));
       }
     } else {
@@ -46,12 +47,12 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
   }, [filterMovies, count])
 
   const handleMovieDisplay = () => {
-    if (windowSize > 790) {
-      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + 3))
-    }  else if (windowSize <= 790 && windowSize > 450) {
-      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + 2))
-    } else if (windowSize <= 450) {
-      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + 2))
+    if (windowSize > LARGE_WINDOW_SIZE) {
+      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + MORE_BUTTON_LARGE))
+    }  else if (windowSize <= LARGE_WINDOW_SIZE && windowSize > MIDDLE_WiNDOW_SIZE) {
+      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + MORE_BUTTON_MIDDLE))
+    } else if (windowSize <= MIDDLE_WiNDOW_SIZE) {
+      setMoviesDisplay(filterMovies.slice(0, moviesDisplay.length + MORE_BUTTON_MIDDLE))
     }
   }
 

@@ -5,8 +5,9 @@ import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { LoggedInContext } from "../../context/LoggedInContext";
+import { EMAIL_PATTERN } from "../../utils/constants";
 
-const Register = ({history, onSubmit, errorMessageApi, isLoader}) => {
+const Register = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const loggedIn = useContext(LoggedInContext);
 
@@ -30,7 +31,9 @@ const Register = ({history, onSubmit, errorMessageApi, isLoader}) => {
   
   return(
     <section className="register">
-      <img className="register__logo" src={logo} alt="Логотип" />
+      <Link to="/" className="link register__linkLogo">
+        <img src={logo} className="register__logo" alt='логотип' />
+      </Link>
       <h2 className="register__title">Добро пожаловать!</h2>
       <form className="register__form form" onSubmit={handleSubmit} noValidate>
         <Fieldset
@@ -51,6 +54,7 @@ const Register = ({history, onSubmit, errorMessageApi, isLoader}) => {
           name="email"
           minLength="4"
           maxLength="40"
+          pattern={EMAIL_PATTERN}
           onChange={handleChange}
           errors={errors}
           isValid={isValid}
@@ -67,7 +71,7 @@ const Register = ({history, onSubmit, errorMessageApi, isLoader}) => {
           isValid={isValid}
         />
         <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
-        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid && isLoader}>
+        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid && !isButtonInactive}>
           {isLoader ? "Регистрация" : "Зарегистрироваться"}
         </button> 
       </form>

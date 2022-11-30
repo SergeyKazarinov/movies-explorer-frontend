@@ -33,6 +33,7 @@ const MainPage = ({
     infoMessage,
     onCLoseOverlay,
     isError,
+    isButtonInactive,
   }) => {
   return(
     <>
@@ -74,10 +75,10 @@ const MainPage = ({
             errorMessageApi={errorMessageApi}
           />
           <Route path="/signup">
-            <Register onSubmit={onSubmitRegister} errorMessageApi={errorMessageApi} isLoader={isLoader} />
+            <Register onSubmit={onSubmitRegister} errorMessageApi={errorMessageApi} isLoader={isLoader} isButtonInactive={isButtonInactive}/>
           </Route>
           <Route path="/signin">
-            <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi} isLoader={isLoader} />
+            <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi} isLoader={isLoader} isButtonInactive={isButtonInactive}/>
           </Route>
           <Route path="*">
             <PageNotFound />

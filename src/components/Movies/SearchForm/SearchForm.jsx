@@ -5,6 +5,7 @@ import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import { useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
 import { useLocation } from "react-router-dom";
+import { CHECKBOX, ERROR_INPUT_SEARCH_MOVIES_MESSAGE } from "../../../utils/constants";
 
 const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, isLoader}) => {
   const [checked, setChecked] = useState(false);
@@ -15,14 +16,14 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, is
     e.preventDefault();
     if (url.pathname === '/movies') {
       handleSetItem(); 
-      sessionStorage.setItem('checkbox', checked)
+      sessionStorage.setItem(CHECKBOX, checked)
     };
 
     if (!!nameMovie) {
       onSearch(nameMovie, checked);
     } else {
       url.pathname === '/movies'
-      ? onError("Нужно ввести ключевое слово", true)
+      ? onError(ERROR_INPUT_SEARCH_MOVIES_MESSAGE, true)
       : onResetForm(checked);
     }
   }

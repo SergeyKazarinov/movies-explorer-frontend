@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
+import { MOVIES_NAME } from "../utils/constants";
 
 export const useSearchMovies = (type) => {
   const [nameMovie, setNameMovie] = useState('');
   
   useEffect(() => {
     if(type === "movies")
-    setNameMovie(sessionStorage.getItem('moviesName') || '');
+    setNameMovie(sessionStorage.getItem(MOVIES_NAME) || '');
   }, []);
 
   const handleSetItem = () => {
-    sessionStorage.setItem('moviesName', nameMovie);
+    sessionStorage.setItem(MOVIES_NAME, nameMovie);
   }
   
   const handleChange = (e) => {
