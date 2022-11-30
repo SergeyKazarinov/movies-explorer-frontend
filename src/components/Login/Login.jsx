@@ -5,7 +5,6 @@ import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useCallback, useContext, useEffect } from "react";
 import { LoggedInContext } from "../../context/LoggedInContext";
-import validator from "validator";
 import { EMAIL_PATTERN } from "../../utils/constants";
 
 const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
