@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Title from "../../Title/Title";
 import "./AboutMe.css";
 
@@ -29,4 +30,4 @@ const AboutMe = () => {
   )
 }
 
-export default AboutMe;
+export default memo(AboutMe);

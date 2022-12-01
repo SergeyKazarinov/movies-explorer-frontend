@@ -5,6 +5,14 @@
   align-items: center;
 }
 
+.movieCardList__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
 .movieCardList__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -36,6 +44,10 @@
 @media screen and (max-width: 450px) {
   .movieCardList {
     padding: 50px 10px 80px;
+  }
+
+  .movieCardList__title {
+    padding: 0 20px;
   }
 
   .movieCardList__grid {

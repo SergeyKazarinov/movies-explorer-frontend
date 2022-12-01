@@ -1,5 +1,6 @@
 .pageNotFound {
   height: 100%;
+  padding: 246px 0 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;

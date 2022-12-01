@@ -25,6 +25,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  color: #000;
 }
 
 .form__input:focus-visible {
@@ -39,6 +40,10 @@
   color: #ee3465;
 }
 
+.form__input_type_error:focus {
+  border-bottom: 1px solid #ee3465;
+}
+
 .form__input-error {
   color: #ee3465;
   font-weight: 400;
@@ -48,6 +53,7 @@
   top: 38px;
   left: 0;
   opacity: 0;
+  width: 100%;
 }
 
 .form__input-error_active {

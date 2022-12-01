@@ -2,8 +2,12 @@ import "./Header.css";
 import {Link, NavLink} from "react-router-dom";
 import logo from "../../images/logo.svg";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import { memo, useContext } from "react";
+import { LoggedInContext } from "../../context/LoggedInContext";
 
-const Header = ({loggedIn}) => {
+const Header = () => {
+  const loggedIn = useContext(LoggedInContext);
+
   return(
     <header className="header">
       <Link to="/" className="link header__link_type_logo>">
@@ -29,4 +33,4 @@ const Header = ({loggedIn}) => {
   )
 }
 
-export default Header;
+export default memo(Header);

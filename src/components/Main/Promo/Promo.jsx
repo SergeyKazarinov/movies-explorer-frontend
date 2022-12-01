@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import NavTab from './NavTab/NavTab';
 import './Promo.css';
 
@@ -12,4 +13,4 @@ const Promo = () => {
   );
 }
 
-export default Promo;
+export default memo(Promo);

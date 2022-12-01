@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Project from "../Project/Project";
 import "./Portfolio.css";
 
@@ -16,4 +17,4 @@ const Portfolio = () => {
   )
 }
 
-export default Portfolio;
+export default memo(Portfolio);

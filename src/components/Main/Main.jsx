@@ -1,5 +1,4 @@
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import { memo } from 'react';
 import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import Portfolio from './Portfolio/Portfolio';
@@ -9,17 +8,13 @@ import Techs from './Techs/Techs';
 const Main = () => {
   return(
     <>
-      <Header loggedIn={false}/>
-      <main>
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
-        <Portfolio />
-      </main>
-      <Footer />
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
     </>
   );
 }
 
-export default Main;
+export default memo(Main);
