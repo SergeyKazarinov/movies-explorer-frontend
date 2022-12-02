@@ -1,5 +1,4 @@
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import "./Movies.css";
 import SearchForm from "./SearchForm/SearchForm";
 
 const Movies = ({onSearch, filterMovies, savedMovies, isLoader, onError, movieErrorMessage, onCreateMovie, onDeleteMovie, isShort, onChange}) => {

@@ -4,21 +4,21 @@
   font-weight: 400;
   line-height: 26.63px;
   letter-spacing: -0.04em;
-}
 
-.title__line {
-  width: 100%;
-  border-bottom: 1px solid #000;
-  margin-top: 23px;
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-top: 23px;
+  }
 }
 
 @media screen and (max-width: 450px) {
   .title {
     font-size: 18px;
     line-height: 21.78px;
-  }
 
-  .title__line {
-    margin-top: 28px;
+    &__line {
+      margin-top: 28px;
+    }
   }
 }

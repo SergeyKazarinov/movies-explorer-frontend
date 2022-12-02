@@ -1,4 +1,4 @@
-import "./PageNotFound.css";
+import "./PageNotFound.scss";
 import {withRouter} from "react-router-dom";
 
 const PageNotFound = ({history}) => {

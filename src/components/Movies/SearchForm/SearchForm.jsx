@@ -1,4 +1,4 @@
-import "./SearchForm.css";
+import "./SearchForm.scss";
 import search from "../../../images/search.svg";
 import enter from "../../../images/enter.svg";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";

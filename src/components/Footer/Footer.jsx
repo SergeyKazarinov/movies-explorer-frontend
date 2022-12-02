@@ -1,5 +1,5 @@
 import { memo } from "react";
-import "./Footer.css";
+import "./Footer.scss";
 
 const Footer = () => {
   const date = new Date().getFullYear();

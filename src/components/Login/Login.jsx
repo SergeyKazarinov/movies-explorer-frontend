@@ -1,5 +1,5 @@
 import {Link, withRouter} from "react-router-dom";
-import "./Login.css";
+import "./Login.scss";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";

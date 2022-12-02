@@ -1,4 +1,4 @@
-import "./FilterCheckbox.css";
+import "./FilterCheckbox.scss";
 
 const FilterCheckbox = ({onChangeChecked, isShort}) => {
 

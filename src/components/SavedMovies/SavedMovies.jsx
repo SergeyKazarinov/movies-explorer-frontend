@@ -2,7 +2,6 @@ import { memo, useEffect, useState } from "react";
 import useFilterMovies from "../../hooks/useFilterMovies";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import "./SavedMovies.css";
 
 const SavedMovies = ({savedMovies, onDeleteMovie, isLoader}) => {
   const [longMovie, setLongMovie] = useState([]);

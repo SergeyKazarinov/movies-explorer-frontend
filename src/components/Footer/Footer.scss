@@ -1,0 +1,96 @@
+@mixin text-size {
+  font: {
+    weight: 400;
+    size: 13px;
+  }
+  line-height: 16px;
+}
+
+@mixin text-size-small {
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.footer {
+  padding: 69px 70px 20px;
+
+  &__title {
+    @include text-size;
+    margin: 0;
+    text-align: center;
+    color: #a0a0a0;
+  }
+  
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    margin-top: 20px;
+  }
+  
+  &__flex {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  &__copyright {
+    @include text-size;
+    margin: 0;
+  }
+  
+  &__yandex {
+    @include text-size;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  &__text {
+    margin: 0;
+  }
+  
+  &__link {
+    color: #000;
+    text-decoration: none;
+  }
+
+}
+
+@media screen and (max-width: 790px) {
+  .footer {
+    padding: 69px 30px 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    padding: 79px 10px 20px;
+
+    &__title {
+      @include text-size-small;
+    }
+  
+    &__line {
+      margin-top: 21px;
+    }
+  
+    &__flex {
+      margin-top: 30px;
+      flex-direction: column-reverse;
+      gap: 30px;
+    }
+  
+    &__copyright {
+      @include text-size-small;
+      color: #a0a0a0;
+      text-align: center;
+    }
+  
+    &__yandex {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      @include text-size-small;
+    }
+  }
+}

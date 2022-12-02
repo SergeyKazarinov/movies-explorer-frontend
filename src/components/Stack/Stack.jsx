@@ -1,4 +1,4 @@
-import "./Stack.css"
+import "./Stack.scss"
 
 const Stack = ({stack}) => {
   return(

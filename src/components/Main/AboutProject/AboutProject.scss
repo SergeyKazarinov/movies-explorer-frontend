@@ -1,0 +1,163 @@
+.aboutProject {
+  background-color: #fff;
+  padding: 110px 70px;
+
+  &__title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+    letter-spacing: -0.04em;
+  }
+  
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-top: 23px;
+  }
+  
+  &__list {
+    display: flex;
+    gap: 40px;
+    margin-top: 70px;
+  }
+  
+  &__item {
+    max-width: 550px;
+    width: 100%;
+  }
+  
+  &__subtitle {
+    font-size: 20px;
+    line-height: 24.2px;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  &__description {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 26px;
+  }
+  
+  &__scale {
+    display: flex;
+    margin-top: 110px;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+  
+  &__backend {
+    flex-shrink: 3.771;
+    max-width: 228px;
+    width: 100%;
+    font-weight: 400;
+  }
+  
+  &__scale-backend {
+    background-color: #2be080;
+    padding: 9px 0;
+  }
+  
+  &__scale-subtitle {
+    margin-top: 14px;
+    color: #a0a0a0;
+  }
+  
+  &__frontend {
+    flex-shrink: 1;
+    max-width: 912px;
+    width: 100%;
+    font-weight: 400;
+  }
+  
+  &__scale-frontend {
+    background-color: #f2f2f2;
+    padding: 9px 0;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .aboutProject {
+    background-color: #fff;
+    padding: 90px 50px;
+
+    &__list {
+      gap: 30px;
+    }
+
+    &__item {
+      max-width: 319px;
+    }
+  
+    &__description {
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 22px;
+    }
+  
+    &__scale {
+      margin-top: 93px;
+    }
+  
+    &__scale-backend {
+      min-width: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .aboutProject {
+    background-color: #fff;
+    padding: 70px 18px;
+
+    &__title {
+      font-size: 18px;
+      line-height: 21.78px;
+    }
+  
+    &__line {
+      margin-top: 28px;
+    }
+  
+    &__list {
+      flex-direction: column;
+      margin-top: 60px;
+      gap: 56px;
+    }
+  
+    &__subtitle {
+      font-size: 18px;
+      line-height: 21.78px;
+    }
+  
+    &__description {
+      font-size: 11px;
+      line-height: 16px;
+      margin-top: 16px;
+    }
+  
+    &__scale {
+      margin-top: 60px;
+      font-size: 11px;
+      line-height: 13.31px;
+      text-align: center;
+    }
+  
+    &__scale-backend {
+      padding: 11px 0;
+    }
+  
+    &__scale-frontend {
+      padding: 11px 0;
+    }
+  
+    &__scale-subtitle {
+      margin-top: 10px;
+    }
+  }
+}
