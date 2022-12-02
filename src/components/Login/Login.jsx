@@ -37,7 +37,7 @@ const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive})
       <form className="login__form form" onSubmit={handleSubmit} noValidate>
       <Fieldset
           inputType="email"
-          inputClassType="email"
+          inputClassType="input"
           placeholder="E-mail"
           pattern={EMAIL_PATTERN}
           name="email"
