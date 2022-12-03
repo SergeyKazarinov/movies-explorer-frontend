@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .moviesCard {
   background: #fdfdfd;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
@@ -15,17 +17,13 @@
   }
   
   &__title {
+    @include text-size(15px, 18px, 500);
     margin: 0;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
   }
   
   &__duration {
+    @include text-size(11px, 13px, 400);
     margin: 0;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
     color: #a0a0a0;
   }
   

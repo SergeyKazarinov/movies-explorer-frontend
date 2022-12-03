@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 .searchForm {
   padding: 70px;
   position: relative;
@@ -54,9 +56,7 @@
     }
     
     &::placeholder {
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 20px;
+      @include text-size(18px, 20px, 400);
       color: #a0a0a0;
     }
   }

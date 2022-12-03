@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .popupWithInfo {
   display: flex;
   position: fixed;
@@ -31,30 +33,24 @@
   }
 
   &__title {
+    @include text-size(24px, 29px, 500);
     margin: 0;
     color: #ee3465;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
   }
 
   &__subtitle {
+    @include text-size(18px, 20px, 400);
     margin: 0;
     margin-top: 20px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 20px;
     text-align: center;
   }
 
   &__button {
+    @include text-size(20px, 29px, 500);
     margin-top: 20px;
     width: 100%;
     padding: 10px 0 10px;
     background-color: #2be080;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 29px;
     color: #fff;
     border-radius: 3px;
   }

@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 .aboutMe {
   padding: 110px 70px 0;
 
@@ -24,34 +26,25 @@
   }
   
   &__name {
+    @include text-size(50px, 58px, 400);
     margin: 0;
-    font-weight: 400;
-    font-size: 50px;
-    line-height: 58px;
     letter-spacing: -0.04em;
   }
   
   &__about {
+    @include text-size(18px, 20px, 500);
     margin: 18px 0 0;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
   }
   
   &__description {
+    @include text-size(14px, 22px, 400);
     padding-right: 10px;
     margin: 26px 0 0;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 22px;
   }
   
   &__link {
+    @include text-size(14px, 17px, 500);
     color: #000;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    text-decoration: none;
   }
   
   &__image {
@@ -78,21 +71,18 @@
     }
 
     &__name {
-      font-size: 40px;
-      line-height: 40px;
+      @include text-size(40px, 40px, 400);
     }
 
     &__about {
+      @include text-size(12px, 18px, 500);
       margin-top: 16px;
-      font-size: 12px;
-      line-height: 18px;
     }
 
     &__description {
+      @include text-size(12px, 18px, 400);
       padding-right: 5px;
       margin-top: 20px;
-      font-size: 12px;
-      line-height: 18px;
     }
   }
 }
@@ -126,20 +116,17 @@
     }
   
     &__name {
-      font-size: 30px;
-      line-height: 36.31px;
+      @include text-size(30px, 36.31px, 500);
     }
   
     &__about {
+      @include text-size(11px, 16px, 500);
       margin-top: 20px;
-      font-size: 11px;
-      line-height: 16px;
     }
   
     &__description {
+      @include text-size(11px, 16px, 400);
       margin-top: 20px;
-      font-size: 11px;
-      line-height: 16px;
     }
   }
 }

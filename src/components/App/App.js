@@ -1,5 +1,5 @@
 import { withRouter } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 // components
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
@@ -167,9 +167,9 @@ const App = ({history}) => {
     }
   };
 
-  const handleSearchMovies = async (movieName, checked) => {
+  const handleSearchMovies = (movieName, checked) => {
     setIsShort(checked);
-    setIsLoader(true);
+    setIsLoader(state => true);
     handleGetMovies();
     const list = handleSearch(moviesFromServer, movieName);
     const shortList = handleCheckbox(list, checked);

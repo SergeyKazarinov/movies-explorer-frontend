@@ -1,11 +1,11 @@
+@import '../../../styles/mixins.scss';
+
 .portfolio {
   padding: 100px 70px 125px;
 
   &__title {
+    @include text-size(18px, 20px, 400);
     margin: 0;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 20px;
     color: #a0a0a0;
   }
   
@@ -34,8 +34,7 @@
     padding: 70px 14px;
 
     &__title {
-      font-size: 14px;
-      line-height: 20px;
+      @include text-size(14px, 20px, 400);
     }
   
     &__flex {

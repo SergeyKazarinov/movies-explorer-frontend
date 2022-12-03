@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .movieCardList {
   padding: 80px 70px;
   display: flex;
@@ -5,10 +7,8 @@
   align-items: center;
 
   &__title {
+    @include text-size(24px, 29px, 500);
     margin: 0;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
     text-align: center;
   }
   

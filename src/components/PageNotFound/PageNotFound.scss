@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .pageNotFound {
   height: 100%;
   padding: 246px 0 60px;
@@ -7,24 +9,18 @@
   align-items: center;
 
   &__title {
+    @include text-size(140px, 169px, 400);
     margin: 0;
-    font-weight: 400;
-    font-size: 140px;
-    line-height: 169px;
   }
   
   &__subtitle {
+    @include text-size(16px, 19px, 400);
     margin: 5px 0 0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
   }
   
   &__link {
+    @include text-size(14px, 17px, 400);
     margin-top: 184px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
     color: #2be080;
   }
 }
@@ -32,20 +28,17 @@
 @media screen and (max-width: 450px) {
   .pageNotFound {
     &__title {
-      font-size: 80px;
-      line-height: 97px;
+      @include text-size(80px, 97px, 400);
     }
   
     &__subtitle {
+      @include text-size(12px, 15px, 400);
       margin-top: 10px;
-      font-size: 12px;
-      line-height: 15px;
     }
   
     &__link {
+      @include text-size(12px, 15px, 400);
       margin-top: 284px;
-      font-size: 12px;
-      line-height: 15px;
     }
   }
 }

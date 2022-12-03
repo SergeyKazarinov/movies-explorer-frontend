@@ -8,8 +8,17 @@ import "./MoviesCardList.scss";
 const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie }) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
-  const [windowSize, setWindowsSite] = useState(window.screen.width)
+  const [windowSize, setWindowsSite] = useState(window.screen.width);
+  const [isError, setIsError] = useState(false);
   const url = useLocation();
+
+  useEffect(() => {
+    if (!isLoader) {
+      !filterMovies.length ? setIsError(true) : setIsError(false);
+    } else {
+      setIsError(false)
+    }
+  }, [filterMovies, isLoader])
 
   const handleChangeWindow = () => {
     setWindowsSite(window.screen.width)
@@ -69,11 +78,12 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
 
   return(
     <section className="movieCardList">
-      {movieErrorMessage && <h2 className="movieCardList__title">{movieErrorMessage} &#128532;</h2>}
-      <ul className="list movieCardList__grid">
-        {movieElement}
-      </ul>
-      {isLoader && <Preloader />}
+      {(!isLoader && isError) && <h2 className="movieCardList__title">{movieErrorMessage}</h2>}
+      {isLoader 
+        ? <Preloader />
+        : <ul className="list movieCardList__grid">
+            {movieElement}
+          </ul>}
       {(url.pathname==="/movies" && filterMovies.length > moviesDisplay.length) 
         && 
         <button 

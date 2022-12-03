@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .register {
   padding: 70px 0;
   display: flex;
@@ -18,12 +20,9 @@
   }
   
   &__title {
+    @include text-size(24px, 29px, 500);
     align-self: flex-start;
-    margin: 0;
-    margin-top: 40px;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
+    margin: 40px 0 0;
   }
   
   &__form {
@@ -33,10 +32,8 @@
   }
   
   &__errorMessage {
+    @include text-size(10px, 12px, 400);
     color: #ee3465;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
     position: absolute;
     bottom: 65px;
     left: 0;
@@ -50,11 +47,8 @@
   }
 
   &__question {
-    margin: 0;
-    margin-top: 16px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+    @include text-size(14px, 17px, 400);
+    margin: 16px 0 0;
     color: #a0a0a0;
   }
   
@@ -65,13 +59,11 @@
 }
 
 .form__button {
+  @include text-size(14px, 17px, 500);
   margin-top: 126px;
   width: 100%;
   padding: 13px 0 15px;
   background-color: #2be080;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
   color: #fff;
   border-radius: 3px;
 
@@ -102,17 +94,15 @@
     }
 
     &__question {
+      @include text-size(12px, 15px, 400);
       margin-top: 14px;
-      font-size: 12px;
-      line-height: 15px;
     }
   }
 
   .form__button {
+    @include text-size(12px, 15px, 500);
     margin-top: 210px;
     width: 100%;
     padding: 15px 0;
-    font-size: 12px;
-    line-height: 15px;
   }
 }

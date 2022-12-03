@@ -1,12 +1,12 @@
+@import '../../../styles/mixins.scss';
+
 .aboutProject {
   background-color: #fff;
   padding: 110px 70px;
 
   &__title {
+    @include text-size(22px, 26.63px, 400);
     margin: 0;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 26.63px;
     letter-spacing: -0.04em;
   }
   
@@ -28,26 +28,20 @@
   }
   
   &__subtitle {
-    font-size: 20px;
-    line-height: 24.2px;
+    @include text-size(20px, 24.2px, 400);
     letter-spacing: -0.04em;
-    font-weight: 400;
     margin: 0;
   }
   
   &__description {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    margin: 0;
-    margin-top: 26px;
+    @include text-size(14px, 20px, 400);
+    margin: 26px 0 0;
   }
   
   &__scale {
+    @include text-size(14px, 17px, 400);
     display: flex;
     margin-top: 110px;
-    font-size: 14px;
-    line-height: 17px;
     text-align: center;
   }
   
@@ -95,8 +89,7 @@
     }
   
     &__description {
-      font-size: 12px;
-      line-height: 18px;
+      @include text-size(12px, 18px, 400);
       margin-top: 22px;
     }
   
@@ -116,8 +109,7 @@
     padding: 70px 18px;
 
     &__title {
-      font-size: 18px;
-      line-height: 21.78px;
+      @include text-size(18px, 21.78px, 400);
     }
   
     &__line {
@@ -131,20 +123,17 @@
     }
   
     &__subtitle {
-      font-size: 18px;
-      line-height: 21.78px;
+      @include text-size(18px, 21.78px, 400);
     }
   
     &__description {
-      font-size: 11px;
-      line-height: 16px;
+      @include text-size(11px, 16px, 400);
       margin-top: 16px;
     }
   
     &__scale {
+      @include text-size(11px, 13.31px, 400);
       margin-top: 60px;
-      font-size: 11px;
-      line-height: 13.31px;
       text-align: center;
     }
   

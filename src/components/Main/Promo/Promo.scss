@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 .promo {
   max-width: 100%;
   box-sizing: border-box;
@@ -6,13 +8,11 @@
   border-radius: 10px;
 
   &__title {
+    @include text-size(50px, 58px, 400);
     max-width: 730px;
     padding-top: 160px;
     padding-bottom: 151px;
     margin: 0 auto;
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 58px;
     letter-spacing: -0.04em;
     text-align: center;
   }
@@ -23,11 +23,10 @@
     margin: 20px 20px 0 20px;
 
     &__title {
+      @include text-size(40px, 52px, 400);
       max-width: 680px;
       padding-top: 350px;
       padding-bottom: 314px;
-      font-size: 40px;
-      line-height: 52px;
     }
   }
 }
@@ -37,11 +36,10 @@
     margin: 14px 14px 0 14px;
 
     &__title {
+      @include text-size(29px, 37px, 400);
       max-width: 420px;
       padding-top: 220px;
       padding-bottom: 212px;
-      font-size: 29px;
-      line-height: 37px;
     }
   }
 }
@@ -52,10 +50,6 @@
 
     &__title {
       max-width: 292px;
-      padding-top: 220px;
-      padding-bottom: 212px;
-      font-size: 29px;
-      line-height: 37px;
     }
   }
 }

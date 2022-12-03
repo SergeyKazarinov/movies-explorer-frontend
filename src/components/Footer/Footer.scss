@@ -1,21 +1,10 @@
-@mixin text-size {
-  font: {
-    weight: 400;
-    size: 13px;
-  }
-  line-height: 16px;
-}
-
-@mixin text-size-small {
-  font-size: 12px;
-  line-height: 14.52px;
-}
+@import '../../styles/mixins.scss';
 
 .footer {
   padding: 69px 70px 20px;
 
   &__title {
-    @include text-size;
+    @include text-size(13px, 16px, 400);
     margin: 0;
     text-align: center;
     color: #a0a0a0;
@@ -34,12 +23,12 @@
   }
   
   &__copyright {
-    @include text-size;
+    @include text-size(13px, 16px, 400);
     margin: 0;
   }
   
   &__yandex {
-    @include text-size;
+    @include text-size(13px, 16px, 400);
     display: flex;
     gap: 20px;
     align-items: center;
@@ -67,7 +56,7 @@
     padding: 79px 10px 20px;
 
     &__title {
-      @include text-size-small;
+      @include text-size(12px, 14.52px, 400);
     }
   
     &__line {
@@ -81,7 +70,7 @@
     }
   
     &__copyright {
-      @include text-size-small;
+      @include text-size(12px, 14.52px, 400);
       color: #a0a0a0;
       text-align: center;
     }
@@ -90,7 +79,7 @@
       flex-direction: column;
       gap: 12px;
       align-items: center;
-      @include text-size-small;
+      @include text-size(12px, 14.52px, 400);
     }
   }
 }

@@ -7,6 +7,7 @@ const SavedMovies = ({savedMovies, onDeleteMovie, isLoader}) => {
   const [longMovie, setLongMovie] = useState([]);
   const [movie, setMovies] = useState([])
   const {handleSearch, handleCheckbox} = useFilterMovies();
+  
   useEffect(() => {
     setMovies(savedMovies);
     setLongMovie(savedMovies);

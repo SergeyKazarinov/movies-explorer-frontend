@@ -1,8 +1,8 @@
+@import '../../styles/mixins.scss';
+
 .title {
+  @include text-size(22px, 26.63px, 400);
   margin: 0;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 26.63px;
   letter-spacing: -0.04em;
 
   &__line {
@@ -14,8 +14,7 @@
 
 @media screen and (max-width: 450px) {
   .title {
-    font-size: 18px;
-    line-height: 21.78px;
+    @include text-size(18px, 21.78px, 400);
 
     &__line {
       margin-top: 28px;

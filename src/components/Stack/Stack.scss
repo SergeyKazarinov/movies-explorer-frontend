@@ -1,8 +1,8 @@
+@import '../../styles/mixins.scss';
+
 .stack {
+  @include text-size(14px, 17px, 400);
   background-color: #e8e8e8;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
   text-align: center;
   letter-spacing: -0.04em;
   padding: 21px 0 22px;
@@ -11,8 +11,7 @@
 
 @media screen and (max-width: 790px) {
   .stack {
-    font-size: 12px;
-    line-height: 14.52px;
+    @include text-size(12px, 14.52px, 400);
     padding: 21px 0 21px;
   }
 }

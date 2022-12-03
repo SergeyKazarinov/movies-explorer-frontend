@@ -1,12 +1,12 @@
+@import '../../../../styles/mixins.scss';
+
 .filterCheckbox {
+  @include text-size(13px, 18px, 400);
   display: flex;
   gap: 14px;
   align-items: center;
   padding-left: 29px;
   padding-right: 30px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
   background-color: #f9f9f9;
   border-top-right-radius: 9px;
   border-bottom-right-radius: 9px;
@@ -66,11 +66,10 @@
 
 @media screen and (max-width: 570px) {
   .filterCheckbox {
+    @include text-size(11px, 18px, 400);
     gap: 13px;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    line-height: 18px;
     background-color: #fff;
   }
 }
