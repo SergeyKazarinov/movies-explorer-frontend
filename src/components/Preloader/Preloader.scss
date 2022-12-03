@@ -1,3 +1,5 @@
+@import '../../styles/consts.scss';
+
 @keyframes preloader-inside-white {
   0% {
     -webkit-transform: scale(0, 0);
@@ -60,7 +62,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #2be080;
+    background: $greenColor;
     border-radius: 50px;
 
     &::after,
@@ -81,7 +83,7 @@
     
     &::before {
       z-index: 10;
-      background: #2be080;
+      background: $greenColor;
       animation: preloader-inside-red 1s ease-in-out infinite;
     }
   }

@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
 
 .register {
   padding: 70px 0;
@@ -33,7 +34,7 @@
   
   &__errorMessage {
     @include text-size(10px, 12px, 400);
-    color: #ee3465;
+    color: $redColor;
     position: absolute;
     bottom: 65px;
     left: 0;
@@ -54,7 +55,7 @@
   
   &__link {
     margin-left: 4px;
-    color: #2be080;
+    color: $greenColor;
   }
 }
 
@@ -63,7 +64,7 @@
   margin-top: 126px;
   width: 100%;
   padding: 13px 0 15px;
-  background-color: #2be080;
+  background-color: $greenColor;
   color: #fff;
   border-radius: 3px;
 

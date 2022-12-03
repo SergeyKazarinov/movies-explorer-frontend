@@ -1,6 +1,5 @@
 @import '../../styles/mixins.scss';
-
-$redColor: #ee3465;
+@import '../../styles/consts.scss';
 
 .form {
   &__set {
@@ -33,7 +32,7 @@ $redColor: #ee3465;
     }
     
     &:focus {
-      border-bottom: 1px solid #2be080;
+      border-bottom: 1px solid $greenColor;
     }
     
     &_type_error {
