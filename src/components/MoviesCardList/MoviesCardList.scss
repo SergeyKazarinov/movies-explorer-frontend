@@ -28,7 +28,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .movieCardList {
     padding: 80px 30px 30px;
 
@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .movieCardList {
     padding: 50px 10px 80px;
 

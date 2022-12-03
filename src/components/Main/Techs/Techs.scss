@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .techs {
     padding: 90px 60px;
 
@@ -64,7 +64,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .techs {
     background-color: #fff;
     padding: 70px 18px;

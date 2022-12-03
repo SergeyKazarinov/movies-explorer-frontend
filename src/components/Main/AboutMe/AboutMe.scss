@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .aboutMe {
     padding: 90px 50px 0;
 
@@ -87,7 +87,7 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@include middleScreen {
   .aboutMe {
     &__container {
       margin-top: 60px;
@@ -107,7 +107,7 @@
 
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .aboutMe {
     padding: 70px 14px 0;
 

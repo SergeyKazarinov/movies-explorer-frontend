@@ -23,13 +23,13 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .portfolio {
     padding: 90px 50px;
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .portfolio {
     padding: 70px 14px;
 

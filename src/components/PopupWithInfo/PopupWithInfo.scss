@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .popupWithInfo__container {
     max-width: 282px;
     padding: 25px 22px;

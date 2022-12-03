@@ -60,7 +60,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .header {
     padding: 0 30px;
     
@@ -70,7 +70,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .header {
     padding: 0 14px;
 

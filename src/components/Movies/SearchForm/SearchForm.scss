@@ -92,7 +92,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .searchForm {
     padding: 80px 30px 110px;
 
@@ -107,7 +107,7 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@include smallScreen {
   .searchForm {
     padding: 80px 10px 45px;
     flex-direction: column;

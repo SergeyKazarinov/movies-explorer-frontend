@@ -1,3 +1,4 @@
+@import '../../styles/mixins.scss';
 @import '../../styles/consts.scss';
 
 @keyframes preloader-inside-white {
@@ -89,7 +90,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .preloader {
     padding: 20px 0;
   }

@@ -42,16 +42,15 @@
     color: #000;
     text-decoration: none;
   }
-
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .footer {
     padding: 69px 30px 20px;
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .footer {
     padding: 79px 10px 20px;
 

@@ -18,7 +18,7 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .promo {
     margin: 20px 20px 0 20px;
 
@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@include middleScreen {
   .promo {
     margin: 14px 14px 0 14px;
 
@@ -44,7 +44,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .promo {
     margin: 14px 14px 0 14px;
 

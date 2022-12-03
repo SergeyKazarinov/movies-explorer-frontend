@@ -9,7 +9,7 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .stack {
     @include text-size(12px, 14.52px, 400);
     padding: 21px 0 21px;

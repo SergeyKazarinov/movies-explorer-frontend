@@ -21,13 +21,13 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .project__title {
     font-size: 28px;
   }
 }
 
-@media screen and (max-width: 570px) {
+@include middleScreen {
   .project {
     height: 28px;
     
@@ -42,7 +42,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .project {
     &__title {
       @include text-size(18px, 28px, 400);

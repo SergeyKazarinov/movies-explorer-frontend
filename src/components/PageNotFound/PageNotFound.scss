@@ -26,7 +26,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .pageNotFound {
     &__title {
       @include text-size(80px, 97px, 400);

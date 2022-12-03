@@ -48,13 +48,13 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .moviesCard__poster {
     height: 190px;
   }
 }
 
-@media screen and (max-width: 790px) {
+@include smallScreen {
   .moviesCard__poster {
     height: 168px;
   }

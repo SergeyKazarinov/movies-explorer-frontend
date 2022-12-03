@@ -1,3 +1,5 @@
+@import '../../../styles/mixins.scss';
+
 .burgerMenu {
   position: relative;
 
@@ -57,17 +59,14 @@
   }
 
   &__link {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
+    @include text-size(18px, 22px, 500);
     margin-bottom: 24px;
     padding-bottom: 3px;
 
     &_type_profile {
+      @include text-size(14px, 16px, 400);
       width: 100px;
       margin-bottom: 0;
-      font-size: 14px;
-      line-height: 16px;
       background: #f9f9f9;
       border-radius: 20px;
       padding: 8px 0;
@@ -80,19 +79,15 @@
   }
 }
 
-@media screen and (max-width: 790px) {
+@include largeScreen {
   .burgerMenu {
-    &__container {
-      display: flex;
-    }
-    
-    &__button {
+    &__container, &__button {
       display: flex;
     }
   }
 }
 
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .burgerMenu {
     &__container {
       padding: 144px 10px 44px;

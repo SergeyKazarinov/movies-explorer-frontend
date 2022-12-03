@@ -1,0 +1,28 @@
+@import '../../../../styles/mixins.scss';
+
+.navTab {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-bottom: 30px;
+
+  &__item {
+    @include text-size(12px, 16px, 500);
+    box-sizing: border-box;
+    max-width: 96px;
+    width: 100%;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+@include smallScreen {
+  .navTab__item {
+    max-width: 82px;
+    font-size: 10px;
+    border-radius: 6px;
+    padding: 5px 0;
+  }
+}
