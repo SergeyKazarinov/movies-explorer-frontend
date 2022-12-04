@@ -1,5 +1,5 @@
 import { withRouter } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // components
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
@@ -152,6 +152,14 @@ const App = ({history}) => {
     setCurrentUser({_id: '', name: '', email: ''});
   };
 
+  useEffect(() => {
+    if (moviesFromServer.length === 0) {
+      setMovieErrorMessage('');
+    } else {
+      (filterMovies.length === 0 && !isLoader) ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
+    }
+  }, [isLoader, filterMovies])
+
   const handleGetMovies = async () => {
     try {
       setIsLoader(true);
@@ -175,7 +183,6 @@ const App = ({history}) => {
     const shortList = handleCheckbox(list, checked);
     setFilterMovies(shortList);
     setIsLoader(false);
-    (shortList.length === 0 && !isLoader) ? setMovieErrorMessage(NOT_MOVIES_SEARCH_MESSAGE) : setMovieErrorMessage('');
   };
 
   const handleGetSavedMovies = async () => {

@@ -6,14 +6,33 @@ const AboutProject = () => {
   return(
     <section className="aboutProject" id="aboutProject">
       <Title title = "О проекте" />
+      <div className="aboutProject__info">
+        <p className="aboutProject__info-item">
+          Сайт-портфолио представляет из себя главную страницу,
+          в которой описана информация о прокете, обо мне, моих технических навыков и информцию о моих проектах,
+          а также возможность регистрации и авторизации.
+        </p>
+        <p className="aboutProject__info-item">
+          После регистрации появляется возможность к вкладкам "фильмы" и "сохраненные фильмы".
+          Во вкладке "фильмы" осуществялется запрос на сервис "beatfilm&#8209;movies".
+          Также имеется возможность добавления фильмов в разедел "сохраненные фильмы", которые сохраняются на backend.
+        </p>
+        <p className="aboutProject__info-item">
+          Во вкладке "сохраненные фильмы" осуществляется запрос на собственный backend и отображаются фильмы, сохраненные пользователем.
+        </p>
+      </div>
       <ul className="list aboutProject__list">
         <li className="aboutProject__item">
-        <h3 className="aboutProject__subtitle">Дипломный проект включал 5 этапов</h3>
-        <p className="aboutProject__description">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+          <h3 className="aboutProject__subtitle">Проект включал 5 этапов</h3>
+          <p className="aboutProject__description">
+            Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
+          </p>
         </li>
         <li className="aboutProject__item">
-          <h3 className="aboutProject__subtitle">На выполнение диплома ушло 5 недель</h3>
-          <p className="aboutProject__description">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+          <h3 className="aboutProject__subtitle">На выполнение проекта ушло 5 недель</h3>
+          <p className="aboutProject__description">
+            Также функционал проекта продолжает доробатываться, осуществялется рефакторинг кода и добавление новой визуализации и функций.
+          </p>
         </li>
       </ul>
       <ul className="list aboutProject__scale">

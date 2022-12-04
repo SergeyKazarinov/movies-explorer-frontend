@@ -16,7 +16,7 @@ const AboutMe = () => {
           <div className="aboutMe__flex">
             <h3 className="aboutMe__name">Сергей</h3>
             <h4 className="aboutMe__about">Frontend-developer, 30 лет</h4>
-            <p className="aboutMe__description">
+            <div className="aboutMe__description">
               <p className="aboutMe__descriptionItem">
                 Я родился и живу в г. Пермь, в 2014 году закончил Пермский государственный национальный исследовательский университет.
                 Также закончил Яндекс-курсы по направлению веб&#8209;разработчик и сейчас являюсь старшим студентом для вновь обучающихся.
@@ -28,7 +28,7 @@ const AboutMe = () => {
               <p className="aboutMe__descriptionItem">
                 Также занимаюсь различными видами спорта (фитнес, бег, горные лыжи и сноуборд, плавание).
               </p>
-            </p>
+            </div>
           </div>
           <div className="aboutMe__contacts">
             <Contact href="https://github.com/SergeyKazarinov" src={github} alt="Логотип гитхаб" text="GitHub" />
