@@ -5,11 +5,11 @@ import Title from "../../Title/Title";
 import "./Techs.scss";
 
 const Techs = () => {
-  const stackElement = STACKS.map(item => <li className="techs__item"><Stack stack={item} /></li>)
-  
+  const stackElement = STACKS.map((item, index) => <li className="techs__item" key={index}><Stack stack={item} /></li>)
+
   return(
     <section className="techs" id="techs">
-      <Title title = "Технологии" />
+      <Title title = "Технические навыки" />
       <h3 className="techs__title">7 технологий</h3>
       <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
       <div className="techs__flex-container">

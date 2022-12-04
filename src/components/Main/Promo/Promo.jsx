@@ -5,9 +5,8 @@ import './Promo.scss';
 const Promo = () => {
   return(
     <section className='promo'>
-      <h1 className='promo__title'>
-        Учебный проект студента факультета Веб-разработки.
-      </h1>
+      <h1 className='promo__title'>Сергей Казаринов</h1>
+      <h2 className='promo__subtitle'>Frontend-developer</h2>
       <NavTab />
     </section>
   );

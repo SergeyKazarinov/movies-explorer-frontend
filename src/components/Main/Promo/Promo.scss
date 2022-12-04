@@ -11,9 +11,16 @@
     @include text-size(50px, 58px, 400);
     max-width: 730px;
     padding-top: 160px;
-    padding-bottom: 151px;
     margin: 0 auto;
     letter-spacing: -0.04em;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @include text-size(50px, 58px, 400);
+    max-width: 730px;
+    padding: 10px 0 151px;;
+    margin: 0 auto;
     text-align: center;
   }
 }
@@ -26,6 +33,11 @@
       @include text-size(40px, 52px, 400);
       max-width: 680px;
       padding-top: 350px;
+    }
+
+    &__subtitle {
+      @include text-size(40px, 52px, 400);
+      max-width: 680px;
       padding-bottom: 314px;
     }
   }
@@ -39,6 +51,11 @@
       @include text-size(29px, 37px, 400);
       max-width: 420px;
       padding-top: 220px;
+    }
+
+    &__subtitle {
+      @include text-size(29px, 37px, 400);
+      max-width: 420px;
       padding-bottom: 212px;
     }
   }
