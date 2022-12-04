@@ -1,0 +1,17 @@
+@keyframes anime {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  30% {
+    transform: rotateZ(15deg);
+  }
+
+  70% {
+    transform: rotateZ(-15deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

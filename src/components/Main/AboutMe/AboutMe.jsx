@@ -1,26 +1,41 @@
 import { memo } from "react";
 import Title from "../../Title/Title";
 import "./AboutMe.scss";
+import phone from '../../../images/phone-icon.svg';
+import github from '../../../images/github-icon.svg';
+import gmail from '../../../images/gmail-icon.svg';
+import telegram from '../../../images/telegram-icon.svg';
+import Contact from "./Contact/Contact";
 
 const AboutMe = () => {
   return(
     <section className="aboutMe" id="aboutMe">
-      <Title title = "Студент" />
+      <Title title = "Обо мне" />
       <ul className="list aboutMe__container">
         <li className="aboutMe__item">
           <div className="aboutMe__flex">
-            <h3 className="aboutMe__name">Виталий</h3>
-            <h4 className="aboutMe__about">Фронтенд-разработчик, 30 лет</h4>
+            <h3 className="aboutMe__name">Сергей</h3>
+            <h4 className="aboutMe__about">Frontend-developer, 30 лет</h4>
             <p className="aboutMe__description">
-              Я родился и живу в Саратове, закончил факультет экономики СГУ.
-              У меня есть жена и дочь. 
-              Я люблю слушать музыку, а ещё увлекаюсь бегом. 
-              Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». 
-              После того, как прошёл курс по веб&#8209;разработке, 
-              начал заниматься фриланс&#8209;заказами и ушёл с постоянной работы.
+              <p className="aboutMe__descriptionItem">
+                Я родился и живу в г. Пермь, в 2014 году закончил Пермский государственный национальный исследовательский университет.
+                Также закончил Яндекс-курсы по направлению веб&#8209;разработчик и сейчас являюсь старшим студентом для вновь обучающихся.
+              </p>
+              <p className="aboutMe__descriptionItem">
+                В свободное время занимаюсь созданием танцевальной электронной музыки с последующей публикацией на всех цифровых площадках, 
+                в связи с чем, возникает потребность общаться на английском языке.
+              </p>
+              <p className="aboutMe__descriptionItem">
+                Также занимаюсь различными видами спорта (фитнес, бег, горные лыжи и сноуборд, плавание).
+              </p>
             </p>
           </div>
-          <a className="link aboutMe__link" href="https://github.com/SergeyKazarinov" target="_blank">Github</a>
+          <div className="aboutMe__contacts">
+            <Contact href="https://github.com/SergeyKazarinov" src={github} alt="Логотип гитхаб" text="GitHub" />
+            <Contact href="https://t.me/SKey92" src={telegram} alt="Логотип телеграмма" text="@Skey92" />
+            <Contact href="tel:7-905-862-5530" src={phone} alt="Логотип телефона" text="+7&#8209;(905)&#8209;862&#8209;55&#8209;30" />
+            <Contact href="mailto:kazarinov092@gmail.com" src={gmail} alt="Логотип почты" text="kazarinov092@gmail.com" />
+          </div>
         </li>
         <li className="aboutMe__item">
           <div className="aboutMe__image"></div>
@@ -29,5 +44,6 @@ const AboutMe = () => {
     </section>
   )
 }
+
 
 export default memo(AboutMe);
