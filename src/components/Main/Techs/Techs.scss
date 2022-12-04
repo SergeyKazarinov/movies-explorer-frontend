@@ -1,0 +1,92 @@
+@import '../../../styles/mixins.scss';
+
+.techs {
+  background-color: #f5f5f5;
+  padding: 100px 70px;
+
+  &__title {
+    @include text-size(50px, 58px, 400);
+    margin: 0;
+    margin-top: 90px;
+    text-align: center;
+    letter-spacing: -0.04em;
+  }
+  
+  &__description {
+    @include text-size(14px, 20px, 400);
+    margin: 0 auto;
+    margin-top: 26px;
+    max-width: 460px;
+    text-align: center;
+    letter-spacing: -0.04em;
+  }
+  
+  &__flex-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  &__flex {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  &__item {
+    max-width: 90px;
+    width: 100%;
+  }
+}
+
+@include largeScreen {
+  .techs {
+    padding: 90px 60px;
+
+    &__title {
+      margin-top: 80px;
+    }
+  
+    &__description {
+      @include text-size(12px, 18px, 400);
+      margin-top: 22px;
+    }
+  
+    &__flex {
+      margin-top: 83px;
+    }
+  
+    &__item {
+      max-width: 84px;
+    }
+  }
+}
+
+@include smallScreen {
+  .techs {
+    background-color: #fff;
+    padding: 70px 18px;
+
+    &__title {
+      @include text-size(30px, 36.31px, 400);
+      margin-top: 60px;
+    }
+  
+    &__description {
+      @include text-size(11px, 16px, 400);
+      margin-top: 24px;
+    }
+  
+    &__flex {
+      padding: 0 calc((100% - 178px) / 2);
+      justify-content: flex-start;
+      margin-top: 50px;
+    }
+  
+    &__item {
+      max-width: 84px;
+    }
+  }
+}

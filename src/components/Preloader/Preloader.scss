@@ -1,3 +1,6 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
+
 @keyframes preloader-inside-white {
   0% {
     -webkit-transform: scale(0, 0);
@@ -47,47 +50,47 @@
   height: 100%;
   padding: 20px;
   z-index: 1;
+
+  &__container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  
+  &__round {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $greenColor;
+    border-radius: 50px;
+
+    &::after,
+    &::before {
+      content: "";
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50px;
+    }
+
+    &::after {
+      background: white;
+      animation: preloader-inside-white 1s ease-in-out infinite;
+    }
+    
+    &::before {
+      z-index: 10;
+      background: $greenColor;
+      animation: preloader-inside-red 1s ease-in-out infinite;
+    }
+  }
 }
 
-.preloader__container {
-  width: 100px;
-  height: 100px;
-  position: relative;
-}
-
-.preloader__round {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #2be080;
-  border-radius: 50px;
-}
-
-.preloader__round::after,
-.preloader__round::before {
-  content: "";
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50px;
-}
-
-.preloader__round::after {
-  background: white;
-  animation: preloader-inside-white 1s ease-in-out infinite;
-}
-
-.preloader__round::before {
-  z-index: 10;
-  background: #2be080;
-  animation: preloader-inside-red 1s ease-in-out infinite;
-}
-
-@media screen and (max-width: 450px) {
+@include smallScreen {
   .preloader {
     padding: 20px 0;
   }

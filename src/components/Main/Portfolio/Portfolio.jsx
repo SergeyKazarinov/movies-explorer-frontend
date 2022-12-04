@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Project from "../Project/Project";
-import "./Portfolio.css";
+import "./Portfolio.scss";
 
 const Portfolio = () => {
   return(

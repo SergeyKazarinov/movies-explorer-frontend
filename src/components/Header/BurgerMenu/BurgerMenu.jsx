@@ -1,5 +1,5 @@
 import React from "react";
-import "./BurgerMenu.css";
+import "./BurgerMenu.scss";
 import line from "../../../images/line.svg"
 import closeButton from "../../../images/close-button.svg"
 import { NavLink } from "react-router-dom";

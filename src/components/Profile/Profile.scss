@@ -1,0 +1,145 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
+
+.profile {
+  padding: 74px 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    @include text-size(24px, 29px, 500);
+    margin: 0 0 123px;
+  }
+
+  &__container {
+    width: 410px;
+  }
+
+  &__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__flex {
+    padding: 0;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  &__text {
+    @include text-size(11px, 13px, 500);
+    margin: 0;
+  }
+
+  &__input {
+    @include text-size(12px, 13px, 400);
+    padding: 0;
+    outline: none;
+    border: none;
+    text-align: end;
+    width: 50%;
+
+    &:focus {
+      border-bottom: 1px solid $greenColor;
+    }
+  }
+
+  &__line {
+    margin-top: 16px;
+    margin-bottom: 17px;
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  
+  &__errorMessage {
+    @include text-size(10px, 12px, 400);
+    color: $redColor;
+    position: absolute;
+    bottom: 65px;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__edit {
+    @include text-size(13px, 16px, 400);
+    margin: 220px auto 0;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 3px;
+    cursor: auto;
+
+    &_active {
+      background: $greenColor;
+      color: #fff;
+    }
+  }
+
+  &__exit {
+    @include text-size(13px, 16px, 500);
+    margin-top: 7px;
+    color: $redColor;
+  }
+}
+
+.form__inputError {
+  @include text-size(10px, 12px, 400);
+  color: $redColor;
+  position: absolute;
+  top: 18px;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+
+  &_active {
+    opacity: 1;
+  }
+}
+
+@include largeScreen {
+  .profile {
+    padding: 236px 0 269px;
+
+    &__title {
+      margin-bottom: 96px;
+    }
+
+    &__edit {
+      margin-top: 210px;
+    }
+  }
+}
+
+@include smallScreen {
+  .profile {
+    padding: 70px 0 40px;
+
+    &__title {
+      margin-bottom: 80px;
+    }
+  
+    &__container {
+      width: 260px;
+    }
+  
+    &__edit {
+      @include text-size(12px, 15px, 400);
+      margin-top: 379px;
+    }
+  
+    &__exit {
+      @include text-size(12px, 15px, 500);
+    }
+  }
+}

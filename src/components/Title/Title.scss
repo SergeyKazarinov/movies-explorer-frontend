@@ -1,0 +1,23 @@
+@import '../../styles/mixins.scss';
+
+.title {
+  @include text-size(22px, 26.63px, 400);
+  margin: 0;
+  letter-spacing: -0.04em;
+
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-top: 23px;
+  }
+}
+
+@include smallScreen {
+  .title {
+    @include text-size(18px, 21.78px, 400);
+
+    &__line {
+      margin-top: 28px;
+    }
+  }
+}

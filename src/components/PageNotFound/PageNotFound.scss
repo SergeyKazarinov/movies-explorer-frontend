@@ -1,0 +1,45 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
+
+.pageNotFound {
+  height: 100%;
+  padding: 246px 0 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    @include text-size(140px, 169px, 400);
+    margin: 0;
+  }
+  
+  &__subtitle {
+    @include text-size(16px, 19px, 400);
+    margin: 5px 0 0;
+  }
+  
+  &__link {
+    @include text-size(14px, 17px, 400);
+    margin-top: 184px;
+    color: $greenColor;
+  }
+}
+
+@include smallScreen {
+  .pageNotFound {
+    &__title {
+      @include text-size(80px, 97px, 400);
+    }
+  
+    &__subtitle {
+      @include text-size(12px, 15px, 400);
+      margin-top: 10px;
+    }
+  
+    &__link {
+      @include text-size(12px, 15px, 400);
+      margin-top: 284px;
+    }
+  }
+}

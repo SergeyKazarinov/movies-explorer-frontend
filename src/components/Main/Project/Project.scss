@@ -1,0 +1,56 @@
+@import '../../../styles/mixins.scss';
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 60px;
+  text-decoration: none;
+  color: #000;
+
+  &__title {
+    @include text-size(30px, 50px, 400);
+    margin: 0;
+    letter-spacing: -0.04em;
+  }
+  
+  &__arrow {
+    @include text-size(30px, 60px, 400);
+    width: 29px;
+    letter-spacing: -0.04em;
+  }
+}
+
+@include largeScreen {
+  .project__title {
+    font-size: 28px;
+  }
+}
+
+@include middleScreen {
+  .project {
+    height: 28px;
+    
+    &__title {
+      @include text-size(22px, 28px, 400);
+    }
+
+    &__arrow {
+      @include text-size(25px, 28px, 400);
+      width: 25px;
+    }
+  }
+}
+
+@include smallScreen {
+  .project {
+    &__title {
+      @include text-size(18px, 28px, 400);
+    }
+  
+    &__arrow {
+      @include text-size(18px, 28px, 400);
+      width: 18px;
+    }
+  }
+}

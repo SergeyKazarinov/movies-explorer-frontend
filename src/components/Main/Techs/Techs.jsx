@@ -1,23 +1,20 @@
 import { memo } from "react";
+import { STACKS } from "../../../utils/constants";
 import Stack from "../../Stack/Stack";
 import Title from "../../Title/Title";
-import "./Techs.css";
+import "./Techs.scss";
 
 const Techs = () => {
+  const stackElement = STACKS.map((item, index) => <li className="techs__item" key={index}><Stack stack={item} /></li>)
+
   return(
     <section className="techs" id="techs">
-      <Title title = "Технологии" />
+      <Title title = "Технические навыки" />
       <h3 className="techs__title">7 технологий</h3>
       <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
       <div className="techs__flex-container">
         <ul className="list techs__flex">
-          <li className="techs__item"><Stack stack="HTML" /></li>
-          <li className="techs__item"><Stack stack="CSS" /></li>
-          <li className="techs__item"><Stack stack="JS" /></li>
-          <li className="techs__item"><Stack stack="React" /></li>
-          <li className="techs__item"><Stack stack="Git" /></li>
-          <li className="techs__item"><Stack stack="Express.js" /></li>
-          <li className="techs__item"><Stack stack="mongoDB" /></li>
+          {stackElement}
         </ul>
       </div>
     </section>

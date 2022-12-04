@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Title from "../../Title/Title";
-import "./AboutProject.css";
+import "./AboutProject.scss";
 
 const AboutProject = () => {
   return(

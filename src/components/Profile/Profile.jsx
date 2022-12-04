@@ -1,7 +1,7 @@
 import { memo, useCallback, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import "./Profile.css";
+import "./Profile.scss";
 
 const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonInactive}) => {
   const currentUser = useContext(CurrentUserContext);

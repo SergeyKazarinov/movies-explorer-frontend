@@ -1,4 +1,4 @@
-import "./PopupWithInfo.css";
+import "./PopupWithInfo.scss";
 
 const PopupWithInfo = ({isOpen, onClose, infoMessage, onCLoseOverlay, isError}) => {
   return(

@@ -1,0 +1,25 @@
+@mixin text-size($size, $height, $weight) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $height;
+}
+
+@mixin largeScreen {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+
+@mixin middleScreen {
+  @media screen and (max-width: 570px) {
+    @content;
+  }
+}
+
+@mixin smallScreen {
+  @media screen and (max-width: 450px) {
+    @content;
+  }
+}

@@ -1,4 +1,5 @@
-$redColor: #ee3465;
+@import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
 
 .form {
   &__set {
@@ -12,22 +13,18 @@ $redColor: #ee3465;
   }
 
   &__legend {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
+    @include text-size(10px, 12px, 400);
     color: #a0a0a0;
   }
 
   &__input {
+    @include text-size(14px, 17px, 400);
     padding: 0;
     padding-top: 5px;
     width: 100%;
     border: 0;
     border-bottom: 1px solid #e8e8e8;
     padding-bottom: 10px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
     color: #000;
 
     &:focus-visible {
@@ -35,7 +32,7 @@ $redColor: #ee3465;
     }
     
     &:focus {
-      border-bottom: 1px solid #2be080;
+      border-bottom: 1px solid $greenColor;
     }
     
     &_type_error {
@@ -47,11 +44,9 @@ $redColor: #ee3465;
     }
   }
 
-  &__inputError {
+  &__input-error {
+    @include text-size(10px, 12px, 400);
     color: $redColor;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
     position: absolute;
     top: 38px;
     left: 0;

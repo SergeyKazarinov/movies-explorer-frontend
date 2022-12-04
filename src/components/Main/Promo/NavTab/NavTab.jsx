@@ -1,11 +1,11 @@
-import "./NavTab.css";
+import "./NavTab.scss";
 
 const NavTab = () => {
   return(
     <section className="navTab">
       <a href="#aboutProject" className="link navTab__item">О проекте</a>
-      <a href="#techs" className="link navTab__item">Технологии</a>
-      <a href="#aboutMe" className="link navTab__item">Студент</a>
+      <a href="#techs" className="link navTab__item">Технические навыки</a>
+      <a href="#aboutMe" className="link navTab__item">Обо мне</a>
     </section>
   );
 }

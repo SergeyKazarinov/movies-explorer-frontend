@@ -1,0 +1,111 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
+
+.login {
+  padding: 70px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 396px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  &__linkLogo {
+    width: 38px;
+    height: 38px;
+    align-self: flex-start;
+  }
+  
+  &__logo {
+    object-fit: cover;
+  }
+  
+  &__title {
+    @include text-size(24px, 29px, 500);
+    align-self: flex-start;
+    margin: 0;
+    margin-top: 40px;
+  }
+  
+  &__form {
+    position: relative;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  &__errorMessage {
+    @include text-size(10px, 12px, 400);
+    color: $redColor;
+    position: absolute;
+    bottom: 65px;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    @include text-size(14px, 17px, 500);
+    margin-top: 194px;
+    width: 100%;
+    padding: 13px 0 15px;
+    background-color: $greenColor;
+    color: #fff;
+    border-radius: 3px;
+
+    &_inactive {
+      cursor: auto;
+      background-color: #f8f8f8;
+      color: #000;
+    }
+  }
+
+  &__question {
+    @include text-size(14px, 17px, 400);
+    margin: 0;
+    margin-top: 16px;
+    color: #a0a0a0;
+  }
+
+  &__link {
+    margin-left: 4px;
+    color: $greenColor;
+  }
+}
+
+@include smallScreen {
+  .login {
+    padding: 56px 0 30px;
+    max-width: 260px;
+    margin: 0 auto;
+
+    &__logo {
+      align-self: center;
+    }
+  
+    &__title {
+      align-self: center;
+      margin-top: 50px;
+    }
+  
+    &__form {
+      margin-top: 80px;
+    }
+  
+    &__button {
+      @include text-size(12px, 15px, 500);
+      margin-top: 284px;
+      width: 100%;
+      padding: 15px 0;
+    }
+  
+    &__question {
+      @include text-size(12px, 15px, 400);
+      margin-top: 14px;
+    }
+  }
+}

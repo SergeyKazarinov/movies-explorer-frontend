@@ -1,4 +1,4 @@
-import "./MoviesCard.css";
+import "./MoviesCard.scss";
 import save_disabled from "../../images/save_disabled.svg";
 import save_active from "../../images/save_active.svg";
 import close from "../../images/close.svg";
@@ -35,17 +35,17 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
 
   return(
     <div className="moviesCard">
-      <div className="movieCard__flex">
+      <div className="moviesCard__flex">
         <div className="moviesCard__description">
           <h3 className="moviesCard__title">{movie.nameRU}</h3>
           <p className="moviesCard__duration">{hour}ч {minute < 10 ? "0" + minute : minute}м</p>
         </div>
         <button type="button" className="button moviesCard__button" onClick={handleClick}>
-          <img className="movieCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
+          <img className="moviesCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
         </button>
       </div>
-      <a className="link movieCard__link" href={movie.trailerLink} target="_blank">
-        <img className="movieCard__poster" src={poster} alt="Постер фильма" />
+      <a className="link moviesCard__link" href={movie.trailerLink} target="_blank">
+        <img className="moviesCard__poster" src={poster} alt="Постер фильма" />
       </a>
     </div>
   )
