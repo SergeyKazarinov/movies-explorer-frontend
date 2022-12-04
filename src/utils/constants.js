@@ -33,5 +33,5 @@ export const STACKS = [
   'Git',
   'Express.js',
   'mongoDB',
-  'Redux',
+  'Redux'
 ]
