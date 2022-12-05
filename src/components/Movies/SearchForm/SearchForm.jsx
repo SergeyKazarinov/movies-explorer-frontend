@@ -14,12 +14,12 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, is
 
   const handleSearchMovies = (e)  => {
     e.preventDefault();
-    if (url.pathname === '/movies') {
-      handleSetItem(); 
-      sessionStorage.setItem(CHECKBOX, checked)
-    };
-
     if (!!nameMovie) {
+      if (url.pathname === '/movies') {
+        handleSetItem(); 
+        sessionStorage.setItem(CHECKBOX, checked)
+      };
+      
       onSearch(nameMovie, checked);
     } else {
       url.pathname === '/movies'

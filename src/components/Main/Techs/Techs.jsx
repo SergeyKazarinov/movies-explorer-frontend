@@ -10,8 +10,11 @@ const Techs = () => {
   return(
     <section className="techs" id="techs">
       <Title title = "Технические навыки" />
-      <h3 className="techs__title">7 технологий</h3>
-      <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+      <h3 className="techs__title">Hard-skills</h3>
+      <p className="techs__description">
+        Имею опыт в командной работе с использованием системы контроля версий Git.
+        Владею навыками адаптивной и кроссбразуерной верстки, а также созданием многостраничных веб-приложений на React.js.
+      </p>
       <div className="techs__flex-container">
         <ul className="list techs__flex">
           {stackElement}

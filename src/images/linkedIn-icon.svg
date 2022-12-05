@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="400" height="400" viewBox="0 0 400 400" xml:space="preserve">
+<desc>Created with Fabric.js 3.6.2</desc>
+<defs>
+</defs>
+<g transform="matrix(0.39 0 0 0.39 200 200)" id="background"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 2; fill: rgb(40,103,178); fill-rule: evenodd; opacity: 1;"  transform=" translate(-256, -256)" d="M 512 64 c 0 -35.323 -28.677 -64 -64 -64 l -384 0 c -35.323 0 -64 28.677 -64 64 l 0 384 c 0 35.323 28.677 64 64 64 l 384 0 c 35.323 0 64 -28.677 64 -64 l 0 -384 Z" stroke-linecap="round" />
+</g>
+<g transform="matrix(0.39 0 0 0.39 140.6 220.18)" id="rect11"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 2; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"  x="-42.88" y="-128.981" rx="0" ry="0" width="85.76" height="257.962" />
+</g>
+<g transform="matrix(0.39 0 0 0.39 140.71 138.61)" id="path13-0"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 2; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-104.22, -98.85)" d="M 104.512 54.28 c -29.341 0 -48.512 19.29 -48.512 44.573 c 0 24.752 18.588 44.574 47.377 44.574 l 0.554 0 c 29.903 0 48.516 -19.822 48.516 -44.574 c -0.555 -25.283 -18.611 -44.573 -47.935 -44.573 Z" stroke-linecap="round" />
+</g>
+<g transform="matrix(0.39 0 0 0.39 227 218.99)" id="path15"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 2; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-325.13, -304.61)" d="M 357.278 172.601 c -45.49 0 -65.866 25.017 -77.276 42.589 l 0 -36.523 l -85.738 0 c 1.137 24.197 0 257.961 0 257.961 l 85.737 0 l 0 -144.064 c 0 -7.711 0.554 -15.42 2.827 -20.931 c 6.188 -15.4 20.305 -31.352 43.993 -31.352 c 31.012 0 43.436 23.664 43.436 58.327 l 0 138.02 l 85.741 0 l 0 -147.93 c 0 -79.237 -42.305 -116.097 -98.72 -116.097 Z" stroke-linecap="round" />
+</g>
+</svg>

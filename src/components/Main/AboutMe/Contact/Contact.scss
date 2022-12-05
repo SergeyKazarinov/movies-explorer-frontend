@@ -1,0 +1,26 @@
+@import '../../../../styles/mixins.scss';
+@import '../../../../styles/keyframes.scss'; 
+
+.contact {
+  &__link {
+    @include text-size(14px, 17px, 500);
+    color: #000;
+    display: flex;
+    align-items: center;
+
+    &:hover .contact__icons {
+      animation: anime .5s linear infinite;
+    }
+  }
+
+  &__icons {
+    width: 35px;
+    object-fit: cover;
+  }
+}
+
+@include largeScreen {
+  .contact__link {
+    @include text-size(12px, 18px, 500);
+  }
+}
