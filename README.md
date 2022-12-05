@@ -1,7 +1,8 @@
-# movies-explorer-frontend
+# Сайт-портфолио
 
-[Ссылка на макет](https://www.dropbox.com/s/lj7ptj3pnwzi6af/Diplom.fig..fig?dl=0)
+Главная страница представляет собой информацию обо мне и информацию о проектах.
+Также, это онлайн-сервис по поиску фильмов на основе данных API "Beatfilm‑movies" с возможностью сохранения понравившихся.
 
 [Ссылка на сайт](https://kazarinov.nomoredomains.club/)
 
-[Ссылка на Pull requests](https://github.com/SergeyKazarinov/movies-explorer-frontend/pull/2)
+[Ссылка на Backend](https://github.com/SergeyKazarinov/movies-explorer-api)
