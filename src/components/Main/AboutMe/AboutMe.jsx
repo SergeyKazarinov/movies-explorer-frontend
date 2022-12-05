@@ -5,6 +5,7 @@ import phone from '../../../images/phone-icon.svg';
 import github from '../../../images/github-icon.svg';
 import gmail from '../../../images/gmail-icon.svg';
 import telegram from '../../../images/telegram-icon.svg';
+import linkedIn from '../../../images/linkedIn-icon.svg';
 import Contact from "./Contact/Contact";
 
 const AboutMe = () => {
@@ -33,6 +34,7 @@ const AboutMe = () => {
           <div className="aboutMe__contacts">
             <Contact href="https://github.com/SergeyKazarinov" src={github} alt="Логотип гитхаб" text="GitHub" />
             <Contact href="https://t.me/SKey92" src={telegram} alt="Логотип телеграмма" text="@Skey92" />
+            <Contact href="https://www.linkedin.com/in/sergey-kazarinov-b621ba250/" src={linkedIn} alt="Логотип линкед ин" text="LinkedIn" />
             <Contact href="tel:7-905-862-5530" src={phone} alt="Логотип телефона" text="+7&#8209;(905)&#8209;862&#8209;55&#8209;30" />
             <Contact href="mailto:kazarinov092@gmail.com" src={gmail} alt="Логотип почты" text="kazarinov092@gmail.com" />
           </div>
