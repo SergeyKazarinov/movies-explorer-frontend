@@ -72,7 +72,7 @@ const userSlice = createSlice({
       state.pending = false;
       action.payload.statusCode === 400
       ? state.errorMessageApi = REGISTER_ERROR_MESSAGE
-      : action.payload.statusCode = action.payload.message;
+      : state.errorMessageApi = action.payload.message;
     },
 
 

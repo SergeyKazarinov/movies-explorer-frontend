@@ -1,18 +1,18 @@
 import { useLocation, withRouter } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // components
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
 // contexts and utils
-import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
-import { NOT_MOVIES_SEARCH_MESSAGE, REGISTER_ERROR_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX, URLS_FOR_AUTHORIZATION } from '../../utils/constants';
+import { createMovies, deleteMovie, getSavedMovies, updateUser } from '../../utils/mainApi';
+import { NOT_MOVIES_SEARCH_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX, URLS_FOR_AUTHORIZATION } from '../../utils/constants';
 import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
 import useFilterMovies from '../../hooks/useFilterMovies';
 import { clearUser, setIsLoaderPage, setUser } from '../../services/slices/userSlice';
-import { getUserFromApi, registerUser } from '../../services/crateAsyncAction/user';
+import { getUserFromApi } from '../../services/crateAsyncAction/user';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
@@ -20,7 +20,6 @@ const App = ({history}) => {
   const [moviesFromServer, setMoviesFromServer] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
-  const [isButtonInactive, setIsButtonInactive] = useState(false);
   const [isShort, setIsShort] = useState(false)
   const [movieErrorMessage, setMovieErrorMessage] = useState('');
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, infoMessage, isError} = useOpenPopup();
@@ -71,57 +70,6 @@ const App = ({history}) => {
     }
   }, [loggedIn])
 
-  // const handleRegister = ({name, email, password}) => {
-  //   dispatch(registerUser({name, email, password}));
-  //   }
-  
-
-  // const handleRegister = async ({name, email, password}) => {
-  //   try {
-  //     dispatch(registerUser({name, email, password}))
-  //     setIsLoader(true);
-  //     setIsButtonInactive(true);
-  //     // const res = await register({name, email, password});
-  //     // handleLogin({email, password})
-      
-  //   } catch (error) {
-  //     if (error.statusCode === 400) {
-  //       setErrorMessageApi(REGISTER_ERROR_MESSAGE)
-  //     } else {
-  //       setErrorMessageApi(error.message)
-  //     }
-  //     setIsButtonInactive(false);
-  //   } finally {
-  //     setIsLoader(false);
-  //     setTimeout(() => {
-  //       setErrorMessageApi('');
-  //     }, 3000)
-  //   }
-  // }
-
-  const handleLogin = async ({email, password}) => {
-    try {
-      setIsLoader(true);
-      setIsButtonInactive(true);
-      const res = await login({email, password});
-      localStorage.setItem(JWT, res.token);
-      const user = await getUser(res.token);
-      dispatch(setUser(user));
-      history.push('/movies');
-      handleGetSavedMovies();
-    } catch (error) {
-      dispatch(clearUser());
-      setErrorMessageApi(error.message);
-      setIsButtonInactive(false);
-      console.log(error);
-    } finally {
-      setIsLoader(false);
-      setTimeout(() => {
-        setErrorMessageApi('');
-      }, 3000)
-    }
-  }
-
   const handleUpdateUser = async ({name, email}) => {
     try {
       setIsLoader(true);
@@ -145,7 +93,6 @@ const App = ({history}) => {
     setFilterMovies([]);
     setSavedMovies([]);
     setMoviesFromServer([]);
-    setIsButtonInactive(false);
 
     dispatch(clearUser())
   };
@@ -235,13 +182,11 @@ const App = ({history}) => {
           onSignOut={handleSignOut}
           onUpdateUser={handleUpdateUser}
           errorMessageApi={errorMessageApi}
-          onSubmitLogin={handleLogin}
           isOpen={isOpen}
           onClose={handleClosePopup}
           infoMessage={infoMessage}
           onCLoseOverlay={handleCLoseOverlayClick}
           isError={isError}
-          isButtonInactive={isButtonInactive}
         />
     );
 }

@@ -8,9 +8,9 @@ import { EMAIL_PATTERN } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../services/crateAsyncAction/user";
 
-const Register = ({history, errorMessageApi}) => {
+const Register = ({history}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const {loggedIn, pending} = useSelector(state => state.user);
+  const {loggedIn, pending, errorMessageApi} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {

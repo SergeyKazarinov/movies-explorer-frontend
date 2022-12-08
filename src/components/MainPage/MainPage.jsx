@@ -26,13 +26,11 @@ const MainPage = ({
     onSignOut,
     onUpdateUser,
     errorMessageApi,
-    onSubmitLogin,
     isOpen,
     onClose,
     infoMessage,
     onCLoseOverlay,
     isError,
-    isButtonInactive,
   }) => {
   return(
     <>
@@ -74,10 +72,10 @@ const MainPage = ({
             errorMessageApi={errorMessageApi}
           />
           <Route path="/signup">
-            <Register errorMessageApi={errorMessageApi} />
+            <Register />
           </Route>
           <Route path="/signin">
-            <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi} isLoader={isLoader} isButtonInactive={isButtonInactive}/>
+            <Login />
           </Route>
           <Route path="*">
             <PageNotFound />
