@@ -3,12 +3,12 @@ import save_disabled from "../../images/save_disabled.svg";
 import save_active from "../../images/save_active.svg";
 import close from "../../images/close.svg";
 import { useLocation } from "react-router";
-import { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
   const url = useLocation();
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useSelector(state => state.user.user);
   const [isSaved, setIsSaved] = useState(false);
   const moviesCardSaved = isSaved ? save_active : save_disabled;
   const moviesCardClose = url.pathname==="/movies" ? moviesCardSaved : close;

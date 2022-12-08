@@ -1,15 +1,15 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {Link, withRouter} from "react-router-dom";
 import "./Register.scss";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { LoggedInContext } from "../../context/LoggedInContext";
 import { EMAIL_PATTERN } from "../../utils/constants";
+import { useSelector } from "react-redux";
 
 const Register = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const loggedIn = useContext(LoggedInContext);
+  const {loggedIn} = useSelector(state => state.user)
 
   useEffect(() => {
     loggedIn && history.push('/');

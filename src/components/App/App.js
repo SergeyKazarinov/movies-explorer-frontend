@@ -1,23 +1,21 @@
 import { withRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 // components
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
 // contexts and utils
-import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { LoggedInContext } from '../../context/LoggedInContext';
 import { createMovies, deleteMovie, getSavedMovies, getUser, login, register, updateUser } from '../../utils/mainApi';
 import { NOT_MOVIES_SEARCH_MESSAGE, REGISTER_ERROR_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX } from '../../utils/constants';
 import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
 import useFilterMovies from '../../hooks/useFilterMovies';
+import { clearUser, setUser } from '../../services/slices/userSlice';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false)
   const [errorMessageApi, setErrorMessageApi] = useState('');
-  const [currentUser, setCurrentUser] = useState({_id: '', name: '', email: ''});
   const [moviesFromServer, setMoviesFromServer] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isLoaderPage, setIsLoaderPage] = useState(true);
@@ -28,6 +26,9 @@ const App = ({history}) => {
   const {handleOpenPopup, handleClosePopup, handleCLoseOverlayClick, isOpen, infoMessage, isError} = useOpenPopup();
   const {handleSearch, handleCheckbox} = useFilterMovies();
 
+  const {loggedIn} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const token = localStorage.getItem(JWT);
     if (token) {
@@ -37,7 +38,7 @@ const App = ({history}) => {
       handleSignOut();
       setIsLoaderPage(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const moviesName = sessionStorage.getItem(MOVIES_NAME);
@@ -68,8 +69,6 @@ const App = ({history}) => {
     } catch (error) {
       if (error.statusCode === 400) {
         setErrorMessageApi(REGISTER_ERROR_MESSAGE)
-      } else if (error.statusCode === 409) {
-        setErrorMessageApi(error.message)
       } else {
         setErrorMessageApi(error.message)
       }
@@ -89,12 +88,11 @@ const App = ({history}) => {
       const res = await login({email, password});
       localStorage.setItem(JWT, res.token);
       const user = await getUser(res.token);
-      setCurrentUser({_id: user._id, name: user.name, email: user.email});
-      setLoggedIn(true);
+      dispatch(setUser(user));
       history.push('/movies');
       handleGetSavedMovies();
     } catch (error) {
-      setLoggedIn(false);
+      dispatch(clearUser());
       setErrorMessageApi(error.message);
       setIsButtonInactive(false);
       console.log(error);
@@ -110,8 +108,7 @@ const App = ({history}) => {
     try {
       const user = await getUser(token);
       if(user.name) {
-        setLoggedIn(true);
-        setCurrentUser({_id: user._id, name: user.name, email: user.email});
+        dispatch(setUser(user));
         handleGetSavedMovies();
         setIsLoaderPage(false);
       } else {
@@ -128,7 +125,7 @@ const App = ({history}) => {
     try {
       setIsLoader(true);
       const user = await updateUser({name, email});
-      setCurrentUser({_id: user._id, name: user.name, email: user.email});
+      dispatch(setUser(user));
       handleOpenPopup(USER_UPDATE_MESSAGE, false)
     } catch (error) {
       error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi(USER_UPDATE_ERROR_MESSAGE);
@@ -144,12 +141,11 @@ const App = ({history}) => {
     localStorage.removeItem(JWT);
     sessionStorage.removeItem(MOVIES_NAME);
     sessionStorage.removeItem(CHECKBOX);
-    setLoggedIn(false);
+    dispatch(clearUser())
     setFilterMovies([]);
     setSavedMovies([]);
     setMoviesFromServer([]);
     setIsButtonInactive(false);
-    setCurrentUser({_id: '', name: '', email: ''});
   };
 
   useEffect(() => {
@@ -223,8 +219,6 @@ const App = ({history}) => {
   };
 
   return (isLoaderPage ? <Preloader /> :
-    (<CurrentUserContext.Provider value={currentUser}>
-      <LoggedInContext.Provider value={loggedIn}>
         <MainPage
           onSearch={handleSearchMovies}
           filterMovies={filterMovies}
@@ -248,8 +242,6 @@ const App = ({history}) => {
           isError={isError}
           isButtonInactive={isButtonInactive}
         />
-      </LoggedInContext.Provider>
-    </CurrentUserContext.Provider>)
     );
 }
 

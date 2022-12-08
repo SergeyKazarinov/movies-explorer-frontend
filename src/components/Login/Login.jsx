@@ -3,13 +3,13 @@ import "./Login.scss";
 import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { useCallback, useContext, useEffect } from "react";
-import { LoggedInContext } from "../../context/LoggedInContext";
+import { useCallback, useEffect } from "react";
 import { EMAIL_PATTERN } from "../../utils/constants";
+import { useSelector } from "react-redux";
 
 const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const loggedIn = useContext(LoggedInContext);
+  const {loggedIn} = useSelector(state => state.user)
 
   useEffect(() => {
     loggedIn && history.push('/');
