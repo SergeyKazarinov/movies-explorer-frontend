@@ -30,48 +30,70 @@ const userSlice = createSlice({
       state.user.name = '';
       state.user.email = '';
     },
+    setIsLoaderPage(state, action) {
+      state.isLoaderPage = action.payload;
+    }
   },
   extraReducers: {
     [getUserFromApi.pending]: (state, action) => {
       state.isLoaderPage = true;
     },
     [getUserFromApi.fulfilled]: (state, action) => {
-      setUser(action.payload);
       state.isLoaderPage = false;
+      state.loggedIn = true;
+      state.user._id = action.payload._id;
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
     },
     [getUserFromApi.rejected]: (state, action) => {
-      clearUser();
       state.isLoaderPage = false;
-      console.log(action);
+      state.user._id = '';
+      state.user.name = '';
+      state.user.email = '';
+      console.log(action.payload);
     },
 
+
     [registerUser.pending]: (state, action) => {
+      console.log('register')
       state.pending = true;
       state.errorMessageApi = '';
     },
     [registerUser.fulfilled]: (state, action) => {
       state.pending = false;
+      state.loggedIn = true;
+      state.user._id = action.payload._id;
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
       console.log(action.payload);
     },
     [registerUser.rejected]: (state, action) => {
+      console.log(action.payload)
       state.pending = false;
       action.payload.statusCode === 400
       ? state.errorMessageApi = REGISTER_ERROR_MESSAGE
       : action.payload.statusCode = action.payload.message;
     },
 
+
     [loginUser.pending]: (state, action) => {
+      console.log('login')
       state.pending = true;
       state.errorMessageApi = '';
     },
     [loginUser.fulfilled]: (state, action) => {
       state.pending = false;
-      setUser(action.payload);
+      state.loggedIn = true;
+      state.user._id = action.payload._id;
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
     },
     [loginUser.rejected]: (state, action) => {
       state.pending = false;
+      state.user._id = '';
+      state.user.name = '';
+      state.user.email = '';
       state.errorMessageApi = action.payload.message;
-      clearUser();
     },
 
     [handleUpdateUser.pending]: (state, action) => {
@@ -92,4 +114,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer;
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, setIsLoaderPage } = userSlice.actions;

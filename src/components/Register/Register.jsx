@@ -5,11 +5,13 @@ import logo from "../../images/logo.svg";
 import Fieldset from "../Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { EMAIL_PATTERN } from "../../utils/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../services/crateAsyncAction/user";
 
-const Register = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
+const Register = ({history, errorMessageApi}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const {loggedIn} = useSelector(state => state.user)
+  const {loggedIn, pending} = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loggedIn && history.push('/');
@@ -22,11 +24,11 @@ const Register = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactiv
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
-    onSubmit({
+    dispatch(registerUser({
       name: values.name,
       email: values.email,
       password: values.password
-    })
+    }))
   }, [values]);
   
   return(
@@ -71,8 +73,8 @@ const Register = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactiv
           isValid={isValid}
         />
         <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
-        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={(!isButtonInactive && !isValid) ? true : false}>
-          {isLoader ? "Регистрация..." : "Зарегистрироваться"}
+        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={(pending && !isValid)}>
+          {pending ? "Регистрация..." : "Зарегистрироваться"}
         </button> 
       </form>
       <p className="register__question">Уже зарегистрированы? <Link to="/signin" className="link register__link">Войти</Link></p>

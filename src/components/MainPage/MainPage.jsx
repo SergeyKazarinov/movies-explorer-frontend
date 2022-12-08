@@ -26,7 +26,6 @@ const MainPage = ({
     onSignOut,
     onUpdateUser,
     errorMessageApi,
-    onSubmitRegister,
     onSubmitLogin,
     isOpen,
     onClose,
@@ -75,7 +74,7 @@ const MainPage = ({
             errorMessageApi={errorMessageApi}
           />
           <Route path="/signup">
-            <Register onSubmit={onSubmitRegister} errorMessageApi={errorMessageApi} isLoader={isLoader} isButtonInactive={isButtonInactive}/>
+            <Register errorMessageApi={errorMessageApi} />
           </Route>
           <Route path="/signin">
             <Login onSubmit={onSubmitLogin} errorMessageApi={errorMessageApi} isLoader={isLoader} isButtonInactive={isButtonInactive}/>

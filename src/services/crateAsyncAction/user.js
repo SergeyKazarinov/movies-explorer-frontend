@@ -19,7 +19,10 @@ export const registerUser = createAsyncThunk(
   async ({name, email, password}, thunkAPI) => {
     try {
       const res = await register({name, email, password});
-      return res;
+      const token = await login({email, password});
+      localStorage.setItem(JWT, token.token);
+      const user = await getUser(token.token);
+      return user;
     } catch (e) {
       return thunkAPI.rejectWithValue(e)
     }
@@ -32,7 +35,7 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await login({email, password});
       localStorage.setItem(JWT, res.token);
-      const user = await getUserFromApi(res.token);
+      const user = await getUser(res.token);
       return user;
     } catch (e) {
       return thunkApi.rejectWithValue(e);
