@@ -5,18 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
 // contexts and utils
-import { createMovies, deleteMovie, getSavedMovies, updateUser } from '../../utils/mainApi';
-import { NOT_MOVIES_SEARCH_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX, URLS_FOR_AUTHORIZATION } from '../../utils/constants';
+import { createMovies, deleteMovie, getSavedMovies } from '../../utils/mainApi';
+import { NOT_MOVIES_SEARCH_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX, URLS_FOR_AUTHORIZATION } from '../../utils/constants';
 import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
 import useFilterMovies from '../../hooks/useFilterMovies';
-import { clearUser, setIsLoaderPage, setUser } from '../../services/slices/userSlice';
+import { clearUser, setIsLoaderPage } from '../../services/slices/userSlice';
 import { getUserFromApi } from '../../services/crateAsyncAction/user';
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [errorMessageApi, setErrorMessageApi] = useState('');
   const [moviesFromServer, setMoviesFromServer] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
@@ -26,7 +25,7 @@ const App = ({history}) => {
   const {handleSearch, handleCheckbox} = useFilterMovies();
   const url = useLocation();
 
-  const {loggedIn, isLoaderPage, pending} = useSelector(state => state.user)
+  const {loggedIn, isLoaderPage, openPopup, pending} = useSelector(state => state.user)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -70,21 +69,9 @@ const App = ({history}) => {
     }
   }, [loggedIn])
 
-  const handleUpdateUser = async ({name, email}) => {
-    try {
-      setIsLoader(true);
-      const user = await updateUser({name, email});
-      dispatch(setUser(user));
-      handleOpenPopup(USER_UPDATE_MESSAGE, false)
-    } catch (error) {
-      error.statusCode === 409 ? setErrorMessageApi(error.message) : setErrorMessageApi(USER_UPDATE_ERROR_MESSAGE);
-    } finally {
-      setIsLoader(false);
-      setTimeout(() => {
-        setErrorMessageApi('');
-      }, 3000)
-    }
-  };
+  useEffect(() => {
+    openPopup && handleOpenPopup(USER_UPDATE_MESSAGE, false)
+  }, [openPopup])
 
   const handleSignOut = () => {
     localStorage.removeItem(JWT);
@@ -180,8 +167,6 @@ const App = ({history}) => {
           isShort={isShort}
           onChange={handleChangeChecked}
           onSignOut={handleSignOut}
-          onUpdateUser={handleUpdateUser}
-          errorMessageApi={errorMessageApi}
           isOpen={isOpen}
           onClose={handleClosePopup}
           infoMessage={infoMessage}

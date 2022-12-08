@@ -24,8 +24,6 @@ const MainPage = ({
     isShort,
     onChange,
     onSignOut,
-    onUpdateUser,
-    errorMessageApi,
     isOpen,
     onClose,
     infoMessage,
@@ -66,10 +64,7 @@ const MainPage = ({
           <ProtectedRoute
             path="/profile"
             component={Profile}
-            isLoader={isLoader}
             onSignOut={onSignOut}
-            onUpdateUser={onUpdateUser}
-            errorMessageApi={errorMessageApi}
           />
           <Route path="/signup">
             <Register />

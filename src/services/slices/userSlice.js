@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { REGISTER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE } from "../../utils/constants";
-import { getUserFromApi, handleUpdateUser, loginUser, registerUser } from "../crateAsyncAction/user";
+import { getUserFromApi, onUpdateUser, loginUser, registerUser } from "../crateAsyncAction/user";
 
 
 const userSlice = createSlice({
@@ -8,14 +8,14 @@ const userSlice = createSlice({
   initialState: {
     pending: false,
     loggedIn: false,
-    errorMessageApi: '',
     isLoaderPage: true,
+    openPopup: false,
+    errorMessageApi: '',
     user: {
       _id: '',
       name: '',
       email: ''
     },
-
   },
   reducers: {
     setUser(state, action) {
@@ -46,16 +46,15 @@ const userSlice = createSlice({
       state.user.email = action.payload.email;
     },
     [getUserFromApi.rejected]: (state, action) => {
+      console.log(action.payload);
       state.isLoaderPage = false;
       state.user._id = '';
       state.user.name = '';
       state.user.email = '';
-      console.log(action.payload);
     },
 
 
     [registerUser.pending]: (state, action) => {
-      console.log('register')
       state.pending = true;
       state.errorMessageApi = '';
     },
@@ -77,7 +76,6 @@ const userSlice = createSlice({
 
 
     [loginUser.pending]: (state, action) => {
-      console.log('login')
       state.pending = true;
       state.errorMessageApi = '';
     },
@@ -89,6 +87,7 @@ const userSlice = createSlice({
       state.user.email = action.payload.email;
     },
     [loginUser.rejected]: (state, action) => {
+      console.log(action.payload);
       state.pending = false;
       state.user._id = '';
       state.user.name = '';
@@ -96,15 +95,19 @@ const userSlice = createSlice({
       state.errorMessageApi = action.payload.message;
     },
 
-    [handleUpdateUser.pending]: (state, action) => {
+    [onUpdateUser.pending]: (state, action) => {
+      state.openPopup = false;
       state.pending = true;
       state.errorMessageApi = '';
     },
-    [handleUpdateUser.fulfilled]: (state, action) => {
+    [onUpdateUser.fulfilled]: (state, action) => {
       state.pending = false;
-      setUser(action.payload);
+      state.openPopup = true;
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
     },
-    [handleUpdateUser.rejected]: (state, action) => {
+    [onUpdateUser.rejected]: (state, action) => {
+      console.log(action.payload);
       state.pending = false;
       action.payload.statusCode === 409
       ? state.errorMessageApi = action.payload.message

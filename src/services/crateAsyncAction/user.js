@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk(
   }
 )
 
-export const handleUpdateUser = createAsyncThunk(
+export const onUpdateUser = createAsyncThunk(
   'user/postUserUpdate',
   async ({name, email}, thunkApi) => {
     try {
