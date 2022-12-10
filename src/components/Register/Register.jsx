@@ -73,7 +73,7 @@ const Register = ({history}) => {
           isValid={isValid}
         />
         <span className={`register__errorMessage ${!!errorMessageApi && "register__errorMessage_active"}`}>{errorMessageApi}</span>
-        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={(pending && !isValid)}>
+        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={pending || !isValid}>
           {pending ? "Регистрация..." : "Зарегистрироваться"}
         </button> 
       </form>

@@ -1,8 +1,9 @@
 import { memo, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { LARGE_COUNT, LARGE_WINDOW_SIZE, MIDDLE_COUNT, MIDDLE_WiNDOW_SIZE, MORE_BUTTON_LARGE, MORE_BUTTON_MIDDLE, SMALL_COUNT } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../UI/Preloader/Preloader";
 import "./MoviesCardList.scss";
 
 const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie }) => {
@@ -11,6 +12,7 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
   const [windowSize, setWindowsSite] = useState(window.screen.width);
   const [isError, setIsError] = useState(false);
   const url = useLocation();
+  const {moviesPending} = useSelector(state => state.movies);
 
   useEffect(() => {
     if (!isLoader) {
@@ -79,7 +81,7 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
   return(
     <section className="movieCardList">
       {(!isLoader && isError) && <h2 className="movieCardList__title">{movieErrorMessage}</h2>}
-      {isLoader 
+      {isLoader || moviesPending
         ? <Preloader />
         : <ul className="list movieCardList__grid">
             {movieElement}

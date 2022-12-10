@@ -61,7 +61,7 @@ const Login = ({history}) => {
           isValid={isValid}
         />
         <span className={`login__errorMessage ${!!errorMessageApi && "login__errorMessage_active"}`}>{errorMessageApi}</span>
-        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={pending && !isValid}>
+        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={pending || !isValid}>
             {pending ? "Выполняется вход..." : "Войти"}
           </button> 
       </form>

@@ -1,28 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { REGISTER_ERROR_MESSAGE, USER_UPDATE_ERROR_MESSAGE } from "../../utils/constants";
 import { getUserFromApi, onUpdateUser, loginUser, registerUser } from "../crateAsyncAction/user";
+import { userInitialState } from "../store/userInitialState";
 
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    pending: false,
-    loggedIn: false,
-    isLoaderPage: true,
-    openPopup: false,
-    errorMessageApi: '',
-    user: {
-      _id: '',
-      name: '',
-      email: ''
-    },
-  },
+  initialState: userInitialState,
   reducers: {
     setUser(state, action) {
       state.loggedIn = true;
-      state.user._id = action.payload._id;
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
+      state.user = action.payload;
     },
     clearUser(state) {
       state.loggedIn = false;
@@ -41,9 +29,7 @@ const userSlice = createSlice({
     [getUserFromApi.fulfilled]: (state, action) => {
       state.isLoaderPage = false;
       state.loggedIn = true;
-      state.user._id = action.payload._id;
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
+      state.user = action.payload;
     },
     [getUserFromApi.rejected]: (state, action) => {
       console.log(action.payload);
@@ -61,9 +47,7 @@ const userSlice = createSlice({
     [registerUser.fulfilled]: (state, action) => {
       state.pending = false;
       state.loggedIn = true;
-      state.user._id = action.payload._id;
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
+      state.user = action.payload;
       console.log(action.payload);
     },
     [registerUser.rejected]: (state, action) => {
@@ -76,15 +60,14 @@ const userSlice = createSlice({
 
 
     [loginUser.pending]: (state, action) => {
+      console.log('sdfs')
       state.pending = true;
       state.errorMessageApi = '';
     },
     [loginUser.fulfilled]: (state, action) => {
       state.pending = false;
       state.loggedIn = true;
-      state.user._id = action.payload._id;
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
+      state.user = action.payload;
     },
     [loginUser.rejected]: (state, action) => {
       console.log(action.payload);

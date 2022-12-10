@@ -60,7 +60,7 @@ const Profile = ({onSignOut}) => {
           <span className={`profile__errorMessage ${!!errorMessageApi && "profile__errorMessage_active"}`}>{errorMessageApi}</span>
           <button 
           className={`button profile__edit ${isButtonActive && "profile__edit_active"}`}
-          disabled={!isButtonActive && pending}
+          disabled={!isButtonActive || pending}
           >
             {pending ? "Сохранение..." : "Редактировать"}
           </button>

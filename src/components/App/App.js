@@ -1,22 +1,25 @@
 import { useLocation, withRouter } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // components
-import Preloader from '../Preloader/Preloader';
 import MainPage from '../MainPage/MainPage';
+import LoaderPage from '../UI/LoaderPage/LoaderPage';
 // contexts and utils
 import { createMovies, deleteMovie, getSavedMovies } from '../../utils/mainApi';
 import { NOT_MOVIES_SEARCH_MESSAGE, MOVIES_SERVER_ERROR_MESSAGE, USER_UPDATE_MESSAGE, JWT, MOVIES_NAME, CHECKBOX, URLS_FOR_AUTHORIZATION } from '../../utils/constants';
-import { getMovies } from '../../utils/moviesApi';
 // hooks
 import useOpenPopup from '../../hooks/useOpenPopup';
 import useFilterMovies from '../../hooks/useFilterMovies';
+// redux
 import { clearUser, setIsLoaderPage } from '../../services/slices/userSlice';
 import { getUserFromApi } from '../../services/crateAsyncAction/user';
+import { getMoviesFromServer } from '../../services/crateAsyncAction/movies';
+import { clearMoviesFromServer } from '../../services/slices/moviesSlice';
+
 
 const App = ({history}) => {
   const [savedMovies, setSavedMovies] = useState([]);
-  const [moviesFromServer, setMoviesFromServer] = useState([]);
+  // const [moviesFromServer, setMoviesFromServer] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [isShort, setIsShort] = useState(false)
@@ -26,6 +29,7 @@ const App = ({history}) => {
   const url = useLocation();
 
   const {loggedIn, isLoaderPage, openPopup, pending} = useSelector(state => state.user)
+  const {moviesFromServer, moviesErrorMessage, moviesPending} = useSelector(state => state.movies);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,10 +46,7 @@ const App = ({history}) => {
   useEffect(() => {
     if (loggedIn && !pending && URLS_FOR_AUTHORIZATION.some((i) => i === url.pathname)) {
       history.push('/movies')
-    } 
-    // else if (!loggedIn && url.pathname === ['/movies', '/saved-movies', '/profile']) {
-
-    // }
+    }
 
   }, [loggedIn, pending])
 
@@ -79,8 +80,7 @@ const App = ({history}) => {
     sessionStorage.removeItem(CHECKBOX);
     setFilterMovies([]);
     setSavedMovies([]);
-    setMoviesFromServer([]);
-
+    dispatch(clearMoviesFromServer())
     dispatch(clearUser())
   };
 
@@ -92,20 +92,24 @@ const App = ({history}) => {
     }
   }, [isLoader, filterMovies])
 
-  const handleGetMovies = async () => {
-    try {
-      setIsLoader(true);
-      setMovieErrorMessage('')
-      if (moviesFromServer.length === 0) {
-        const moviesApi = await getMovies();
-        setMoviesFromServer(moviesApi);
-      }
-    } catch (error) {
-      setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE);
-    } finally {
-      setIsLoader(false);
-    }
-  };
+  const handleGetMovies = () => {
+    moviesFromServer.length === 0 && dispatch(getMoviesFromServer());
+  }
+
+  // const handleGetMovies = async () => {
+  //   try {
+  //     setIsLoader(true);
+  //     setMovieErrorMessage('')
+  //     if (moviesFromServer.length === 0) {
+  //       const moviesApi = await getMovies();
+  //       // setMoviesFromServer(moviesApi);
+  //     }
+  //   } catch (error) {
+  //     setMovieErrorMessage(MOVIES_SERVER_ERROR_MESSAGE);
+  //   } finally {
+  //     setIsLoader(false);
+  //   }
+  // };
 
   const handleSearchMovies = (movieName, checked) => {
     setIsShort(checked);
@@ -154,7 +158,7 @@ const App = ({history}) => {
     }
   };
 
-  return (isLoaderPage ? <Preloader /> :
+  return (isLoaderPage ? <LoaderPage /> :
         <MainPage
           onSearch={handleSearchMovies}
           filterMovies={filterMovies}
