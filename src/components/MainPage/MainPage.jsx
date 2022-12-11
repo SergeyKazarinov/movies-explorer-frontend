@@ -15,12 +15,8 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 const MainPage = ({
     onSearch,
     filterMovies,
-    savedMovies,
     isLoader,
     onError,
-    movieErrorMessage,
-    onCreateMovie,
-    onDeleteMovie,
     isShort,
     onChange,
     onSignOut,
@@ -45,20 +41,14 @@ const MainPage = ({
             component={Movies}
             onSearch={onSearch}
             filterMovies={filterMovies}
-            savedMovies={savedMovies}
             isLoader={isLoader}
             onError={onError}
-            movieErrorMessage={movieErrorMessage}
-            onCreateMovie={onCreateMovie}
-            onDeleteMovie={onDeleteMovie}
             isShort={isShort}
             onChange={onChange}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
-            savedMovies={savedMovies}
-            onDeleteMovie={onDeleteMovie}
             isLoader={isLoader}
           />
           <ProtectedRoute

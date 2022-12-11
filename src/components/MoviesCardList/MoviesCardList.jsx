@@ -6,13 +6,13 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../UI/Preloader/Preloader";
 import "./MoviesCardList.scss";
 
-const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie }) => {
+const MoviesCardList = ({filterMovies, isLoader }) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
   const [windowSize, setWindowsSite] = useState(window.screen.width);
   const [isError, setIsError] = useState(false);
   const url = useLocation();
-  const {moviesPending} = useSelector(state => state.movies);
+  const { moviesErrorMessage, moviesPending } = useSelector(state => state.movies);
 
   useEffect(() => {
     if (!isLoader) {
@@ -72,15 +72,12 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
       <li key={movie.id || movie._id}><MoviesCard 
         key={movie.id || movie._id}
         movie={movie}
-        savedMovies={savedMovies}
-        onCreateMovie={onCreateMovie}
-        onDeleteMovie={onDeleteMovie}
       /></li>
       ))
 
   return(
     <section className="movieCardList">
-      {(!isLoader && isError) && <h2 className="movieCardList__title">{movieErrorMessage}</h2>}
+      {(!isLoader && isError) && <h2 className="movieCardList__title">{moviesErrorMessage}</h2>}
       {isLoader || moviesPending
         ? <Preloader />
         : <ul className="list movieCardList__grid">
