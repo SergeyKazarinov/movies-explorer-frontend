@@ -17,6 +17,8 @@ export const initialProjects = [
       'React',
       'MongoDB',
       'Git',
+      'Redux',
+      'Redux Toolkit'
     ],
     scrin: portfolio,
   },

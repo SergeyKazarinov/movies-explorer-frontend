@@ -1,17 +1,39 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMoviesFromServer } from "../../services/crateAsyncAction/movies";
+import { searchMovies } from "../../services/slices/searchMoviesSlice";
+import { CHECKBOX, MOVIES_NAME } from "../../utils/constants";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 
-const Movies = ({onSearch, filterMovies, savedMovies, isLoader, onError, movieErrorMessage, onCreateMovie, onDeleteMovie, isShort, onChange}) => {
+const Movies = ({onError}) => {
+  const {moviesFromServer} = useSelector(state => state.movies);
+  const { filterMovies, isShort } = useSelector(state => state.searchMovies)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const moviesName = sessionStorage.getItem(MOVIES_NAME);
+    const checkbox = sessionStorage.getItem(CHECKBOX)
+    if (moviesName) {
+      handleSearchMovies(moviesName, (checkbox === 'true' ? true : false));
+    }
+  }, [moviesFromServer]);
+
+  const handleSearchMovies = (movieName, checked) => {
+    moviesFromServer.length === 0 && dispatch(getMoviesFromServer());
+    dispatch(searchMovies({movies: moviesFromServer, movieName, checked}))
+  };
+
+  const handleChangeChecked = (checked) => {
+    handleSearchMovies(sessionStorage.getItem(MOVIES_NAME), checked);
+    sessionStorage.setItem(CHECKBOX, checked)
+  };
+
   return(
     <section className="movies">
-      <SearchForm type="movies" onSearch={onSearch} onError={onError} isShort={isShort} onChange={onChange} isLoader={isLoader}/>
+      <SearchForm type="movies" onSearch={handleSearchMovies} onError={onError} isShort={isShort} onChange={handleChangeChecked}/>
       <MoviesCardList
-        savedMovies={savedMovies}
         filterMovies={filterMovies}
-        isLoader={isLoader}
-        movieErrorMessage={movieErrorMessage}
-        onCreateMovie={onCreateMovie}
-        onDeleteMovie={onDeleteMovie}
       />
     </section>
   )

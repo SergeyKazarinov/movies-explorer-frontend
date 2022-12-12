@@ -3,13 +3,16 @@ import save_disabled from "../../images/save_disabled.svg";
 import save_active from "../../images/save_active.svg";
 import close from "../../images/close.svg";
 import { useLocation } from "react-router";
-import { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { memo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createSavedMoviesThunk, deleteSavedMoviesThunk } from "../../services/crateAsyncAction/movies";
 
-const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
+const MoviesCard = ({movie}) => {
   const url = useLocation();
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useSelector(state => state.user.user);
+  const { savedMovies } = useSelector(state => state.movies);
   const [isSaved, setIsSaved] = useState(false);
+  const dispatch = useDispatch();
   const moviesCardSaved = isSaved ? save_active : save_disabled;
   const moviesCardClose = url.pathname==="/movies" ? moviesCardSaved : close;
   const poster = url.pathname ==="/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image; 
@@ -25,10 +28,12 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
 
   const handleClick = () => {
     if (url.pathname === "/saved-movies") {
-      onDeleteMovie(movie);
+      dispatch(deleteSavedMoviesThunk(movie));
     } else {
       const findMovie = savedMovies.find((item) => item.movieId === movie.id)
-      isSaved ? onDeleteMovie(findMovie) : onCreateMovie(movie);
+      isSaved
+      ? dispatch(deleteSavedMoviesThunk(findMovie))
+      : dispatch(createSavedMoviesThunk(movie));
       setIsSaved(state => !state);
     }
   }
@@ -51,4 +56,4 @@ const MoviesCard = ({movie, savedMovies, onCreateMovie, onDeleteMovie}) => {
   )
 };
 
-export default MoviesCard;
+export default memo(MoviesCard);

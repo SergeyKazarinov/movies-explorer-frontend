@@ -1,10 +1,9 @@
-import { useContext } from "react"
+import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom"
-import { LoggedInContext } from "../../context/LoggedInContext"
 
 
 const ProtectedRoute = ({component: Component, ...props}) => {
-  const loggedIn = useContext(LoggedInContext);
+  const {loggedIn} = useSelector(state => state.user)
   return (
     <Route>
       {() => 

@@ -1,28 +1,31 @@
-import { memo, useCallback, useContext, useEffect } from "react";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { memo, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
+import { onUpdateUser } from "../../services/crateAsyncAction/user";
 import "./Profile.scss";
 
-const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonInactive}) => {
-  const currentUser = useContext(CurrentUserContext);
+const Profile = ({onSignOut}) => {
+  const { user, errorMessageApi, pending } = useSelector(state => state.user);
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const isButtonActive = (isValid && (currentUser.name !== values.name || currentUser.email !== values.email));
+  const isButtonActive = (isValid && (user.name !== values.name || user.email !== values.email));
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    resetForm(currentUser);
-  }, [resetForm, currentUser])
+    resetForm(user);
+  }, [resetForm, user])
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    onUpdateUser({
+    
+    dispatch(onUpdateUser({
       name: values.name,
       email: values.email
-    });
+    }));
   }, [values]);
   
   return(
     <section className="profile">
-      <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+      <h2 className="profile__title">Привет, {user.name}!</h2>
       <div className="profile__container">
         <form className="form profile__form" name="profileEdit" onSubmit={handleSubmit} noValidate>
           <fieldset className="profile__flex">
@@ -31,7 +34,7 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonIn
               className="profile__input"
               type="text" id="name"
               name="name"
-              value={values.name || currentUser.name}
+              value={values.name || user.name}
               minLength="4"
               maxLength="40"
               onChange={handleChange}
@@ -46,7 +49,7 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonIn
               className="profile__input"
               type="email" id="email"
               name="email"
-              value={values.email || currentUser.email}
+              value={values.email || user.email}
               minLength="4"
               maxLength="40"
               onChange={handleChange}
@@ -57,9 +60,9 @@ const Profile = ({onSignOut, onUpdateUser, errorMessageApi, isLoader, isButtonIn
           <span className={`profile__errorMessage ${!!errorMessageApi && "profile__errorMessage_active"}`}>{errorMessageApi}</span>
           <button 
           className={`button profile__edit ${isButtonActive && "profile__edit_active"}`}
-          disabled={!isButtonActive}
+          disabled={!isButtonActive || pending}
           >
-            {isButtonInactive ? "Сохранение..." : "Редактировать"}
+            {pending ? "Сохранение..." : "Редактировать"}
           </button>
         </form>
       </div>

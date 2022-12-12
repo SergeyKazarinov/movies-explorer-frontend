@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { STACKS } from "../../../utils/constants";
 import Stack from "../../Stack/Stack";
-import Title from "../../Title/Title";
+import Title from "../../UI/Title/Title";
 import "./Techs.scss";
 
 const Techs = () => {

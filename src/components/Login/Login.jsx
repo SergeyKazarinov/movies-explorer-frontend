@@ -1,15 +1,17 @@
 import {Link, withRouter} from "react-router-dom";
 import "./Login.scss";
 import logo from "../../images/logo.svg";
-import Fieldset from "../Fieldset/Fieldset";
+import Fieldset from "../UI/Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { useCallback, useContext, useEffect } from "react";
-import { LoggedInContext } from "../../context/LoggedInContext";
+import { useCallback, useEffect } from "react";
 import { EMAIL_PATTERN } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../services/crateAsyncAction/user";
 
-const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive}) => {
+const Login = ({history}) => {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-  const loggedIn = useContext(LoggedInContext);
+  const {loggedIn, pending, errorMessageApi} = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loggedIn && history.push('/');
@@ -22,10 +24,10 @@ const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive})
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
-    onSubmit({
+    dispatch(loginUser({
       email: values.email,
       password: values.password
-    })
+    }))
   }, [values]);
 
   return(
@@ -59,8 +61,8 @@ const Login = ({history, onSubmit, errorMessageApi, isLoader, isButtonInactive})
           isValid={isValid}
         />
         <span className={`login__errorMessage ${!!errorMessageApi && "login__errorMessage_active"}`}>{errorMessageApi}</span>
-        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={!isValid && !isButtonInactive}>
-            {isLoader ? "Выполняется вход..." : "Войти"}
+        <button className={`button form__button ${!isValid && "form__button_inactive"}`} disabled={pending || !isValid}>
+            {pending ? "Выполняется вход..." : "Войти"}
           </button> 
       </form>
       <p className="login__question">Ещё не зарегистрированы? <Link to="/signup" className="link login__link">Регистрация</Link></p>

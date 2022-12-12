@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Title from "../../Title/Title";
+import Title from "../../UI/Title/Title";
 import "./AboutMe.scss";
 import phone from '../../../images/phone-icon.svg';
 import github from '../../../images/github-icon.svg';

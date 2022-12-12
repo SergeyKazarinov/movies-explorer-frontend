@@ -1,24 +1,26 @@
 import { memo, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { LARGE_COUNT, LARGE_WINDOW_SIZE, MIDDLE_COUNT, MIDDLE_WiNDOW_SIZE, MORE_BUTTON_LARGE, MORE_BUTTON_MIDDLE, SMALL_COUNT } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../UI/Preloader/Preloader";
 import "./MoviesCardList.scss";
 
-const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovie, savedMovies, onDeleteMovie }) => {
+const MoviesCardList = ({ filterMovies }) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
   const [windowSize, setWindowsSite] = useState(window.screen.width);
   const [isError, setIsError] = useState(false);
   const url = useLocation();
+  const { moviesErrorMessage, moviesPending } = useSelector(state => state.movies);
 
   useEffect(() => {
-    if (!isLoader) {
+    if (!moviesPending) {
       !filterMovies.length ? setIsError(true) : setIsError(false);
     } else {
       setIsError(false)
     }
-  }, [filterMovies, isLoader])
+  }, [filterMovies, moviesPending])
 
   const handleChangeWindow = () => {
     setWindowsSite(window.screen.width)
@@ -70,16 +72,13 @@ const MoviesCardList = ({filterMovies, isLoader, movieErrorMessage, onCreateMovi
       <li key={movie.id || movie._id}><MoviesCard 
         key={movie.id || movie._id}
         movie={movie}
-        savedMovies={savedMovies}
-        onCreateMovie={onCreateMovie}
-        onDeleteMovie={onDeleteMovie}
       /></li>
       ))
 
   return(
     <section className="movieCardList">
-      {(!isLoader && isError) && <h2 className="movieCardList__title">{movieErrorMessage}</h2>}
-      {isLoader 
+      {(!moviesPending && isError) && <h2 className="movieCardList__title">{moviesErrorMessage}</h2>}
+      {moviesPending
         ? <Preloader />
         : <ul className="list movieCardList__grid">
             {movieElement}

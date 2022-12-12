@@ -2,11 +2,11 @@ import "./Header.scss";
 import {Link, NavLink} from "react-router-dom";
 import logo from "../../images/logo.svg";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
-import { memo, useContext } from "react";
-import { LoggedInContext } from "../../context/LoggedInContext";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const loggedIn = useContext(LoggedInContext);
+  const {loggedIn} = useSelector(state => state.user)
 
   return(
     <header className="header">
