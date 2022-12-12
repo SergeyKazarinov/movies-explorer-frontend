@@ -48,7 +48,6 @@ const userSlice = createSlice({
       state.pending = false;
       state.loggedIn = true;
       state.user = action.payload;
-      console.log(action.payload);
     },
     [registerUser.rejected]: (state, action) => {
       console.log(action.payload)
@@ -60,7 +59,6 @@ const userSlice = createSlice({
 
 
     [loginUser.pending]: (state, action) => {
-      console.log('sdfs')
       state.pending = true;
       state.errorMessageApi = '';
     },

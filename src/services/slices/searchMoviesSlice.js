@@ -32,7 +32,6 @@ const searchMoviesSlice = createSlice({
     },
 
     setSavedMovies(state, action) {
-      console.log(action.payload)
       state.longSavedMovies = action.payload;
       state.shortSavedMovies = action.payload;
     },
