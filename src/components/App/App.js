@@ -72,16 +72,17 @@ const App = ({history}) => {
     : dispatch(setErrorMessage(''))
   }, [moviesPending, filterMovies])
 
-  return (isLoaderPage ? <LoaderPage /> :
-        <MainPage
-          onError={handleOpenPopup}
-          onSignOut={handleSignOut}
-          isOpen={isOpen}
-          onClose={handleClosePopup}
-          infoMessage={infoMessage}
-          onCLoseOverlay={handleCLoseOverlayClick}
-          isError={isError}
-        />
+  return (isLoaderPage 
+        ? <LoaderPage /> 
+        : <MainPage
+            onError={handleOpenPopup}
+            onSignOut={handleSignOut}
+            isOpen={isOpen}
+            onClose={handleClosePopup}
+            infoMessage={infoMessage}
+            onCLoseOverlay={handleCLoseOverlayClick}
+            isError={isError}
+          />
     );
 }
 

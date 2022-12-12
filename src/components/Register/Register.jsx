@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import {Link, withRouter} from "react-router-dom";
 import "./Register.scss";
 import logo from "../../images/logo.svg";
-import Fieldset from "../Fieldset/Fieldset";
+import Fieldset from "../UI/Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { EMAIL_PATTERN } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";

@@ -6,18 +6,14 @@ import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import PopupWithInfo from "../PopupWithInfo/PopupWithInfo";
+import PopupWithInfo from "../UI/PopupWithInfo/PopupWithInfo";
 import Profile from "../Profile/Profile";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Register from "../Register/Register";
 import SavedMovies from "../SavedMovies/SavedMovies";
 
 const MainPage = ({
-    onSearch,
-    filterMovies,
     onError,
-    isShort,
-    onChange,
     onSignOut,
     isOpen,
     onClose,

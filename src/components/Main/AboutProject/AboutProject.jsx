@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Title from "../../Title/Title";
+import Title from "../../UI/Title/Title";
 import "./AboutProject.scss";
 
 const AboutProject = () => {

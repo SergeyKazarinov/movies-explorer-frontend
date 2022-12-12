@@ -1,7 +1,7 @@
 import {Link, withRouter} from "react-router-dom";
 import "./Login.scss";
 import logo from "../../images/logo.svg";
-import Fieldset from "../Fieldset/Fieldset";
+import Fieldset from "../UI/Fieldset/Fieldset";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useCallback, useEffect } from "react";
 import { EMAIL_PATTERN } from "../../utils/constants";
