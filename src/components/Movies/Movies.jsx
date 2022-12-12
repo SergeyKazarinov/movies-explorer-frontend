@@ -21,7 +21,7 @@ const Movies = ({onError}) => {
 
   const handleSearchMovies = (movieName, checked) => {
     moviesFromServer.length === 0 && dispatch(getMoviesFromServer());
-    dispatch(searchMovies({moviesFromServer, movieName, checked}))
+    dispatch(searchMovies({movies: moviesFromServer, movieName, checked}))
   };
 
   const handleChangeChecked = (checked) => {
