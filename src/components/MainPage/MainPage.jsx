@@ -15,7 +15,6 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 const MainPage = ({
     onSearch,
     filterMovies,
-    isLoader,
     onError,
     isShort,
     onChange,
@@ -39,17 +38,11 @@ const MainPage = ({
           <ProtectedRoute
             path="/movies"
             component={Movies}
-            onSearch={onSearch}
-            filterMovies={filterMovies}
-            isLoader={isLoader}
             onError={onError}
-            isShort={isShort}
-            onChange={onChange}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
-            isLoader={isLoader}
           />
           <ProtectedRoute
             path="/profile"
@@ -70,7 +63,13 @@ const MainPage = ({
       <Route exact path={URLS_FOR_FOOTER}>
         <Footer />
       </Route>
-      <PopupWithInfo isOpen={isOpen} onClose={onClose} infoMessage={infoMessage} onCLoseOverlay={onCLoseOverlay} isError={isError}/>
+      <PopupWithInfo 
+        isOpen={isOpen}
+        onClose={onClose}
+        infoMessage={infoMessage}
+        onCLoseOverlay={onCLoseOverlay}
+        isError={isError}
+      />
     </>
   )
 };

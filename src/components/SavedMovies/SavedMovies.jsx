@@ -2,16 +2,16 @@ import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useFilterMovies from "../../hooks/useFilterMovies";
 import { setErrorMessage } from "../../services/slices/moviesSlice";
-import { NOT_MOVIES_SEARCH_MESSAGE } from "../../utils/constants";
+import { NOT_MOVIES_SEARCH_MESSAGE, NOT_SAVED_MOVIES_MESSAGE } from "../../utils/constants";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-const SavedMovies = ({isLoader}) => {
+const SavedMovies = () => {
   const [longMovie, setLongMovie] = useState([]);
   const [movie, setMovies] = useState([])
   const {handleSearch, handleCheckbox} = useFilterMovies();
   const dispatch = useDispatch();
-  const { savedMovies } = useSelector(state => state.movies);
+  const { savedMovies, moviesPending } = useSelector(state => state.movies);
   
   useEffect(() => {
     setMovies(savedMovies);
@@ -20,11 +20,11 @@ const SavedMovies = ({isLoader}) => {
 
   useEffect(() => {
     savedMovies.length === 0
-    ? dispatch(setErrorMessage(''))
-    : movie.length === 0 && !isLoader
+    ? dispatch(setErrorMessage(NOT_SAVED_MOVIES_MESSAGE))
+    : movie.length === 0 && !moviesPending
     ? dispatch(setErrorMessage(NOT_MOVIES_SEARCH_MESSAGE))
     : dispatch(setErrorMessage(''));
-  }, [isLoader, movie])
+  }, [moviesPending, movie])
 
 
   const handleSearchMovies = (movieName, checked) => {
@@ -47,7 +47,7 @@ const SavedMovies = ({isLoader}) => {
 
   return(
     <>
-      <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox} isLoader={isLoader}/>
+      <SearchForm onSearch={handleSearchMovies} onResetForm={handleResetSearch} onChange={handleChangeCheckbox} />
       <MoviesCardList filterMovies={movie}/>
     </>
   )

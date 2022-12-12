@@ -6,11 +6,13 @@ import { useState } from "react";
 import { useSearchMovies } from "../../../hooks/useSearchMovies";
 import { useLocation } from "react-router-dom";
 import { CHECKBOX, ERROR_INPUT_SEARCH_MOVIES_MESSAGE } from "../../../utils/constants";
+import { useSelector } from "react-redux";
 
-const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, isLoader}) => {
+const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange}) => {
   const [checked, setChecked] = useState(false);
   const {handleChange, handleSetItem, nameMovie} = useSearchMovies(type)
   const url = useLocation();
+  const { moviesPending } = useSelector(state => state.movies);
 
   const handleSearchMovies = (e)  => {
     e.preventDefault();
@@ -51,7 +53,7 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange, is
             />
           </label>
         </fieldset>
-        <button className="button button_type_search" disabled={isLoader}>
+        <button className="button button_type_search" disabled={moviesPending}>
           <img className="button__image" src={enter} alt="Начать поиск" />
         </button>
         <div className="searchForm__flex">

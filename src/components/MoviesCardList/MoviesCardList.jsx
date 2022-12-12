@@ -6,7 +6,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../UI/Preloader/Preloader";
 import "./MoviesCardList.scss";
 
-const MoviesCardList = ({filterMovies, isLoader }) => {
+const MoviesCardList = ({ filterMovies }) => {
   const [moviesDisplay, setMoviesDisplay] = useState([]);
   const [count, setCount] = useState(0);
   const [windowSize, setWindowsSite] = useState(window.screen.width);
@@ -15,12 +15,12 @@ const MoviesCardList = ({filterMovies, isLoader }) => {
   const { moviesErrorMessage, moviesPending } = useSelector(state => state.movies);
 
   useEffect(() => {
-    if (!isLoader) {
+    if (!moviesPending) {
       !filterMovies.length ? setIsError(true) : setIsError(false);
     } else {
       setIsError(false)
     }
-  }, [filterMovies, isLoader])
+  }, [filterMovies, moviesPending])
 
   const handleChangeWindow = () => {
     setWindowsSite(window.screen.width)
@@ -77,8 +77,8 @@ const MoviesCardList = ({filterMovies, isLoader }) => {
 
   return(
     <section className="movieCardList">
-      {(!isLoader && isError) && <h2 className="movieCardList__title">{moviesErrorMessage}</h2>}
-      {isLoader || moviesPending
+      {(!moviesPending && isError) && <h2 className="movieCardList__title">{moviesErrorMessage}</h2>}
+      {moviesPending
         ? <Preloader />
         : <ul className="list movieCardList__grid">
             {movieElement}
