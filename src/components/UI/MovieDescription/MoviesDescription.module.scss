@@ -1,0 +1,35 @@
+@import '../../../styles/mixins.scss';
+
+.movieDescription {
+  margin: 20px 0;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid #e8e8e8;
+
+  &__title {
+    @include text-size(15px, 17px, 500);
+    margin: 0;
+  }
+
+  &__subtitle {
+    @include text-size(15px, 17px, 400);
+    margin: 0;
+    
+  }
+}
+
+@include smallScreen {
+  .movieDescription {
+    margin: 10px 0;
+
+    &__title {
+      @include text-size(14px, 16px, 500);
+      margin: 0;
+    }
+  
+    &__subtitle {
+      @include text-size(14px, 16px, 400);
+    }
+  }
+}

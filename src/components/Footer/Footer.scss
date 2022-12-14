@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/consts.scss';
 
 .footer {
   padding: 69px 70px 20px;
@@ -7,7 +8,7 @@
     @include text-size(13px, 16px, 400);
     margin: 0;
     text-align: center;
-    color: #a0a0a0;
+    color: $grayColor;
   }
   
   &__line {
@@ -70,7 +71,7 @@
   
     &__copyright {
       @include text-size(12px, 14.52px, 400);
-      color: #a0a0a0;
+      color: $grayColor;
       text-align: center;
     }
   

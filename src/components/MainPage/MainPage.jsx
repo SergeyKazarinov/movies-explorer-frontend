@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Register from "../Register/Register";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import Movie from "../Movie/Movie";
 
 const MainPage = ({
     onError,
@@ -32,10 +33,13 @@ const MainPage = ({
             <Main />
           </Route>
           <ProtectedRoute
-            path="/movies"
+            exact path="/movies"
             component={Movies}
             onError={onError}
           />
+          <Route path='/movies/:id'>
+            <Movie />
+          </Route>
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
@@ -52,6 +56,9 @@ const MainPage = ({
             <Login />
           </Route>
           <Route path="*">
+            <PageNotFound />
+          </Route>
+          <Route path="/movies/*">
             <PageNotFound />
           </Route>
         </Switch>

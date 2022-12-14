@@ -14,7 +14,7 @@
 
   &__legend {
     @include text-size(10px, 12px, 400);
-    color: #a0a0a0;
+    color: $grayColor;
   }
 
   &__input {
