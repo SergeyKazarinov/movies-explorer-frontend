@@ -6,6 +6,7 @@ import { useLocation } from "react-router";
 import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSavedMoviesThunk, deleteSavedMoviesThunk } from "../../services/crateAsyncAction/movies";
+import { Link } from "react-router-dom";
 
 const MoviesCard = ({movie}) => {
   const url = useLocation();
@@ -15,9 +16,12 @@ const MoviesCard = ({movie}) => {
   const dispatch = useDispatch();
   const moviesCardSaved = isSaved ? save_active : save_disabled;
   const moviesCardClose = url.pathname==="/movies" ? moviesCardSaved : close;
-  const poster = url.pathname ==="/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image; 
+  const poster = url.pathname ==="/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image;
+  const link = url.pathname === "/movies" ? `/movies/${movie.id}` : `/movies/${movie.movieId}`
+  
   const hour = (movie.duration / 60).toFixed(0);
   const minute = movie.duration % 60;
+
 
   useEffect(() => {
     if (url.pathname === "/movies") {
@@ -49,9 +53,9 @@ const MoviesCard = ({movie}) => {
           <img className="moviesCard__save" src={moviesCardClose} alt="Иконка добавления в избранное или удаления" />
         </button>
       </div>
-      <a className="link moviesCard__link" href={movie.trailerLink} target="_blank">
+      <Link to={link}>
         <img className="moviesCard__poster" src={poster} alt="Постер фильма" />
-      </a>
+      </Link>
     </div>
   )
 };

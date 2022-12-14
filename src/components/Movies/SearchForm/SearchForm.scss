@@ -58,7 +58,7 @@
     
     &::placeholder {
       @include text-size(18px, 20px, 400);
-      color: #a0a0a0;
+      color: $grayColor;
     }
   }
   

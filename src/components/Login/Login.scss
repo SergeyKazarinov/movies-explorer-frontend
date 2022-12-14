@@ -68,7 +68,7 @@
     @include text-size(14px, 17px, 400);
     margin: 0;
     margin-top: 16px;
-    color: #a0a0a0;
+    color: $grayColor;
   }
 
   &__link {

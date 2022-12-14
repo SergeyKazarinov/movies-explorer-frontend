@@ -29,13 +29,13 @@ const Movies = ({onError}) => {
     sessionStorage.setItem(CHECKBOX, checked)
   };
 
-  return(
-    <section className="movies">
-      <SearchForm type="movies" onSearch={handleSearchMovies} onError={onError} isShort={isShort} onChange={handleChangeChecked}/>
-      <MoviesCardList
-        filterMovies={filterMovies}
-      />
-    </section>
+return(
+  <section className="movies">
+    <SearchForm type="movies" onSearch={handleSearchMovies} onError={onError} isShort={isShort} onChange={handleChangeChecked}/>
+    <MoviesCardList
+      filterMovies={filterMovies}
+    />
+  </section>
   )
 };
 

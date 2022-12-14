@@ -50,7 +50,7 @@
   &__question {
     @include text-size(14px, 17px, 400);
     margin: 16px 0 0;
-    color: #a0a0a0;
+    color: $grayColor;
   }
   
   &__link {

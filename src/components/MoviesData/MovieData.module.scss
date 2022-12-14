@@ -1,0 +1,162 @@
+@import '../../styles/consts.scss';
+@import '../../styles/mixins.scss';
+
+.movieData {
+  box-sizing: border-box;
+  padding: 70px 70px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+
+  &__container {
+    display: flex;
+    gap: 50px;
+  }
+
+  &__flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__image {
+    width: 450px;
+    height: 305px;
+    object-fit: fill;
+  }
+
+  &__trailer {
+    @include text-size(18px, 20px, 400);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    width: 400px;
+    border-radius: 25px;
+    background-color: $greenColor;
+  }
+
+  &__descriptionContainer {
+    width: 100%
+  }
+
+  &__title {
+    @include text-size(40px, 48px, 500);
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $grayColor;
+  }
+
+  &__description {
+    margin: 0;
+    @include text-size(18px, 24px, 400);
+  }
+
+  &__button {
+    @include text-size(18px, 20px, 400);
+    color: #fff;
+    padding: 15px 0;
+    width: 400px;
+    border-radius: 25px;
+    background-color: $greenColor;
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .movieData {
+    &__image {
+      width: 330px;
+      height: 235px;
+    }
+
+    &__container {
+      gap: 20px;
+    }
+
+    &__trailer {
+      @include text-size(18px, 20px, 400);
+      width: 300px;
+    }
+
+    &__title {
+      @include text-size(30px, 38px, 500);
+    }
+
+    &__button {
+      @include text-size(18px, 20px, 400);
+      width: 300px;
+    }
+  }
+}
+
+@include largeScreen {
+  .movieData {
+    padding: 70px 30px 0;
+
+    &__image {
+      width: 390px;
+      height: 305px;
+    }
+
+    &__container {
+      flex-direction: column;
+    }
+
+    &__trailer {
+      @include text-size(18px, 20px, 400);
+      width: 300px;
+    }
+
+    &__button {
+      @include text-size(18px, 20px, 400);
+      width: 300px;
+    }
+  }
+}
+
+@include middleScreen {
+  .movieData {
+    &__image {
+      width: 390px;
+      height: 305px;
+    }
+
+    &__container {
+      flex-direction: column;
+    }
+
+    &__description {
+      @include text-size(16px, 20px, 400);
+    }
+  }
+}
+
+@include smallScreen {
+  .movieData {
+    padding: 30px 14px 0;
+    gap: 10px;
+
+    &__image {
+      width: 292px;
+      height: 250px;
+    }
+
+    &__trailer {
+      @include text-size(14px, 16px, 400);
+      width: 250px;
+    }
+
+    &__button {
+      @include text-size(14px, 16px, 400);
+      width: 250px;
+    }
+
+    &__description {
+      @include text-size(14px, 16px, 400);
+    }
+  }
+}
