@@ -1,0 +1,12 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/consts.scss';
+
+.button {
+  @include text-size(18px, 20px, 400);
+  color: #fff;
+  padding: 15px 0;
+  min-width: 300px;
+  border-radius: 25px;
+  background-color: $greenColor;
+  align-self: center;
+}

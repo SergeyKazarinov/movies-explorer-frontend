@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MOVIES_SERVER_ERROR_MESSAGE } from "../../utils/constants";
 import { createSavedMoviesThunk, deleteSavedMoviesThunk, getMoviesFromServer, getSavedMoviesThunk } from "../crateAsyncAction/movies";
+import { moviesInitialState } from "../store/moviesInitialState";
 
 const moviesSlice = createSlice({
   name: 'movies',
-  initialState: {
-    moviesErrorMessage: '',
-    moviesPending: false,
-
-    moviesFromServer: [],
-    savedMovies: [],
-  },
+  initialState: moviesInitialState,
   reducers: {
     clearMovies(state) {
       state.moviesFromServer = [];

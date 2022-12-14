@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MOVIE_SHORT_DURATION } from "../../utils/constants";
+import { searchMoviesInitialState } from "../store/searchMoviesInitialState";
 
 const filterMovies = (movies, movieName) => {
   return movies.filter(movie => movie.nameRU.toLowerCase().includes(movieName.toLowerCase())
@@ -14,13 +15,7 @@ const filterCheckbox = (movies, checked) => {
 
 const searchMoviesSlice = createSlice({
   name: 'searchMovies',
-  initialState: {
-    filterMovies: [],
-    isShort: false,
-
-    longSavedMovies: [],
-    shortSavedMovies: [],
-  },
+  initialState: searchMoviesInitialState,
   reducers: {
     setFilterMovies(state, action) {
       state.filterMovies = action.payload;

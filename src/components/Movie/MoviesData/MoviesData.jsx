@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createSavedMoviesThunk, deleteSavedMoviesThunk } from "../../services/crateAsyncAction/movies";
-import MovieDescription from "../UI/MovieDescription/MovieDescription";
+import { createSavedMoviesThunk, deleteSavedMoviesThunk } from "../../../services/crateAsyncAction/movies";
+import MovieDescription from "../../UI/MovieDescription/MovieDescription";
 import s from './MovieData.module.scss';
 
 
@@ -14,15 +14,15 @@ const MovieData = ({movie}) => {
     backgroundImage: `url(https://api.nomoreparties.co${movie.image.url})`,
     backgroundColor: "#000",
     backgroundRepeat: "no-repeat",
-    backgroundSize: "100%",
-    filter: `blur(1.5rem) brightness(40%)`,
+    backgroundSize: "cover",
+    filter: `blur(1.2rem) brightness(40%)`,
     zIndex: "-1",
     width: "100%",
-    height: "100vh",
+    height: "100%",
     position: "absolute",
     top: "0",
     left: "0",
-    opacity: 0.4
+    opacity: 0.4,
   }
 
   const handleClick = () => {

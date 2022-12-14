@@ -19,7 +19,7 @@ const MoviesCard = ({movie}) => {
   const poster = url.pathname ==="/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image;
   const link = url.pathname === "/movies" ? `/movies/${movie.id}` : `/movies/${movie.movieId}`
   
-  const hour = (movie.duration / 60).toFixed(0);
+  const hour = movie.duration <= 60 ? 0 : (movie.duration / 60).toFixed(0);
   const minute = movie.duration % 60;
 
 

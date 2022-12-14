@@ -24,9 +24,7 @@ const SearchForm = ({type, onSearch, onError, isShort, onResetForm, onChange}) =
       
       onSearch(nameMovie, checked);
     } else {
-      url.pathname === '/movies'
-      ? onError(ERROR_INPUT_SEARCH_MOVIES_MESSAGE, true)
-      : onResetForm(checked);
+      onResetForm(checked);
     }
   }
 

@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { LARGE_COUNT, LARGE_WINDOW_SIZE, MIDDLE_COUNT, MIDDLE_WiNDOW_SIZE, MORE_BUTTON_LARGE, MORE_BUTTON_MIDDLE, SMALL_COUNT } from "../../utils/constants";
+import { LARGE_COUNT, LARGE_WINDOW_SIZE, MIDDLE_COUNT, MIDDLE_WiNDOW_SIZE, MORE_BUTTON_LARGE, MORE_BUTTON_MIDDLE, MOVIES_NAME, SMALL_COUNT } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../UI/Preloader/Preloader";
 import "./MoviesCardList.scss";
@@ -16,7 +16,7 @@ const MoviesCardList = ({ filterMovies }) => {
 
   useEffect(() => {
     if (!moviesPending) {
-      !filterMovies.length ? setIsError(true) : setIsError(false);
+      !filterMovies.length && sessionStorage.getItem(MOVIES_NAME) ? setIsError(true) : setIsError(false);
     } else {
       setIsError(false)
     }
