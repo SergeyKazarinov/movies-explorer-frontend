@@ -1,0 +1,69 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/consts.scss';
+
+.projectStack {
+  @include text-size(12px, 15px, 400);
+  text-align: center;
+  padding: 5px 0;
+  background-color: rgba(43, 224, 128, .3);
+  border-radius: 5px;
+  background: linear-gradient($greenColor, $greenColor 48%, $greenColor 52%, $greenColor);
+  transition: .2s;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    box-sizing: border-box;
+    transform: translateX(100%);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 99.5%;
+    height: 2px;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+  }
+
+  &::after {
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99.5%;
+    height: 2px;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+  }
+
+  &:hover {
+    transition: .2s box-shadow linear .3s,
+                .2s transform linear .3s,
+                .2s background-color linear .3s,
+                .2s color linear .3s;
+    background-color: $greenColor;
+    color: #fff;
+    box-shadow: 0 0 5px $greenColor,
+                0 0 25px $greenColor,
+                0 0 50px $greenColor;
+    transform: scale(1.1);
+
+    &::before {
+      transition: .05s transform linear, .05s height linear .05s;
+      transform: translateX(0);
+      height: 100%;
+      border-color: $greenColor;
+      opacity: .4;
+    }
+    
+    &::after {
+      transition: .05s transform linear .1s, .05s height linear .15s;
+      transform: translateX(0);
+      height: 100%;
+      border-color: $greenColor;
+      opacity: .4;
+    }
+  }
+}
