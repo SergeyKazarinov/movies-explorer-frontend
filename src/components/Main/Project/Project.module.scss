@@ -1,0 +1,177 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/consts.scss';
+
+.project {
+  padding: 5px;
+  overflow: hidden;
+  height: 70px;
+  transition: 1s;
+
+  &_opened {
+    height: 450px;
+    transition: 1s;
+    overflow-y: auto;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    overflow: hidden;
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 150%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $greenColor;
+      border-radius: 10px;
+      transition: .5s;
+      z-index: -1;
+    }
+    
+    &:hover {
+      color: #fff;
+
+      &::before {
+        top: 0;
+      }
+
+    }
+  }
+
+  &__title {
+    @include text-size(30px, 50px, 400);
+    margin: 0;
+    letter-spacing: -0.04em;
+  }
+  
+  &__arrow {
+    @include text-size(30px, 60px, 400);
+    width: 29px;
+    letter-spacing: -0.04em;
+    transition: .5s;
+
+    &_active {
+      transform: rotate(495deg);
+      transition: .5s;
+    }
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__flex {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__image {
+    width: 355px;
+    object-fit: contain;
+  }
+
+  &__columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__stack {
+    width: 90px;
+  }
+
+  &__info {
+    @include text-size(14px, 20px, 400);
+  }
+
+  &__flexLink {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    margin-top: 9px;
+    margin-bottom: 20px;
+  }
+}
+
+@include largeScreen {
+  .project {
+    &_opened {
+      height: 600px;
+    }
+
+    &__title {
+      @include text-size(28px, 30px, 400);
+    }
+
+    &__image {
+      width: 355px;
+    }
+
+    &__flex{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@include middleScreen {
+  .project {
+    height: 38px;
+
+    &_opened {
+      height: 600px;
+    }
+    
+    &__title {
+      @include text-size(22px, 28px, 400);
+    }
+
+    &__arrow {
+      @include text-size(25px, 28px, 400);
+      width: 25px;
+    }
+  }
+}
+
+@include smallScreen {
+  .project {
+    &__title {
+      @include text-size(18px, 28px, 400);
+    }
+  
+    &__arrow {
+      @include text-size(18px, 28px, 400);
+      width: 18px;
+    }
+
+    &__list {
+      gap: 10px;
+    }
+
+    &__line {
+      margin-top: 9px;
+      margin-bottom: 20px;
+    }
+  }
+}
