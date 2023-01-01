@@ -1,4 +1,4 @@
-import { FC, MouseEvent, MouseEventHandler } from "react";
+import { FC, MouseEvent } from "react";
 import { Route, Switch } from "react-router-dom";
 import { URLS_FOR_FOOTER, URLS_FOR_HEADER } from "../../utils/constants";
 import Footer from "../Footer/Footer";

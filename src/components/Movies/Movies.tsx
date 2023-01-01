@@ -1,7 +1,7 @@
 import s from "./Movies.module.scss";
 import { FC, useEffect } from "react";
 import { getMoviesFromServer } from "../../services/crateAsyncAction/movies";
-import { changeCheckbox, searchMovies, setFilterMovies } from "../../services/slices/searchMoviesSlice";
+import { changeCheckbox, resetSearchMoviesFromServer, searchMovies, setFilterMovies } from "../../services/slices/searchMoviesSlice";
 import { CHECKBOX, MOVIES_NAME } from "../../utils/constants";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { Button } from "../UI/Button/Button";
@@ -27,11 +27,14 @@ const Movies: FC = () => {
 
   const handleSearchMovies = (movieName: string, checked: boolean) => {
     moviesFromServer.length === 0 && dispatch(getMoviesFromServer());
-    dispatch(searchMovies({movies: moviesFromServer, movieName, checked}))
+    dispatch(searchMovies({movies: filterMovies, movieName, checked}))
   };
 
   const handleChangeChecked = (checked: boolean) => {
-    dispatch(changeCheckbox({movies: moviesFromServer, checked}))
+    const movieName = sessionStorage.getItem(MOVIES_NAME);
+    movieName
+    ? dispatch(searchMovies({movies: moviesFromServer, movieName, checked}))
+    : dispatch(changeCheckbox({movies: moviesFromServer, checked}))
     sessionStorage.setItem(CHECKBOX, String(checked))
   };
 
@@ -41,11 +44,12 @@ const Movies: FC = () => {
     } else {
       dispatch(setFilterMovies(moviesFromServer));
     }
+    sessionStorage.removeItem(MOVIES_NAME);
   }
 
   const handleResetSearch = (checked: boolean) => {
-    sessionStorage.setItem(MOVIES_NAME, '');
-    handleSearchMovies('', checked);
+    sessionStorage.removeItem(MOVIES_NAME);
+    dispatch(resetSearchMoviesFromServer({movies: moviesFromServer, checked}))
   }
 
 return(
