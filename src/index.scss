@@ -1,7 +1,9 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
+@import './styles/mixins.scss';
 
 html {
+  @include scrollbar();
   scroll-behavior: smooth;
 }
 

@@ -39,6 +39,9 @@ const searchMoviesSlice = createSlice({
     changeCheckbox(state, action: PayloadAction<IChangeCheckbox>) {
       state.filterMovies = filterCheckbox(action.payload.movies, action.payload.checked);
     },
+    resetSearchMoviesFromServer(state, action: PayloadAction<IChangeCheckbox>) {
+      state.filterMovies = filterCheckbox(action.payload.movies, action.payload.checked);
+    },
 
     setSavedMovies(state, action: PayloadAction<ISavedMovies[]>) {
       state.longSavedMovies = action.payload;
@@ -63,6 +66,7 @@ export default searchMoviesSlice.reducer;
 export const {
   setFilterMovies,
   searchMovies,
+  resetSearchMoviesFromServer,
   searchSavedMovies,
   setSavedMovies,
   resetSearchSavedMovies,

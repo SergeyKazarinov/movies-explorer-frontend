@@ -23,8 +23,8 @@ export const ERROR_INPUT_SEARCH_MOVIES_MESSAGE: string = "Нужно ввест�
 export const EMAIL_PATTERN: string = '^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$';
 
 
-// export const BASE_URL_FOR_MAIN_API: string = 'http://localhost:5000';
-export const BASE_URL_FOR_MAIN_API: string = 'https://api.movies.kazarinov.nomoredomains.icu';
+export const BASE_URL_FOR_MAIN_API: string = 'http://localhost:5000';
+// export const BASE_URL_FOR_MAIN_API: string = 'https://api.movies.kazarinov.nomoredomains.icu';
 export const BASE_URL_FOR_MOVIE_IMAGES: string = 'https://api.nomoreparties.co';
 export const BASE_URL_FOR_MOVIES: string = 'https://api.nomoreparties.co/beatfilm-movies';
 
