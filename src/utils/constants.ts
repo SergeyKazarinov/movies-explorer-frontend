@@ -38,7 +38,10 @@ export const STACKS: string[] = [
   'React',
   'Git',
   'Express.js',
+  'SQL',
+  'PostgreSQL',
   'mongoDB',
   'Redux',
-  'Redux Toolkit'
+  'Redux Toolkit',
+  'WebSocket'
 ]

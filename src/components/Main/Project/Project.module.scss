@@ -69,6 +69,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-right: 20px;
   }
 
   &__flex {
@@ -99,11 +100,13 @@
 
   &__info {
     @include text-size(14px, 20px, 400);
+    white-space: pre-wrap;
   }
 
   &__flexLink {
     display: flex;
     gap: 20px;
+    justify-content: end;
   }
 
   &__line {
