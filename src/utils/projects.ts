@@ -3,9 +3,37 @@ import portfolio from '../images/portfolio.jpg';
 import armaggedon from '../images/armaggedon.gif';
 import chat from '../images/chat.jpg';
 import stellar from '../images/stellar-burger.jpg';
+import calculator from '../images/calculator.jpg';
 import { IInitialProjects } from '../interface/IInitialProject';
 //поле desctiption имеет свойство white-space: pre-wrap
 export const initialProjects: IInitialProjects[] = [
+  {
+    name: 'Calculator',
+    link: 'https://calculator-navy-seven.vercel.app/',
+    github: 'https://github.com/SergeyKazarinov/calculator',
+    description: `Проект представляет собой drag-and-drop конструктор, с помощью которого можно собрать калькулятор.
+
+Правая часть экрана - холст. На холст можно бросать компоненты из палитры. При перетаскивании светится зона, куда вставится элемент.
+Каждый элемент можно бросить на холст только один раз, затем они становятся неактивными. Элемент удаляется с холста по dblclick.
+    
+Переключатель между режимом конструктора и runtime:
+- в режиме конструктора можно собирать интерфейс, но при нажатии на кнопки, они ничего не делают. Дисплей на холсте может быть только вверху, поэтому двигать мы его не можем.
+- в режиме runtime перетаскивать ничего нельзя (сайдбар скрывается), но работает калькулятор. Нажимаем на кнопки и видим результат на дисплее.
+- переключение сбрасывает состояние дисплея.
+
+Приложение имеет модульную архитектуру.`,
+    stack: [
+      'HTML',
+      'Sass module',
+      'React',
+      'React-DnD',
+      'React-Routes',
+      'TypeScript',
+      'Redux Toolkit',
+      'ESLint',
+    ],
+    scrin: calculator,
+  },
   {
     name: 'Stellar-Burger',
     link: 'https://stellar-burger.ru/',
