@@ -32,16 +32,21 @@ export const BASE_URL_FOR_MOVIES: string = 'https://api.nomoreparties.co/beatfil
 export const STACKS: string[] = [
   'HTML',
   'CSS',
-  'Sass',
+  'SASS/SCSS',
+  'Tailwind CSS',
   'JS',
   'TS',
   'React',
+  'Next.js',
   'Git',
   'Express.js',
   'SQL',
   'PostgreSQL',
-  'mongoDB',
+  'MongoDB',
   'Redux',
   'Redux Toolkit',
+  'Redux-saga',
+  'Bootstrap',
+  'React-Bootstrap',
   'WebSocket'
 ]

@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "scp -Cr ./build/* kazarinov092@158.160.58.118:/home/kazarinov092/movies-explorer-frontend/build"
   },
   "eslintConfig": {
     "extends": [

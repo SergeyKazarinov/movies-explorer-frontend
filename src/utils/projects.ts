@@ -4,9 +4,49 @@ import armaggedon from '../images/armaggedon.gif';
 import chat from '../images/chat.jpg';
 import stellar from '../images/stellar-burger.jpg';
 import calculator from '../images/calculator.jpg';
+import messenger from '../images/messenger.jpg';
 import { IInitialProjects } from '../interface/IInitialProject';
 //поле desctiption имеет свойство white-space: pre-wrap
 export const initialProjects: IInitialProjects[] = [
+  {
+    name: 'Messenger',
+    link: 'https://messenger-mu-black.vercel.app/',
+    github: 'https://github.com/SergeyKazarinov/messenger',
+    description: `Приложения Messenger для обмена сообщениями в режиме реального времени..
+
+Возможности приложения:
+- Авторизация пользователя через Google или GitHub
+- Обмен сообщениями в режиме реального времени
+- Возможность отправки изображений
+- Статус о прочтении сообщения
+- Статус активности пользователя (Online/Offline)
+- Создание групповых чатов
+- Настройка профиля
+
+Используемые технологии:
+- Адаптивная верстка для всех устройств
+- Для стилизации элементов страницы используется TailwindCSS
+- Авторизация пользователя реализована с помощью NextAuth
+- Загрузка файлов и изображений реализована при помощи Uploadcare
+- Для обмена сообщениями в режиме реального времени используется Pusher
+- Работа с формами реализована при помощи React-hook-form
+- Обработка ошибок сервера реализована при помощи React-hot-toast
+- Для работы с базой данных используется Prisma
+- Для Code Style используется ESLint совместно с Airbnb`,
+    stack: [
+      'Next.js 13',
+      'TypeScript',
+      'Tailwind CSS',
+      'MongoDB',
+      'Prisma',
+      'ESLint',
+      'Pusher',
+      'NextAut',
+      'React-hook-form',
+      'Uploadcare',
+    ],
+    scrin: messenger,
+  },
   {
     name: 'Calculator',
     link: 'https://calculator-navy-seven.vercel.app/',
