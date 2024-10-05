@@ -76,7 +76,7 @@ export const initialProjects: IInitialProjects[] = [
   },
   {
     name: 'Stellar-Burger',
-    link: 'https://stellar-burger.ru/',
+    link: 'https://stellar-burger-iota.vercel.app/',
     github: 'https://github.com/SergeyKazarinov/stellar-burger',
     description: `P.S. Проект рассчитан для десктопных устройв и не имеет адаптивной верстки для мобильных устройств.
 
@@ -105,7 +105,7 @@ export const initialProjects: IInitialProjects[] = [
   },
   {
     name: 'Portfolio',
-    link: 'https://kazarinov.nomoredomains.club',
+    link: 'https://movies.kazarinov092.ru',
     github: 'https://github.com/SergeyKazarinov/movies-explorer-frontend',
     description: 
     `Это онлайн-сервис по поиску на основе данных API "Beatfilm‑movies" с возможностью сохранения понравившихся.
@@ -130,7 +130,7 @@ export const initialProjects: IInitialProjects[] = [
   },
   {
     name: 'Mesto',
-    link: 'https://kazarinov.mesto.nomoredomains.icu',
+    link: 'https://mesto.kazarinov092.ru',
     github: 'https://github.com/SergeyKazarinov/react-mesto-api-full',
     description: `Это упрощенный аналог социальной сети "Instagram". 
     
